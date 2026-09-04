@@ -1,0 +1,130 @@
+---
+---
+
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* ===== 淡蓝色主题定制 ===== */
+
+/* 链接颜色 - 使用更柔和的蓝色 */
+:root {
+  --link-color: #2563eb;
+  --link-underline-color: #dbeafe;
+  
+  /* 侧边栏背景 - 极淡的蓝色 */
+  --sidebar-bg: #f0f7ff;
+  --sidebar-border-color: #dbeafe;
+  --sidebar-hover-bg: rgb(219 233 248 / 64%);
+  
+  /* 按钮和交互元素 */
+  --btn-backtotop-border-color: #dbeafe;
+  --menu-highlight-bg: rgb(239 246 255 / 50%);
+  
+  /* 提示框背景 */
+  --prompt-info-bg: #eff6ff;
+  --prompt-info-icon-color: #3b82f6;
+  
+  /* 标签和分类 */
+  --tag-border: #bfdbfe;
+  --tag-hover: rgb(191 219 254);
+  --search-tag-bg: #eff6ff;
+  
+  /* 代码块背景 */
+  --highlight-bg-color: #f8fafc;
+  
+  /* 表格 */
+  --tb-odd-bg: #f8fafc;
+  
+  /* 卡片悬停 */
+  --card-hover-bg: #dbeafe;
+}
+
+/* 文章标题链接悬停效果 */
+#post-list a:hover {
+  color: #2563eb !important;
+}
+
+/* 侧边栏标题颜色 */
+#sidebar .site-title a {
+  color: #1e40af;
+}
+
+/* 活跃菜单项 */
+#sidebar .nav-link.active {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* 顶部导航栏 */
+#topbar {
+  background-color: rgb(255 255 255 / 85%);
+}
+
+/* 搜索框 */
+#search-input:focus {
+  border-color: #60a5fa;
+}
+
+/* 分页按钮 */
+.pagination .page-link:hover {
+  background-color: #dbeafe;
+  border-color: #93c5fd;
+}
+
+/* 返回顶部按钮 */
+#back-to-top {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+#back-to-top:hover {
+  background-color: #dbeafe;
+}
+
+/* 标签样式 */
+.post-tag:hover {
+  background-color: #dbeafe;
+  border-color: #93c5fd;
+}
+
+/* 代码高亮边框 */
+div.highlight {
+  border-left: 3px solid #93c5fd;
+}
+
+/* 引用块 */
+blockquote {
+  border-left-color: #93c5fd;
+  background-color: #f8fafc;
+}
+
+/* 表格头部 */
+table thead th {
+  background-color: #f1f5f9;
+  border-bottom-color: #cbd5e1;
+}
+
+/* 提示框边框加强 */
+.prompt-info {
+  border-left-color: #3b82f6;
+}
+
+/* 分类页面 */
+.card:hover {
+  border-color: #93c5fd;
+}
+
+/* 归档时间线 */
+#archives .year::before {
+  background-color: #60a5fa;
+}
+
+/* 脚注 */
+.footnotes ol li::marker {
+  color: #60a5fa;
+}
