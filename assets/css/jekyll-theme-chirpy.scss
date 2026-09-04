@@ -81,7 +81,7 @@
   border-left: 3px solid #93c5fd;
 }
 
-:root[data-bs-theme="light"] blockquote {
+:root[data-bs-theme="light"] blockquote:not([class^="prompt-"]) {
   border-left-color: #93c5fd;
   background-color: #f8fafc;
 }
@@ -175,7 +175,7 @@
   border-left: 3px solid #8b5cf6;
 }
 
-:root[data-bs-theme="dark"] blockquote {
+:root[data-bs-theme="dark"] blockquote:not([class^="prompt-"]) {
   border-left-color: #8b5cf6;
   background-color: #1e1b2e;
 }
