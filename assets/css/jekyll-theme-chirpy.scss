@@ -25,10 +25,6 @@
   --btn-backtotop-border-color: #dbeafe;
   --menu-highlight-bg: rgb(239 246 255 / 50%);
   
-  /* 提示框 */
-  --prompt-info-bg: #eff6ff;
-  --prompt-info-icon-color: #3b82f6;
-  
   /* 标签 */
   --tag-border: #bfdbfe;
   --tag-hover: rgb(191 219 254);
@@ -95,10 +91,6 @@
   border-bottom-color: #cbd5e1;
 }
 
-:root[data-bs-theme="light"] .prompt-info {
-  border-left-color: #3b82f6;
-}
-
 :root[data-bs-theme="light"] .card:hover {
   border-color: #93c5fd;
 }
@@ -126,10 +118,6 @@
   /* 按钮和交互 */
   --btn-backtotop-border-color: #5b21b6;
   --menu-highlight-bg: rgb(139 92 246 / 15%);
-  
-  /* 提示框 */
-  --prompt-info-bg: #2e1065;
-  --prompt-info-icon-color: #a78bfa;
   
   /* 标签 */
   --tag-border: #7c3aed;
@@ -195,10 +183,6 @@
 :root[data-bs-theme="dark"] table thead th {
   background-color: #2e1065;
   border-bottom-color: #5b21b6;
-}
-
-:root[data-bs-theme="dark"] .prompt-info {
-  border-left-color: #a78bfa;
 }
 
 :root[data-bs-theme="dark"] .card:hover {
