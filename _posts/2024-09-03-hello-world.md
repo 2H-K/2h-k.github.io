@@ -14,12 +14,100 @@ tags: [hello, jekyll, chirpy]
 ### 代码块
 
 ```python
+class Complex:
+    def __init__(self, realpart, imagpart):
+        self.r = realpart
+        self.i = imagpart
+x = Complex(3.0, -4.5)
+print(x.r, x.i)   # 输出结果：3.0 -4.5
+
 def hello_world():
     print("Hello, World!")
     return "Welcome to my blog!"
 
 hello_world()
 ```
+
+```c
+#include <stdio.h>
+struct agent{
+int session;
+int a;
+char type;
+}Agent;
+
+void swap(int *a,int *b){
+    int tmp;
+    tmp=*a;
+    *a=*b;
+    *b=tmp;
+}
+
+int main(){
+
+    return 0;
+}
+```
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+```csharp
+using System;
+
+class HelloWorld {
+    static void Main() {
+        Console.WriteLine("Hello, World!");
+    }
+}
+```
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+```
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+```
+
+```javascript
+function helloWorld() {
+    console.log("Hello, World!");
+}
+
+helloWorld();
+```
+
+```typescript
+function helloWorld(): void {
+    console.log("Hello, World!");
+}
+
+helloWorld();
+```
+
+```rust
+fn main() {
+    println!("Hello, World!");
+}
+```
+
 
 ### 列表情境
 
