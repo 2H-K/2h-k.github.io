@@ -14,6 +14,9 @@
   /* 链接颜色 */
   --link-color: #2563eb;
   --link-underline-color: #dbeafe;
+
+  /* 目录高亮 */
+  --toc-highlight: #2563eb;
   
   /* 侧边栏 */
   --sidebar-bg: #f0f7ff;
@@ -31,10 +34,10 @@
   --search-tag-bg: #eff6ff;
   
   /* 代码块背景 */
-  --highlight-bg-color: #f8fafc;
+  --highlight-bg-color: #f0f7ff;
   
   /* 表格 */
-  --tb-odd-bg: #f8fafc;
+  --tb-odd-bg: #f0f7ff;
   
   /* 卡片 */
   --card-hover-bg: #dbeafe;
@@ -83,12 +86,12 @@
 
 :root[data-bs-theme="light"] blockquote:not([class^="prompt-"]) {
   border-left-color: #93c5fd;
-  background-color: #f8fafc;
+  background-color: #f0f7ff;
 }
 
 :root[data-bs-theme="light"] table thead th {
-  background-color: #f1f5f9;
-  border-bottom-color: #cbd5e1;
+  background-color: #dbeafe;
+  border-bottom-color: #93c5fd;
 }
 
 :root[data-bs-theme="light"] .card:hover {
