@@ -16,7 +16,7 @@ timezone:
 
 title: 2H-K的博客 # the main title
 
-tagline: 长风破浪会有时，直挂云帆济沧海 # it will display as the subtitle
+tagline: 现实会磨掉理想的毛刺，但磨不掉它的内核 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
