@@ -163,6 +163,9 @@ paginate: 10
 # The base URL of your site
 baseurl: ""
 
+# Publish posts with a future date (e.g. dated later than the build day)
+future: true
+
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
