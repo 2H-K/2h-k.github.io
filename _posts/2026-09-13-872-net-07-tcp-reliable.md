@@ -4,6 +4,7 @@ description: 序号与确认号机制、三种滑动窗口协议对比、窗口�
 date: 2026-09-13 09:30:00 +08:00
 categories: ["872", 计网]
 tags: [TCP, 可靠传输, 滑动窗口, GBN, SR, RTT]
+mermaid: true
 ---
 
 > **位置**：[总索引](/posts/872-index/)｜**上游**：[传输层概述与 UDP](/posts/872-net-06-transport-udp/)｜**下游**：[TCP 连接管理](/posts/872-net-08-tcp-conn/)（08）
