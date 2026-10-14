@@ -167,7 +167,10 @@ baseurl: ""
 future: true
 
 # MathJax (LaTeX) support. Chirpy 7 ships none, so the loader is injected via
-# `_includes/metadata-hook.html`. Requires `kramdown.math_engine: nil` below.
+# `_includes/metadata-hook.html` (the include hook rendered at the end of head.html).
+# Note: kramdown's math_engine is left at its default on purpose -- the GFM parser
+# already normalizes `$$...$$` to \[...\] and leaves `$...$` untouched, both of which
+# MathJax 3 handles natively.
 mathjax:
   enable: true
   vendor: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
@@ -175,9 +178,6 @@ mathjax:
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
-  # Let MathJax handle both `$...$` and `$$...$$` instead of kramdown emitting
-  # legacy MathJax v2 `<script type="math/tex">` tags.
-  math_engine: nil
   footnote_backlink: "&#8617;&#xfe0e;"
   syntax_highlighter: rouge
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options

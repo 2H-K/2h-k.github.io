@@ -1,23 +1,4 @@
-<!-- MathJax v3 — Chirpy 7 ships no math support, so inject it through the
-     documented metadata hook (rendered at the end of `_includes/head.html`).
-     Requires `mathjax.enable: true` and `kramdown.math_engine: nil` in _config.yml. -->
-
 {%- if site.mathjax.enable -%}
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [["$", "$"]],
-      displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      // Never typeset inside code samples / shell prompts.
-      skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
-      // Opt out per element with class="no-mathjax".
-      ignoreHtmlClass: "no-mathjax"
-    }
-  };
-</script>
-<script defer src="{{ site.mathjax.vendor | default: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js' }}"></script>
+<script>window.MathJax={tex:{inlineMath:[["$","$"]],displayMath:[["$$","$$"],["\\[","\\]"]]}};</script>
+<script defer src="{{ site.mathjax.vendor }}"></script>
 {%- endif -%}
