@@ -755,6 +755,8 @@ $P = (1/2)^n$，取 $n = 16$ 时 $P = 1/65536 \approx 1.5 \times 10^{-5}$——�
 
 ![访问控制模型的分类：DAC（访问矩阵/ACL/权能表）、MAC（保密性 BLP、完整性 Biba、混合策略 Clark-Wilson 与 Chinese Wall）、RBAC](/assets/img/csreview/access-control-classify.png)
 
+> 这三类模型与防火墙的能力边界（防火墙能实现哪几类访问控制、哪几类即使加插件也做不到）见[网络安全（下）](/posts/872-sec-02-defense-device-vpn/) §7.8。
+
 ### 6.5 自主访问控制模型（DAC）
 
 **是什么**：允许客体的属主（创建者）自主决定其他主体对该客体的访问权限。是一种**分布式授权管理模式**。
