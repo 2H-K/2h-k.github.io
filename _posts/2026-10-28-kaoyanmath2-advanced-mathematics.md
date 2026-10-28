@@ -696,7 +696,7 @@ $$y=e^{-\int P\,dx}\left[\int Q(x)e^{\int P\,dx}dx+C\right]$$
 $$y''+P(x)y'+Q(x)y=f(x)$$
 
 - 齐次 $y''+Py'+Qy=0$：两个线性无关解 $y_1,y_2$（$\frac{y_1}{y_2}\ne$ 常数），通解 $Y=C_1y_1+C_2y_2$；
-- 非齐次：通解 $y=Y+y^*$（$y^*$ 为一个特解）；
+- 非齐次：通解 $$y=Y+y^*$$（$$y^*$$ 为一个特解）；
 - 叠加原理：$f=f_1+f_2$ 时分别求特解相加。
 
 **二阶常系数齐次**：$y''+py'+qy=0$，特征方程 $r^2+pr+q=0$：
@@ -709,7 +709,7 @@ $$y''+P(x)y'+Q(x)y=f(x)$$
 
 **二阶常系数非齐次**：
 
-- $f(x)=e^{\lambda x}P_m(x)$：设 $y^*=x^k e^{\lambda x}Q_m(x)$，$k$ 为 $\lambda$ 作为特征根的重数（$0,1,2$）；
+- $f(x)=e^{\lambda x}P_m(x)$：设 $$y^*=x^k e^{\lambda x}Q_m(x)$$，$k$ 为 $\lambda$ 作为特征根的重数（$0,1,2$）；
 - $f(x)=e^{\lambda x}[P_l(x)\cos\omega x+P_n(x)\sin\omega x]$：设
 
 $$y^*=x^k e^{\lambda x}[R_m(x)\cos\omega x+S_m(x)\sin\omega x],\quad m=\max(l,n)$$

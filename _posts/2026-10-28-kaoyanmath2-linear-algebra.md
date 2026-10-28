@@ -122,7 +122,7 @@ $$A^{-1}=\frac{1}{|A|}A^*$$
 
 $$AA^*=A^*A=|A|E,\quad |A^*|=|A|^{n-1},\quad (A^*)^*=|A|^{n-2}A,\quad (A^*)^{-1}=\frac{A}{|A|}$$
 
-> **【理解】** 由 $AA^*=\lvert A\rvert E$ 两边取行列式：$\lvert A\rvert \lvert A^*\rvert =\lvert A\rvert ^n$，故 $\lvert A^*\rvert =\lvert A\rvert ^{n-1}$。
+> **【理解】** 由 $$AA^*=\lvert A\rvert E$$ 两边取行列式：$$\lvert A\rvert \lvert A^*\rvert =\lvert A\rvert ^n$$，故 $$\lvert A^*\rvert =\lvert A\rvert ^{n-1}$$。
 
 **可逆矩阵性质**：
 
@@ -200,7 +200,7 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 ### 2.7 本章易错点
 
 1. 矩阵乘法不满足交换律、消去律；
-2. 伴随矩阵 $A^*$ 元素是"代数余子式按列排列"，注意转置；
+2. 伴随矩阵 $$A^*$$ 元素是"代数余子式按列排列"，注意转置；
 3. 求逆只能用初等行变换（不能行列混用）；
 4. 抽象矩阵求逆优先用定义 $AB=E$ 或因式分解；
 5. 秩的不等式中 $AB=O\Rightarrow r(A)+r(B)\le n$ 是高频考点。
@@ -356,7 +356,7 @@ $$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i
 
 ### 5.2 各种矩阵的特征值
 
-| 矩阵 | $A$ | $A^T$ | $A^{-1}$ | $A^*$ | $A^k$ | $A+kE$ | $f(A)$ | $P^{-1}AP$ |
+| 矩阵 | $A$ | $A^T$ | $A^{-1}$ | $$A^*$$ | $A^k$ | $A+kE$ | $f(A)$ | $P^{-1}AP$ |
 |---|---|---|---|---|---|---|---|---|
 | 特征值 | $\lambda$ | $\lambda$ | $\dfrac1\lambda$ | $\dfrac{\lvert A\rvert }\lambda$ | $\lambda^k$ | $\lambda+k$ | $f(\lambda)$ | $\lambda$ |
 | 特征向量 | $\alpha$ | / | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $P^{-1}\alpha$ |
