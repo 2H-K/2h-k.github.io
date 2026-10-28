@@ -4,6 +4,7 @@ description: 动态分区分配四算法与碎片回收、分页地址变换与�
 date: 2026-09-23 09:30:00 +0800
 categories: ["872", 操作系统]
 tags: [内存管理, 分页, 分段, 页面置换, 虚拟存储, 缺页中断, 快表, Belady异常, 抖动, 工作集]
+math: true
 ---
 
 > **位置**：[总索引](/posts/872-index/)｜**上游**：[调度算法与死锁](/posts/872-os-04-schedule-deadlock/)（04）｜**下游**：[文件系统](/posts/872-os-06-file-system/)（06）

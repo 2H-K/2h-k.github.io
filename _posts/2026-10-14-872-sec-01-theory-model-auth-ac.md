@@ -4,6 +4,7 @@ description: 网络空间四要素与四层次模型、CIA 三性、网络安全
 date: 2026-10-14 10:30:00 +0800
 categories: ["872", 网络安全]
 tags: [CIA, 网络空间, 网络空间安全, 风险管理, PDCA, 信创, 国产化替代, PDR, PPDR, IATF, 应急响应, OSI安全服务, 安全机制, 数字签名, 身份鉴别, 零知识证明, 访问控制, BLP, Biba, RBAC, 零信任, 最小权限, 网络准入控制]
+math: true
 ---
 
 > **位置**：[总索引](/posts/872-index/)｜**上游**：[I/O 管理与系统调用](/posts/872-os-07-io/)（OS 07）｜**下游**：[网络安全（下）](/posts/872-sec-02-defense-device-vpn/)（安全 02）

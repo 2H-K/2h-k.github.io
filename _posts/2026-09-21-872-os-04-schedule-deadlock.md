@@ -4,6 +4,7 @@ description: FCFS/SJF/SRTN/HRRN/RR/优先级/多级队列/多级反馈队列八�
 date: 2026-09-21 09:30:00 +0800
 categories: ["872", 操作系统]
 tags: [调度算法, FCFS, SJF, SRTN, 时间片轮转, 多级队列, 多级反馈队列, 死锁, 银行家算法, 资源分配图]
+math: true
 ---
 
 > **位置**：[总索引](/posts/872-index/)｜**上游**：[同步互斥与信号量 PV](/posts/872-os-03-sync-pv/)（03）｜**下游**：[内存管理与页面置换](/posts/872-os-05-memory-paging/)（05）

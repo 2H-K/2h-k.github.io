@@ -4,6 +4,7 @@ description: 防火墙四种检测过滤技术对比、NAT/MAP/IP-MAC 绑定、�
 date: 2026-10-14 20:00:00 +0800
 categories: ["872", 网络安全]
 tags: [防火墙, 包过滤, 应用代理, 状态检测, NAT, 入侵检测, IDS, IPS, 网闸, UTM, 网络准入控制, IPSec, AH, ESP, IKE, VPN, SSL, TLS, HTTPS, 模糊测试, 联邦学习, 供应链安全]
+math: true
 ---
 
 > **位置**：[总索引](/posts/872-index/)｜**上游**：[网络安全（上）](/posts/872-sec-01-theory-model-auth-ac/)（安全 01）｜**下游**：网络安全科完结 → 872 全科收尾
