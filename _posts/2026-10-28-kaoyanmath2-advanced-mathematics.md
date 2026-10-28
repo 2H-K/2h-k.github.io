@@ -15,19 +15,19 @@ math: true
 
 ### 1.1 函数
 
-**定义**：设数集 $D\subset\mathbb{R}$，若存在对应法则 $f$，使每个 $x\in D$ 都有唯一确定的 $y$ 与之对应，则称 $f:D\to\mathbb{R}$ 为定义在 $D$ 上的函数，记 $y=f(x)$。$D$ 为定义域，$f(D)=\{f(x)\mid x\in D\}$ 为值域。
+**定义**：设数集 $D\subset\mathbb{R}$，若存在对应法则 $f$，使每个 $x\in D$ 都有唯一确定的 $y$ 与之对应，则称 $f:D\to\mathbb{R}$ 为定义在 $D$ 上的函数，记 $y=f(x)$。$D$ 为定义域，$$f(D)=\{f(x)\mid x\in D\}$$ 为值域。
 
 **几个特殊函数**：
 
-- 绝对值函数：$|x|=\begin{cases}x,&x\ge0\\-x,&x<0\end{cases}$
-- 符号函数：$\operatorname{sgn}x=\begin{cases}1,&x>0\\0,&x=0\\-1,&x<0\end{cases}$，有 $x=|x|\operatorname{sgn}x$
+- 绝对值函数：$$\lvert x\rvert =\begin{cases}x,&x\ge0\\-x,&x<0\end{cases}$$
+- 符号函数：$$\operatorname{sgn}x=\begin{cases}1,&x>0\\0,&x=0\\-1,&x<0\end{cases}$$，有 $x=\lvert x\rvert \operatorname{sgn}x$
 - 取整函数：$[x]$（不超过 $x$ 的最大整数），有 $x-1<[x]\le x$，$[x+n]=[x]+n$
 
 **函数的四种特性**：
 
 | 特性 | 定义 |
 |---|---|
-| 有界性 | $\exists M>0$，使 $\|f(x)\|\le M,\ \forall x\in X$；否则无界 |
+| 有界性 | $\exists M>0$，使 $\lVert f(x)\rVert \le M,\ \forall x\in X$；否则无界 |
 | 单调性 | 单增：$f(x_1)<f(x_2)$；单减：$f(x_1)>f(x_2)$（$x_1<x_2$） |
 | 奇偶性 | 定义域关于原点对称；$f(-x)=f(x)$ 为偶，$f(-x)=-f(x)$ 为奇 |
 | 周期性 | $\exists T>0$，$f(x+T)=f(x),\ \forall x\in D$ |
@@ -56,7 +56,7 @@ $$\arcsin x+\arccos x=\frac{\pi}{2},\quad \arctan x+\operatorname{arccot}x=\frac
 
 ### 1.2 数列极限
 
-**定义（$\varepsilon$-$N$）**：$\lim_{n\to\infty}x_n=a\iff \forall\varepsilon>0,\ \exists N\in\mathbb{N}^+$，当 $n>N$ 时，$|x_n-a|<\varepsilon$。
+**定义（$\varepsilon$-$N$）**：$\lim_{n\to\infty}x_n=a\iff \forall\varepsilon>0,\ \exists N\in\mathbb{N}^+$，当 $n>N$ 时，$\lvert x_n-a\rvert <\varepsilon$。
 
 **收敛数列的性质**：
 
@@ -74,7 +74,7 @@ $$\arcsin x+\arccos x=\frac{\pi}{2},\quad \arctan x+\operatorname{arccot}x=\frac
 
 ### 1.3 函数极限
 
-**定义**：$\lim_{x\to x_0}f(x)=A\iff \forall\varepsilon>0,\ \exists\delta>0$，当 $0<|x-x_0|<\delta$ 时，$|f(x)-A|<\varepsilon$。
+**定义**：$\lim_{x\to x_0}f(x)=A\iff \forall\varepsilon>0,\ \exists\delta>0$，当 $0<\lvert x-x_0\rvert <\delta$ 时，$\lvert f(x)-A\rvert <\varepsilon$。
 
 - 左极限 $f(x_0^-)$、右极限 $f(x_0^+)$；
 - 极限存在 $\iff$ 左右极限都存在且相等。
@@ -94,7 +94,7 @@ $$\lim_{x\to0}\frac{\sin x}{x}=1,\qquad \lim_{x\to\infty}\left(1+\frac{1}{x}\rig
 
 **无穷小**：极限为 $0$ 的变量。无穷小与函数极限的关系：$\lim f(x)=A\iff f(x)=A+\alpha$，其中 $\alpha\to0$。
 
-**无穷大**：绝对值无限增大（$\forall M>0,\ \exists\delta,\ 0<|x-x_0|<\delta$ 时 $|f(x)|>M$）。无穷大与无穷小：在同一极限过程中，无穷大的倒数为无穷小；非零无穷小的倒数为无穷大。
+**无穷大**：绝对值无限增大（$\forall M>0,\ \exists\delta,\ 0<\lvert x-x_0\rvert <\delta$ 时 $\lvert f(x)\rvert >M$）。无穷大与无穷小：在同一极限过程中，无穷大的倒数为无穷小；非零无穷小的倒数为无穷大。
 
 **无穷小的比较**（设 $\alpha,\beta\to0$，且 $\lim\frac{\beta}{\alpha}=c$）：
 
@@ -212,7 +212,7 @@ $$\text{原式}=\lim_{x\to0}\frac{\frac13x^3}{x^2\cdot 2x}=\frac16$$
 2. 等价无穷小只在乘除替换，加减中误用是最高频错误；
 3. 极限 $\lim_{x\to\infty}(1+\frac1x)^x=e$ 与 $\lim_{x\to0}(1+x)^{1/x}=e$ 别混淆；
 4. 判断间断点要先看左右极限是否都存在，再分类；
-5. 数列 $\{x_n\}$ 有界不一定收敛，但收敛一定有界；
+5. 数列 $$\{x_n\}$$ 有界不一定收敛，但收敛一定有界；
 6. 洛必达使用前必须验证三个条件，且结果不存在不代表原极限不存在。
 
 ---
@@ -231,7 +231,7 @@ $$f'_-(x_0)=\lim_{h\to0^-}\frac{f(x_0+h)-f(x_0)}h,\quad f'_+(x_0)=\lim_{h\to0^+}
 
 $f'(x_0)$ 存在 $\iff f'_-(x_0)=f'_+(x_0)$。
 
-**可导与连续的关系**：可导必连续；连续不一定可导（如 $|x|$ 在 $x=0$ 连续但不可导）。
+**可导与连续的关系**：可导必连续；连续不一定可导（如 $\lvert x\rvert $ 在 $x=0$ 连续但不可导）。
 
 **导数的几何意义**：$f'(x_0)$ 是曲线 $y=f(x)$ 在 $(x_0,f(x_0))$ 处切线斜率。
 
@@ -349,7 +349,7 @@ $$K=\frac{|y''|}{(1+y'^2)^{3/2}},\quad \text{曲率半径}\ \rho=\frac1K$$
 3. $f'(x_0)=0$ 不一定是极值点（如 $x^3$ 在 $0$ 处）；
 4. 拐点是曲线上的点，要写坐标 $(x_0,f(x_0))$，不是只写 $x_0$；
 5. 中值定理条件（连续、可导）缺一不可；
-6. 极值点可以是不可导点（如 $|x|$ 在 $0$），第一充分条件可判导数不存在的情形。
+6. 极值点可以是不可导点（如 $\lvert x\rvert $ 在 $0$），第一充分条件可判导数不存在的情形。
 
 ---
 
@@ -491,7 +491,7 @@ $$L=\int_a^b\sqrt{1+y'^2}\,dx,\quad L=\int_\alpha^\beta\sqrt{r^2+r'^2}\,d\theta$
 3. 反常积分要先找瑕点，分段计算，不能直接用牛莱公式；
 4. 奇偶性结论只适用于对称区间；
 5. 分部积分选 $u$ 顺序：反、对、幂、三、指（排在前的作 $u$）；
-6. $\int\frac1x dx=\ln|x|+C$，绝对值不能漏。
+6. $\int\frac1x dx=\ln\lvert x\rvert +C$，绝对值不能漏。
 
 ---
 
@@ -499,7 +499,7 @@ $$L=\int_a^b\sqrt{1+y'^2}\,dx,\quad L=\int_\alpha^\beta\sqrt{r^2+r'^2}\,d\theta$
 
 ### 4.1 基本概念
 
-**平面点集**：邻域 $U(P_0,\delta)=\{P\mid |PP_0|<\delta\}$；内点、边界点、开集、区域。
+**平面点集**：邻域 $$U(P_0,\delta)=\{P\mid \lvert PP_0\rvert <\delta\}$$；内点、边界点、开集、区域。
 
 **二元函数**：$z=f(x,y),\ (x,y)\in D$。
 

@@ -26,9 +26,9 @@ $$D=\begin{vmatrix}a_{11}&\cdots&a_{1n}\\\vdots&&\vdots\\a_{n1}&\cdots&a_{nn}\en
 
 ### 1.2 行列式的性质
 
-1. 行列式与转置行列式相等：$|A^T|=|A|$；
+1. 行列式与转置行列式相等：$\lvert A^T\rvert =\lvert A\rvert $；
 2. 互换两行（列），行列式变号；
-3. 提公因子：$|kA|=k^n|A|$（某一行（列）提 $k$，$kA$ 是所有元素乘 $k$）；
+3. 提公因子：$\lvert kA\rvert =k^n\lvert A\rvert $（某一行（列）提 $k$，$kA$ 是所有元素乘 $k$）；
 4. 两行（列）成比例（含相同），行列式为 $0$；
 5. 若某行（列）元素都是两数之和，可拆成两个行列式之和；
 6. 某行（列）的 $k$ 倍加到另一行（列），行列式不变。
@@ -75,11 +75,11 @@ $$D_n=\begin{vmatrix}a&b&\cdots&b\\b&a&\cdots&b\\\vdots&\vdots&&\vdots\\b&b&\cdo
 
 ### 1.6 本章易错点
 
-1. $|kA|=k^n|A|$，不是 $k|A|$；
+1. $\lvert kA\rvert =k^n\lvert A\rvert $，不是 $k\lvert A\rvert $；
 2. 行列式互换两行变号，展开式代数余子式 $A_{ij}=(-1)^{i+j}M_{ij}$ 符号别漏；
 3. 拉普拉斯副对角分块带 $(-1)^{mn}$；
 4. 范德蒙是"列标对应元素、大减小"，顺序看清楚；
-5. 抽象行列式先化为 $|A|$ 或特征值的形式，不要硬算。
+5. 抽象行列式先化为 $\lvert A\rvert $ 或特征值的形式，不要硬算。
 
 ---
 
@@ -106,13 +106,13 @@ $$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
 
 **方阵的幂**：$A^k=A\cdots A$（$k$ 个），$A^kA^l=A^{k+l},\ (A^k)^l=A^{kl}$。
 
-**方阵的行列式**：$|AB|=|A||B|=|BA|$。
+**方阵的行列式**：$\lvert AB\rvert =\lvert A\rvert \lvert B\rvert =\lvert BA\rvert $。
 
 ### 2.2 逆矩阵
 
 **定义**：$AB=BA=E$，则 $A$ 可逆，$B=A^{-1}$。
 
-**可逆充要条件**：$|A|\ne0$（即非奇异、满秩）。
+**可逆充要条件**：$\lvert A\rvert \ne0$（即非奇异、满秩）。
 
 **伴随矩阵法**：
 
@@ -122,7 +122,7 @@ $$A^{-1}=\frac{1}{|A|}A^*$$
 
 $$AA^*=A^*A=|A|E,\quad |A^*|=|A|^{n-1},\quad (A^*)^*=|A|^{n-2}A,\quad (A^*)^{-1}=\frac{A}{|A|}$$
 
-> **【理解】** 由 $AA^*=|A|E$ 两边取行列式：$|A||A^*|=|A|^n$，故 $|A^*|=|A|^{n-1}$。
+> **【理解】** 由 $AA^*=\lvert A\rvert E$ 两边取行列式：$\lvert A\rvert \lvert A^*\rvert =\lvert A\rvert ^n$，故 $\lvert A^*\rvert =\lvert A\rvert ^{n-1}$。
 
 **可逆矩阵性质**：
 
@@ -193,7 +193,7 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 
 1. **秩 1 矩阵**：$A=\alpha\beta^T$，则 $A^n=[\operatorname{tr}(A)]^{n-1}A$；
 2. **分解法**：$A=kE+B$（$B$ 为幂零或秩 1），$A^n=(kE+B)^n$ 用二项式展开；
-3. **分块对角**：$A=\begin{pmatrix}B&O\\O&C\end{pmatrix}$，$A^n=\begin{pmatrix}B^n&O\\O&C^n\end{pmatrix}$；
+3. **分块对角**：$$A=\begin{pmatrix}B&O\\O&C\end{pmatrix}$$，$$A^n=\begin{pmatrix}B^n&O\\O&C^n\end{pmatrix}$$；
 4. **相似对角化**：$A=P\Lambda P^{-1}$，$A^n=P\Lambda^nP^{-1}$；
 5. **找规律**：先算 $A^2,A^3$ 找递推关系。
 
@@ -228,7 +228,7 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 
 - $m$ 个 $n$ 维向量 $\alpha_1,\cdots,\alpha_m$：
   - $m>n$：必线性相关；
-  - $m=n$：行列式 $|\alpha_1\cdots\alpha_n|=0$ 相关，$\ne0$ 无关；
+  - $m=n$：行列式 $\lvert \alpha_1\cdots\alpha_n\rvert =0$ 相关，$\ne0$ 无关；
   - $m<n$：求秩，$r(A)<m$ 相关，$r(A)=m$ 无关。
 - 用定义：设 $k_1\alpha_1+\cdots+k_s\alpha_s=0$，恒等变形推出 $k_i$ 是否全为 $0$。
 
@@ -311,7 +311,7 @@ $$x=k_1\xi_1+\cdots+k_{n-r}\xi_{n-r}+\eta^*$$
 
 ### 4.3 克拉默法则
 
-$n$ 个方程 $n$ 个未知数，$|A|\ne0$ 时唯一解 $x_j=\dfrac{D_j}{D}$，其中 $D_j$ 为 $D$ 中第 $j$ 列换为常数项。
+$n$ 个方程 $n$ 个未知数，$\lvert A\rvert \ne0$ 时唯一解 $x_j=\dfrac{D_j}{D}$，其中 $D_j$ 为 $D$ 中第 $j$ 列换为常数项。
 
 ### 4.4 同解与公共解
 
@@ -319,13 +319,13 @@ $n$ 个方程 $n$ 个未知数，$|A|\ne0$ 时唯一解 $x_j=\dfrac{D_j}{D}$，�
 
 1. $A$ 经初等行变换化为 $B$；
 2. $A,B$ 行向量组等价；
-3. $r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}$（三秩相等）；
+3. $$r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}$$（三秩相等）；
 4. 两方程组解集相同；
 5. 存在可逆矩阵 $P$，$PA=B$。
 
 **同解方程组**：$Ax=0$ 与 $A^TAx=0$ 同解；$Ax=0$ 与 $AA^Tx=0$ 同解。
 
-**公共解**：联立 $\begin{pmatrix}A\\B\end{pmatrix}x=0$。
+**公共解**：联立 $$\begin{pmatrix}A\\B\end{pmatrix}x=0$$。
 
 ### 4.5 本章易错点
 
@@ -343,9 +343,9 @@ $n$ 个方程 $n$ 个未知数，$|A|\ne0$ 时唯一解 $x_j=\dfrac{D_j}{D}$，�
 
 **定义**：$A\alpha=\lambda\alpha$（$\alpha\ne0$），$\lambda$ 为特征值，$\alpha$ 为特征向量。
 
-**特征方程**：$|\lambda E-A|=0$。
+**特征方程**：$\lvert \lambda E-A\rvert =0$。
 
-**求法**：① 解 $|\lambda E-A|=0$ 得特征值；② 解 $(\lambda_i E-A)x=0$ 得特征向量。
+**求法**：① 解 $\lvert \lambda E-A\rvert =0$ 得特征值；② 解 $(\lambda_i E-A)x=0$ 得特征向量。
 
 **性质**：
 
@@ -358,7 +358,7 @@ $$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i
 
 | 矩阵 | $A$ | $A^T$ | $A^{-1}$ | $A^*$ | $A^k$ | $A+kE$ | $f(A)$ | $P^{-1}AP$ |
 |---|---|---|---|---|---|---|---|---|
-| 特征值 | $\lambda$ | $\lambda$ | $\dfrac1\lambda$ | $\dfrac{|A|}\lambda$ | $\lambda^k$ | $\lambda+k$ | $f(\lambda)$ | $\lambda$ |
+| 特征值 | $\lambda$ | $\lambda$ | $\dfrac1\lambda$ | $\dfrac{\lvert A\rvert }\lambda$ | $\lambda^k$ | $\lambda+k$ | $f(\lambda)$ | $\lambda$ |
 | 特征向量 | $\alpha$ | / | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $P^{-1}\alpha$ |
 
 > **【理解】** 均由 $A\alpha=\lambda\alpha$ 推出：左乘 $A^{-1}$ 得 $A^{-1}\alpha=\frac1\lambda\alpha$；左乘 $A^{k-1}$ 得 $A^k\alpha=\lambda^k\alpha$；加 $kE$ 得 $(A+kE)\alpha=(\lambda+k)\alpha$。
@@ -368,7 +368,7 @@ $$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i
 
 **特殊情形**：
 
-- $A$ 每行元素之和为 $a$：$A\begin{pmatrix}1\\\vdots\\1\end{pmatrix}=a\begin{pmatrix}1\\\vdots\\1\end{pmatrix}$，即特征值 $a$、特征向量 $(1,\cdots,1)^T$；
+- $A$ 每行元素之和为 $a$：$$A\begin{pmatrix}1\\\vdots\\1\end{pmatrix}=a\begin{pmatrix}1\\\vdots\\1\end{pmatrix}$$，即特征值 $a$、特征向量 $(1,\cdots,1)^T$；
 - $AB=O$：$B$ 的非零列向量是 $A$ 特征值 $0$ 的特征向量。
 
 ### 5.3 相似矩阵
@@ -491,7 +491,7 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 4. 存在可逆矩阵 $P$，$A=P^TP$；
 5. 各阶顺序主子式全大于 $0$。
 
-**必要条件**：$a_{ii}>0$；$|A|>0$。
+**必要条件**：$a_{ii}>0$；$\lvert A\rvert >0$。
 
 ### 6.6 三种搭桥法
 
@@ -519,7 +519,7 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 1. 二次型矩阵必须对称，交叉项系数一半写在对称位置；
 2. 正交变换标准形系数是特征值，配方法不是；
 3. 合同看正负惯性指数，相似看特征值；
-4. 正定判定顺序主子式是"各阶"都大于零，不是只看 $|A|$；
+4. 正定判定顺序主子式是"各阶"都大于零，不是只看 $\lvert A\rvert $；
 5. 搭桥法中乘法顺序（$P_1P_2^{-1}$ 或 $Q_1Q_2^T$）不能反。
 
 ---
@@ -531,8 +531,8 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 1. 看到 $AB=O$：$r(A)+r(B)\le n$；$B$ 的列向量是 $Ax=0$ 的解；$A$ 有特征值 $0$；
 2. 看到 $AB=C$：$C$ 的列向量可由 $A$ 的列向量表示，$C$ 的行向量可由 $B$ 的行向量表示；
 3. 看到 $AB=E$：$A,B$ 均可逆，$A^{-1}=B,\ B^{-1}=A$；
-4. 看到 $A$ 为正交矩阵：$A^{-1}=A^T$，$|A|=\pm1$，特征值 $\pm1$，行列向量两两正交且单位化；
-5. 看到 $A^T=-A$（反对称）：主对角线为 $0$，奇数阶时 $|A|=0$；
+4. 看到 $A$ 为正交矩阵：$A^{-1}=A^T$，$\lvert A\rvert =\pm1$，特征值 $\pm1$，行列向量两两正交且单位化；
+5. 看到 $A^T=-A$（反对称）：主对角线为 $0$，奇数阶时 $\lvert A\rvert =0$；
 6. 看到秩 1：$A=\alpha\beta^T$，$A^n=[\operatorname{tr}(A)]^{n-1}A$，特征值 $\operatorname{tr}(A),0,\cdots,0$；
 7. 看到 $AA^T$、$A^TA$：必为对称阵，与 $A$ 同秩，与 $Ax=0$ 同解，非零特征值相同；
 8. 看到每行元素之和为 $a$：特征值 $a$、特征向量 $(1,\cdots,1)^T$；
