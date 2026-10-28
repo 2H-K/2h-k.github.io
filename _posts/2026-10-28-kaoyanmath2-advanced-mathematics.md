@@ -1,548 +1,754 @@
 ---
-title: "数二 · 线性代数笔记"
+title: "数二 · 高等数学笔记"
 description: 无
 date: 2026-10-28 19:30:00 +0800
-categories: ["数学二", "线代"]
+categories: ["数学二", "高数"]
 ---
-> 数二线代范围：行列式、矩阵、向量、线性方程组、特征值与特征向量、二次型。
+
+> 适用范围：数二（高数 + 线代）。数二高数不考：空间解析几何、三重积分、曲线/曲面积分、无穷级数。
 > 每章结构：知识框架 → 定义定理 → 题型方法 → 易错点 → 公式速查。
 
 ---
 
-## 第一章 行列式
+## 第一章 函数、极限、连续
 
-### 1.1 行列式的概念
+### 1.1 函数
 
-**二阶、三阶**：
+**定义**：设数集 $D\subset\mathbb{R}$，若存在对应法则 $f$，使每个 $x\in D$ 都有唯一确定的 $y$ 与之对应，则称 $f:D\to\mathbb{R}$ 为定义在 $D$ 上的函数，记 $y=f(x)$。$D$ 为定义域，$f(D)=\{f(x)\mid x\in D\}$ 为值域。
 
-$$\begin{vmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{vmatrix}=a_{11}a_{22}-a_{12}a_{21}$$
+**几个特殊函数**：
 
-**$n$ 阶行列式定义**：
+- 绝对值函数：$|x|=\begin{cases}x,&x\ge0\\-x,&x<0\end{cases}$
+- 符号函数：$\operatorname{sgn}x=\begin{cases}1,&x>0\\0,&x=0\\-1,&x<0\end{cases}$，有 $x=|x|\operatorname{sgn}x$
+- 取整函数：$[x]$（不超过 $x$ 的最大整数），有 $x-1<[x]\le x$，$[x+n]=[x]+n$
 
-$$D=\begin{vmatrix}a_{11}&\cdots&a_{1n}\\\vdots&&\vdots\\a_{n1}&\cdots&a_{nn}\end{vmatrix}=\sum_{j_1j_2\cdots j_n}(-1)^{\tau(j_1j_2\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}$$
+**函数的四种特性**：
 
-即取自不同行不同列的 $n$ 个元素乘积的代数和，共 $n!$ 项。
+| 特性 | 定义 |
+|---|---|
+| 有界性 | $\exists M>0$，使 $\|f(x)\|\le M,\ \forall x\in X$；否则无界 |
+| 单调性 | 单增：$f(x_1)<f(x_2)$；单减：$f(x_1)>f(x_2)$（$x_1<x_2$） |
+| 奇偶性 | 定义域关于原点对称；$f(-x)=f(x)$ 为偶，$f(-x)=-f(x)$ 为奇 |
+| 周期性 | $\exists T>0$，$f(x+T)=f(x),\ \forall x\in D$ |
 
-### 1.2 行列式的性质
+**反函数**：$y=f(x)$ 单射（如单调）才有反函数 $x=f^{-1}(y)$，习惯写成 $y=f^{-1}(x)$。$f$ 与 $f^{-1}$ 图像关于 $y=x$ 对称。
 
-1. 行列式与转置行列式相等：$|A^T|=|A|$；
-2. 互换两行（列），行列式变号；
-3. 提公因子：$|kA|=k^n|A|$（某一行（列）提 $k$，$kA$ 是所有元素乘 $k$）；
-4. 两行（列）成比例（含相同），行列式为 $0$；
-5. 若某行（列）元素都是两数之和，可拆成两个行列式之和；
-6. 某行（列）的 $k$ 倍加到另一行（列），行列式不变。
+**复合函数**：$y=f(u),\ u=g(x)$，$y=f[g(x)]$。
 
-### 1.3 展开定理
+**基本初等函数**：幂函数、指数函数、对数函数、三角函数、反三角函数。
 
-**余子式**：划去 $a_{ij}$ 所在行、列后剩下的 $n-1$ 阶行列式，记 $M_{ij}$；**代数余子式**：$A_{ij}=(-1)^{i+j}M_{ij}$。
+**三角函数恒等式**：
 
-**展开定理**：
+$$\sin^2x+\cos^2x=1,\quad 1+\tan^2x=\sec^2x,\quad 1+\cot^2x=\csc^2x$$
 
-$$D=a_{i1}A_{i1}+a_{i2}A_{i2}+\cdots+a_{in}A_{in}\quad(\text{按第 }i\text{ 行})$$
+$$\sin 2x=2\sin x\cos x,\quad \cos2x=\cos^2x-\sin^2x=2\cos^2x-1=1-2\sin^2x$$
 
-$$D=a_{1j}A_{1j}+a_{2j}A_{2j}+\cdots+a_{nj}A_{nj}\quad(\text{按第 }j\text{ 列})$$
+$$\sin x+\sin y=2\sin\frac{x+y}{2}\cos\frac{x-y}{2},\quad \sin x-\sin y=2\cos\frac{x+y}{2}\sin\frac{x-y}{2}$$
 
-**异乘变零**：某行（列）元素与另一行（列）对应代数余子式乘积之和为 $0$。
+$$\cos x+\cos y=2\cos\frac{x+y}{2}\cos\frac{x-y}{2},\quad \cos x-\cos y=-2\sin\frac{x+y}{2}\sin\frac{x-y}{2}$$
 
-### 1.4 特殊行列式
+**反三角函数**：
 
-**对角、上（下）三角**：
+$$\arcsin x\in\left[-\frac{\pi}{2},\frac{\pi}{2}\right],\quad \arccos x\in[0,\pi],\quad \arctan x\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$$
 
-$$\begin{vmatrix}a_{11}&&0\\&\ddots&\\0&&a_{nn}\end{vmatrix}=a_{11}a_{22}\cdots a_{nn}$$
+$$\arcsin x+\arccos x=\frac{\pi}{2},\quad \arctan x+\operatorname{arccot}x=\frac{\pi}{2}$$
 
-**副对角**：
+### 1.2 数列极限
 
-$$\begin{vmatrix}0&&a_{1n}\\&\ddots&\\a_{n1}&&0\end{vmatrix}=(-1)^{\frac{n(n-1)}2}a_{1n}a_{2,n-1}\cdots a_{n1}$$
+**定义（$\varepsilon$-$N$）**：$\lim_{n\to\infty}x_n=a\iff \forall\varepsilon>0,\ \exists N\in\mathbb{N}^+$，当 $n>N$ 时，$|x_n-a|<\varepsilon$。
 
-**拉普拉斯（分块）行列式**：
+**收敛数列的性质**：
 
-$$\begin{vmatrix}A_{m\times m}&O\\O&B_{n\times n}\end{vmatrix}=|A||B|,\quad \begin{vmatrix}O&A_{m\times m}\\B_{n\times n}&O\end{vmatrix}=(-1)^{mn}|A||B|$$
+1. 极限唯一；
+2. 有界性：收敛数列必有界（无界必发散）；
+3. 保号性：若 $\lim x_n=a>0$（或 $<0$），则 $\exists N$，$n>N$ 时 $x_n>0$（或 $<0$）；
+4. 收敛数列的子列也收敛，且极限相同。
 
-**范德蒙行列式**：
+**推论**：若有两个子列收敛于不同值，则数列发散（常用于判断含 $(-1)^n$、分段数列）。
 
-$$D_n=\begin{vmatrix}1&1&\cdots&1\\x_1&x_2&\cdots&x_n\\x_1^2&x_2^2&\cdots&x_n^2\\\vdots&\vdots&&\vdots\\x_1^{n-1}&x_2^{n-1}&\cdots&x_n^{n-1}\end{vmatrix}=\prod_{1\le i<j\le n}(x_j-x_i)$$
+**存在准则**：
 
-### 1.5 重要结论
+- 单调有界准则：单调有界数列必有极限；
+- 夹逼准则：$y_n\le x_n\le z_n$，且 $\lim y_n=\lim z_n=a$，则 $\lim x_n=a$。
 
-$$|A^T|=|A|,\quad |kA|=k^n|A|,\quad |AB|=|A||B|,\quad |A^{-1}|=|A|^{-1}$$
+### 1.3 函数极限
 
-$$|A^*|=|A|^{n-1},\quad |A|=\prod_{i=1}^n\lambda_i$$
+**定义**：$\lim_{x\to x_0}f(x)=A\iff \forall\varepsilon>0,\ \exists\delta>0$，当 $0<|x-x_0|<\delta$ 时，$|f(x)-A|<\varepsilon$。
 
-**爪形（箭形）、行和相等行列式**：
+- 左极限 $f(x_0^-)$、右极限 $f(x_0^+)$；
+- 极限存在 $\iff$ 左右极限都存在且相等。
 
-$$D_n=\begin{vmatrix}a&b&\cdots&b\\b&a&\cdots&b\\\vdots&\vdots&&\vdots\\b&b&\cdots&a\end{vmatrix}=[a+(n-1)b](a-b)^{n-1}$$
+**性质**：唯一性、局部有界性、局部保号性。
 
-### 1.6 本章易错点
+**函数极限与数列极限的关系**：
 
-1. $|kA|=k^n|A|$，不是 $k|A|$；
-2. 行列式互换两行变号，展开式代数余子式 $A_{ij}=(-1)^{i+j}M_{ij}$ 符号别漏；
-3. 拉普拉斯副对角分块带 $(-1)^{mn}$；
-4. 范德蒙是"列标对应元素、大减小"，顺序看清楚；
-5. 抽象行列式先化为 $|A|$ 或特征值的形式，不要硬算。
+- 若 $\lim_{x\to x_0}f(x)=A$，则对任意 $x_n\to x_0$（$x_n\ne x_0$），都有 $\lim f(x_n)=A$；
+- 若能找到两个趋于 $x_0$ 的数列使 $f(x_n)$ 极限不同，则 $\lim f(x)$ 不存在。
+
+**两个重要极限**：
+
+$$\lim_{x\to0}\frac{\sin x}{x}=1,\qquad \lim_{x\to\infty}\left(1+\frac{1}{x}\right)^x=e\ \left(\text{即}\ \lim_{x\to0}(1+x)^{1/x}=e\right)$$
+
+### 1.4 无穷小与无穷大
+
+**无穷小**：极限为 $0$ 的变量。无穷小与函数极限的关系：$\lim f(x)=A\iff f(x)=A+\alpha$，其中 $\alpha\to0$。
+
+**无穷大**：绝对值无限增大（$\forall M>0,\ \exists\delta,\ 0<|x-x_0|<\delta$ 时 $|f(x)|>M$）。无穷大与无穷小：在同一极限过程中，无穷大的倒数为无穷小；非零无穷小的倒数为无穷大。
+
+**无穷小的比较**（设 $\alpha,\beta\to0$，且 $\lim\frac{\beta}{\alpha}=c$）：
+
+- $c=0$：$\beta$ 是 $\alpha$ 的高阶无穷小，记 $\beta=o(\alpha)$；
+- $c\ne0$：同阶无穷小；
+- $c=1$：等价无穷小，记 $\alpha\sim\beta$；
+- $\lim\frac{\beta}{\alpha^k}=c\ne0$：$\beta$ 是 $\alpha$ 的 $k$ 阶无穷小。
+
+**等价无穷小替换定理**：$\alpha\sim\alpha',\ \beta\sim\beta'$，且 $\lim\frac{\beta'}{\alpha'}$ 存在，则 $\lim\frac{\beta}{\alpha}=\lim\frac{\beta'}{\alpha'}$。
+
+> 注意：等价无穷小只能用于**乘除因子**，加减中不能直接替换（加减需用泰勒展开）。
+
+**常用等价无穷小（$x\to0$）**：
+
+$$\sin x\sim\tan x\sim\arcsin x\sim\arctan x\sim x,\quad e^x-1\sim x,\quad a^x-1\sim x\ln a$$
+
+$$\ln(1+x)\sim x,\quad 1-\cos x\sim\frac12x^2,\quad (1+x)^a-1\sim ax$$
+
+$$\sqrt{1+x}-1\sim\frac12x,\quad x-\sin x\sim\frac16x^3,\quad x-\tan x\sim-\frac13x^3$$
+
+$$\tan x-x\sim\frac13x^3,\quad x-\arcsin x\sim-\frac16x^3,\quad x-\arctan x\sim\frac13x^3$$
+
+$$\sec x-1\sim\frac12x^2,\quad x-\ln(1+x)\sim\frac12x^2$$
+
+> **【理解】** 高阶等价无穷小由泰勒展开直接得到，不必单独记：$\sin x=x-\frac{x^3}{6}+o(x^3)$，故 $x-\sin x\sim\frac{x^3}{6}$；$\tan x=x+\frac{x^3}{3}+o(x^3)$，故 $\tan x-x\sim\frac{x^3}{3}$。
+
+> **【理解】** 高阶等价无穷小由泰勒展开直接得到，不必单独记：$\sin x=x-\frac{x^3}{6}+o(x^3)$，故 $x-\sin x\sim\frac{x^3}{6}$；$\tan x=x+\frac{x^3}{3}+o(x^3)$，故 $\tan x-x\sim\frac{x^3}{3}$。
+
+### 1.5 极限计算方法（七种未定式）
+
+未定式共七种：$\frac00$、$\frac{\infty}{\infty}$、$0\cdot\infty$、$\infty-\infty$、$1^\infty$、$\infty^0$、$0^0$。
+
+**方法一：$\frac00$ 型**
+
+1. 因式分解、通分、利用已知极限消去"零因子"；
+2. 洛必达法则或泰勒展开；
+3. 等价无穷小替换；
+4. 根式有理化。
+
+**方法二：$\frac{\infty}{\infty}$ 型**
+
+1. 洛必达法则；
+2. 同除最大项（抓大头）；
+3. 无穷大比较：$x\to+\infty$ 时 $\ln x\ll x^a\ll e^x$（$a>0$）。
+
+$$\lim_{x\to\infty}\frac{a_mx^m+\cdots+a_0}{b_nx^n+\cdots+b_0}=\begin{cases}\infty,&m>n\\[2pt]\dfrac{a_m}{b_n},&m=n\\[4pt]0,&m<n\end{cases}$$
+
+**方法三：$0\cdot\infty$ 型**：取倒数化为 $\frac00$ 或 $\frac{\infty}{\infty}$。
+
+**方法四：$\infty-\infty$ 型**：有分母通分（化 $\frac00$）；有根式有理化（化 $\frac{\infty}{\infty}$）。
+
+**方法五：$1^\infty$ 型**：用公式
+
+$$\lim f(x)^{g(x)}=e^{\lim [f(x)-1]g(x)}$$
+
+**方法六、七：$\infty^0$、$0^0$ 型**：幂指函数对数化 $u(x)^{v(x)}=e^{v(x)\ln u(x)}$。
+
+**洛必达法则**：若满足：① $\lim f(x)=\lim F(x)=0$（或 $\infty$）；② 在去心邻域内 $f',F'$ 存在且 $F'\ne0$；③ $\lim\frac{f'}{F'}$ 存在（或为 $\infty$），则
+
+$$\lim\frac{f(x)}{F(x)}=\lim\frac{f'(x)}{F'(x)}$$
+
+> 注意：含 $\sin\infty$、$\cos\infty$（如 $\lim_{x\to\infty}\frac{x+\sin x}{x}$）不能用洛必达，应直接用极限性质或夹逼。
+
+**数列极限三大招**：
+
+1. **夹逼准则**：含 $n$ 项求和、放缩；
+2. **单调有界**：递推数列 $x_{n+1}=f(x_n)$，先证有界、再证单调；
+3. **定积分定义**：$\lim_{n\to\infty}\frac1n\sum_{i=1}^n f\left(\frac{i}{n}\right)=\int_0^1 f(x)\,dx$。
+
+**常用泰勒（麦克劳林）展开（$x\to0$）**：
+
+$$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$$
+
+$$\sin x=x-\frac{x^3}{3!}+o(x^3),\quad \cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+o(x^4)$$
+
+$$\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$$
+
+$$(1+x)^a=1+ax+\frac{a(a-1)}{2}x^2+o(x^2)$$
+
+$$\tan x=x+\frac{x^3}{3}+o(x^3),\quad \arcsin x=x+\frac{x^3}{6}+o(x^3),\quad \arctan x=x-\frac{x^3}{3}+o(x^3)$$
+
+> **【理解】** $e^x$ 的导数等于自身，第 $n$ 项系数须为 $1/n!$，求导后才降为前一项；$\sin$ 只含奇次、$\cos$ 只含偶次、符号交替，由奇偶性决定。
+
+### 1.6 函数的连续性
+
+**定义**：$f(x)$ 在 $x_0$ 连续 $\iff \lim_{x\to x_0}f(x)=f(x_0)\iff \lim_{\Delta x\to0}\Delta y=0$。
+
+**间断点分类**：
+
+| 类型 | 条件 |
+|---|---|
+| 可去间断点 | 左右极限都存在且相等，但不等于 $f(x_0)$ 或 $f(x_0)$ 无定义 |
+| 跳跃间断点 | 左右极限都存在但不相等 |
+| 无穷间断点 | 至少一侧极限为 $\infty$ |
+| 振荡间断点 | 至少一侧极限振荡不存在（如 $\sin\frac1x$ 在 $x=0$） |
+
+- 第一类间断点：可去、跳跃（左右极限都存在）；
+- 第二类间断点：无穷、振荡等。
+
+**连续函数运算**：连续函数的和、差、积、商（分母不为零）、复合仍连续；基本初等函数在定义域内连续；初等函数在定义区间内连续。
+
+**闭区间上连续函数的性质**：
+
+1. 有界性与最大值最小值定理；
+2. 零点定理：$f(a)f(b)<0$，则 $\exists\xi\in(a,b)$ 使 $f(\xi)=0$；
+3. 介值定理：$f$ 在 $[a,b]$ 连续，$f(a)=A,\ f(b)=B$，则对 $A,B$ 间任一值 $C$，$\exists\xi,\ f(\xi)=C$。
+
+**例题**：求 $\lim_{x\to0}\frac{\tan x-x}{x^2\ln(1+2x)}$。
+
+$$\text{原式}=\lim_{x\to0}\frac{\frac13x^3}{x^2\cdot 2x}=\frac16$$
+
+### 1.7 本章易错点
+
+1. $\lim_{x\to\infty}\frac{\sin x}{x}=0$（不是 $1$，用有界乘无穷小）；
+2. 等价无穷小只在乘除替换，加减中误用是最高频错误；
+3. 极限 $\lim_{x\to\infty}(1+\frac1x)^x=e$ 与 $\lim_{x\to0}(1+x)^{1/x}=e$ 别混淆；
+4. 判断间断点要先看左右极限是否都存在，再分类；
+5. 数列 $\{x_n\}$ 有界不一定收敛，但收敛一定有界；
+6. 洛必达使用前必须验证三个条件，且结果不存在不代表原极限不存在。
 
 ---
 
-## 第二章 矩阵
+## 第二章 一元函数微分学
 
-### 2.1 矩阵的概念与运算
+### 2.1 导数概念
 
-**矩阵**：$m\times n$ 数表 $A=(a_{ij})_{m\times n}$。
+**定义**：函数 $f(x)$ 在 $x_0$ 处的导数
 
-**线性运算**：加法（同型矩阵对应元素相加）、数乘（每元素乘 $k$）。
+$$f'(x_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}$$
 
-**矩阵乘法**：$A_{m\times s}B_{s\times n}=C_{m\times n}$，其中
+**左右导数**：
 
-$$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
+$$f'_-(x_0)=\lim_{h\to0^-}\frac{f(x_0+h)-f(x_0)}h,\quad f'_+(x_0)=\lim_{h\to0^+}\frac{f(x_0+h)-f(x_0)}h$$
 
-注意：
+$f'(x_0)$ 存在 $\iff f'_-(x_0)=f'_+(x_0)$。
 
-- 矩阵乘法**不满足交换律**：$AB\ne BA$（一般）；
-- 不满足消去律：$AB=AC\ \not\Rightarrow\ B=C$；
-- $AB=O\ \not\Rightarrow\ A=O$ 或 $B=O$；
-- 满足结合律、分配律。
+**可导与连续的关系**：可导必连续；连续不一定可导（如 $|x|$ 在 $x=0$ 连续但不可导）。
 
-**转置**：$(A^T)^T=A,\ (A+B)^T=A^T+B^T,\ (kA)^T=kA^T,\ (AB)^T=B^TA^T$。
+**导数的几何意义**：$f'(x_0)$ 是曲线 $y=f(x)$ 在 $(x_0,f(x_0))$ 处切线斜率。
 
-**方阵的幂**：$A^k=A\cdots A$（$k$ 个），$A^kA^l=A^{k+l},\ (A^k)^l=A^{kl}$。
+- 切线：$y-y_0=f'(x_0)(x-x_0)$；
+- 法线：$y-y_0=-\frac{1}{f'(x_0)}(x-x_0)$。
 
-**方阵的行列式**：$|AB|=|A||B|=|BA|$。
+**物理意义**：瞬时速度 $v=s'(t)$，加速度 $a=v'(t)=s''(t)$。
 
-### 2.2 逆矩阵
+### 2.2 求导法则
 
-**定义**：$AB=BA=E$，则 $A$ 可逆，$B=A^{-1}$。
+**基本初等函数导数公式**：
 
-**可逆充要条件**：$|A|\ne0$（即非奇异、满秩）。
+$$(C)'=0,\quad (x^\mu)'=\mu x^{\mu-1},\quad (a^x)'=a^x\ln a,\quad (e^x)'=e^x$$
 
-**伴随矩阵法**：
+$$(\log_a x)'=\frac1{x\ln a},\quad (\ln x)'=\frac1x$$
 
-$$A^{-1}=\frac{1}{|A|}A^*$$
+$$(\sin x)'=\cos x,\quad (\cos x)'=-\sin x,\quad (\tan x)'=\sec^2x,\quad (\cot x)'=-\csc^2x$$
 
-**伴随矩阵性质**：
+$$(\sec x)'=\sec x\tan x,\quad (\csc x)'=-\csc x\cot x$$
 
-$$AA^*=A^*A=|A|E,\quad |A^*|=|A|^{n-1},\quad (A^*)^*=|A|^{n-2}A,\quad (A^*)^{-1}=\frac{A}{|A|}$$
+$$(\arcsin x)'=\frac1{\sqrt{1-x^2}},\quad (\arccos x)'=-\frac1{\sqrt{1-x^2}}$$
 
-> **【理解】** 由 $AA^*=|A|E$ 两边取行列式：$|A||A^*|=|A|^n$，故 $|A^*|=|A|^{n-1}$。
+$$(\arctan x)'=\frac1{1+x^2},\quad (\operatorname{arccot}x)'=-\frac1{1+x^2}$$
 
-**可逆矩阵性质**：
+**四则运算**：
 
-$$(A^{-1})^{-1}=A,\quad (kA)^{-1}=\frac1kA^{-1},\quad (AB)^{-1}=B^{-1}A^{-1},\quad (A^T)^{-1}=(A^{-1})^T,\quad |A^{-1}|=\frac1{|A|}$$
+$$(u\pm v)'=u'\pm v',\quad (uv)'=u'v+uv',\quad \left(\frac uv\right)'=\frac{u'v-uv'}{v^2}$$
 
-> 注意：$(A+B)^{-1}\ne A^{-1}+B^{-1}$。
+**反函数求导**：$\frac{dy}{dx}=\frac{1}{\frac{dx}{dy}}$。
 
-**初等变换法**：
+**复合函数求导（链式法则）**：$\frac{dy}{dx}=\frac{dy}{du}\cdot\frac{du}{dx}$。
 
-$$(A\mid E)\xrightarrow{\text{初等行变换}}(E\mid A^{-1})$$
+### 2.3 高阶导数与微分
 
-### 2.3 初等变换与初等矩阵
+**高阶导数**：$f''(x)=\lim_{\Delta x\to0}\frac{f'(x+\Delta x)-f'(x)}{\Delta x}$。
 
-**初等行（列）变换**：① 互换两行；② 非零数乘某行；③ 某行倍数加到另一行。
+**常用高阶导数**：
 
-**初等矩阵**：单位矩阵经一次初等变换得到的矩阵。
+$$(e^x)^{(n)}=e^x,\quad (a^x)^{(n)}=a^x(\ln a)^n$$
 
-**初等矩阵性质**：
+$$(\sin x)^{(n)}=\sin\left(x+\frac{n\pi}{2}\right),\quad (\cos x)^{(n)}=\cos\left(x+\frac{n\pi}{2}\right)$$
 
-- 初等矩阵均可逆，其逆仍是同类型初等矩阵：
+$$[\ln(1+x)]^{(n)}=(-1)^{n-1}\frac{(n-1)!}{(1+x)^n},\quad (x^\mu)^{(n)}=\mu(\mu-1)\cdots(\mu-n+1)x^{\mu-n}$$
 
-$$E_{ij}^{-1}=E_{ij},\quad E_i^{-1}(k)=E_i\left(\frac1k\right),\quad E_{ij}^{-1}(k)=E_{ij}(-k)$$
+**莱布尼茨公式**：
 
-- 左乘初等矩阵 $=$ 行变换，右乘 $=$ 列变换；
-- 矩阵可逆 $\iff$ 可表示为若干初等矩阵乘积。
+$$(uv)^{(n)}=\sum_{k=0}^n C_n^k u^{(k)}v^{(n-k)}$$
 
-**矩阵等价**：$A$ 经有限次初等变换化为 $B$，记 $A\cong B$。充要条件：同型且秩相等（$r(A)=r(B)$）。
+**微分**：$\Delta y=A\Delta x+o(\Delta x)$，则 $dy=f'(x)\Delta x=f'(x)dx$。
 
-### 2.4 矩阵的秩
+**微分形式不变性**：$y=f(u)$，无论 $u$ 是自变量还是中间变量，都有 $dy=f'(u)du$。
 
-**定义**：$A$ 中最高阶非零子式的阶数，记 $r(A)$。
+### 2.4 微分中值定理
 
-**求法**：初等行变换化为行阶梯形，非零行数即为秩。
+**费马引理**：若 $f(x)$ 在 $x_0$ 可导且取得极值，则 $f'(x_0)=0$。
 
-**秩的公式**：
+**罗尔定理**：$f$ 在 $[a,b]$ 连续、$(a,b)$ 可导、$f(a)=f(b)$，则 $\exists\xi\in(a,b)$，$f'(\xi)=0$。
 
-$$r(A)\le\min\{m,n\}$$
+**拉格朗日中值定理**：$f$ 在 $[a,b]$ 连续、$(a,b)$ 可导，则 $\exists\xi\in(a,b)$：
 
-$$r(AB)\le\min\{r(A),r(B)\}$$
+$$f(b)-f(a)=f'(\xi)(b-a)$$
 
-$$r(A)+r(B)-n\le r(AB)\le\min\{r(A),r(B)\}$$
+有限增量形式：$f(x+\Delta x)-f(x)=f'(x+\theta\Delta x)\Delta x$。
 
-$$r(A+B)\le r(A)+r(B)$$
+**柯西中值定理**：$f,F$ 在 $[a,b]$ 连续、$(a,b)$ 可导且 $F'(x)\ne0$，则 $\exists\xi$：
 
-$$r(A)=r(A^T)=r(AA^T)=r(A^TA)$$
+$$\frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f'(\xi)}{F'(\xi)}$$
 
-$$r(kA)=r(A)\ (k\ne0)$$
+> **【理解】** 证明 $f'(\xi)+P(\xi)f(\xi)=0$ 时，构造辅助函数 $F=e^{\int P\,dx}f$，因 $F'=e^{\int P\,dx}(f'+Pf)$，对 $F$ 用罗尔定理即可。
 
-$$AB=O\Rightarrow r(A)+r(B)\le n$$
+**泰勒公式**：
 
-**满秩**：$r(A)=n$（方阵即可逆）。
+$$f(x)=f(x_0)+f'(x_0)(x-x_0)+\frac{f''(x_0)}{2!}(x-x_0)^2+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+R_n(x)$$
 
-> **【理解】** $AB=O$ 时，$B$ 的列向量都在 $Ax=0$ 的解空间中，其维数为 $n-r(A)$，故 $r(B)\le n-r(A)$，即 $r(A)+r(B)\le n$。
+- 拉格朗日余项：$R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$；
+- 佩亚诺余项：$R_n(x)=o((x-x_0)^n)$。
 
-### 2.5 分块矩阵
+### 2.5 导数应用
 
-**分块对角**：
+**单调性**：$f'(x)>0$（$<0$）则 $f$ 单调增加（减少）。
 
-$$\begin{pmatrix}A&O\\O&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&O\\O&B^{-1}\end{pmatrix}$$
+**极值判别（"1+3"）**：
 
-$$\begin{pmatrix}O&A\\B&O\end{pmatrix}^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}$$
+- 必要条件：$f$ 在 $x_0$ 可导且为极值点 $\Rightarrow f'(x_0)=0$；
+- 第一充分条件：$f'(x_0)=0$（或 $f$ 在 $x_0$ 连续），看左右邻域导数符号：
+  - 左负右正 → 极小值；左正右负 → 极大值；
+- 第二充分条件：$f'(x_0)=0,\ f''(x_0)\ne0$：
+  - $f''(x_0)<0$ 取极大值；$f''(x_0)>0$ 取极小值；
+- 第三充分条件：$f'(x_0)=\cdots=f^{(n)}(x_0)=0,\ f^{(n+1)}(x_0)\ne0$，$n$ 为奇数时，$f^{(n+1)}<0$ 取极大、$>0$ 取极小。
 
-**分块转置**：
+**最值**：① 确定区间、算端点值；② 求所有驻点和不可导点函数值；③ 比较得最值。
 
-$$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pmatrix}$$
+**曲线凹凸性**：$f''(x)>0$ 凹（凹向上）；$f''(x)<0$ 凸。
 
-### 2.6 矩阵高次幂（五个思路）
+**拐点**：凹凸性改变的点（必要条件 $f''(x_0)=0$ 或不存在，再看两侧 $f''$ 变号）。
 
-1. **秩 1 矩阵**：$A=\alpha\beta^T$，则 $A^n=[\operatorname{tr}(A)]^{n-1}A$；
-2. **分解法**：$A=kE+B$（$B$ 为幂零或秩 1），$A^n=(kE+B)^n$ 用二项式展开；
-3. **分块对角**：$A=\begin{pmatrix}B&O\\O&C\end{pmatrix}$，$A^n=\begin{pmatrix}B^n&O\\O&C^n\end{pmatrix}$；
-4. **相似对角化**：$A=P\Lambda P^{-1}$，$A^n=P\Lambda^nP^{-1}$；
-5. **找规律**：先算 $A^2,A^3$ 找递推关系。
+**渐近线**：
 
-### 2.7 本章易错点
+- 水平：$\lim_{x\to\infty}f(x)=A$，$y=A$；
+- 垂直：$\lim_{x\to x_0}f(x)=\infty$，$x=x_0$；
+- 斜：$a=\lim_{x\to\infty}\frac{f(x)}x,\ b=\lim_{x\to\infty}[f(x)-ax]$，$y=ax+b$。
 
-1. 矩阵乘法不满足交换律、消去律；
-2. 伴随矩阵 $A^*$ 元素是"代数余子式按列排列"，注意转置；
-3. 求逆只能用初等行变换（不能行列混用）；
-4. 抽象矩阵求逆优先用定义 $AB=E$ 或因式分解；
-5. 秩的不等式中 $AB=O\Rightarrow r(A)+r(B)\le n$ 是高频考点。
+**曲率**（数二要求）：
+
+$$K=\frac{|y''|}{(1+y'^2)^{3/2}},\quad \text{曲率半径}\ \rho=\frac1K$$
+
+**例题**：设 $f(x)$ 二阶可导，满足 $f'(x)+x^2f(x)=xe^x$，且 $x=0$ 为极值点，判断极大/极小。
+
+解：$f'(0)=0$；两边求导 $f''(x)+2xf(x)+x^2f'(x)=(x+1)e^x$，代入 $x=0$ 得 $f''(0)=1>0$，故 $x=0$ 为极小值点。
+
+### 2.6 本章易错点
+
+1. 分段函数在分段点处必须用左右导数定义求，不能直接求导后代入；
+2. 可导必连续，但连续不一定可导；
+3. $f'(x_0)=0$ 不一定是极值点（如 $x^3$ 在 $0$ 处）；
+4. 拐点是曲线上的点，要写坐标 $(x_0,f(x_0))$，不是只写 $x_0$；
+5. 中值定理条件（连续、可导）缺一不可；
+6. 极值点可以是不可导点（如 $|x|$ 在 $0$），第一充分条件可判导数不存在的情形。
 
 ---
 
-## 第三章 向量
+## 第三章 一元函数积分学
 
-### 3.1 向量的概念与线性组合
+### 3.1 不定积分
 
-**$n$ 维向量**：$\alpha=(a_1,a_2,\cdots,a_n)^T$（列向量）。
+**原函数**：若 $F'(x)=f(x)$，则 $F(x)$ 是 $f(x)$ 的一个原函数。
 
-**线性组合**：$k_1\alpha_1+k_2\alpha_2+\cdots+k_s\alpha_s$。
+**不定积分**：$\int f(x)dx=F(x)+C$。
 
-**线性表示**：$\beta=k_1\alpha_1+\cdots+k_s\alpha_s$（有解）。
+**性质**：$\int[f(x)\pm g(x)]dx=\int f\,dx\pm\int g\,dx$；$\int kf(x)dx=k\int f\,dx$。
 
-### 3.2 线性相关与线性无关
+**基本积分公式**：
+
+$$\int x^\mu dx=\frac{x^{\mu+1}}{\mu+1}+C\ (\mu\ne-1),\quad \int\frac1x dx=\ln|x|+C$$
+
+$$\int a^x dx=\frac{a^x}{\ln a}+C,\quad \int e^x dx=e^x+C$$
+
+$$\int\sin x\,dx=-\cos x+C,\quad \int\cos x\,dx=\sin x+C$$
+
+$$\int\sec^2x\,dx=\tan x+C,\quad \int\csc^2x\,dx=-\cot x+C$$
+
+$$\int\sec x\tan x\,dx=\sec x+C,\quad \int\csc x\cot x\,dx=-\csc x+C$$
+
+$$\int\frac{dx}{1+x^2}=\arctan x+C,\quad \int\frac{dx}{\sqrt{1-x^2}}=\arcsin x+C$$
+
+$$\int\frac{dx}{a^2+x^2}=\frac1a\arctan\frac xa+C,\quad \int\frac{dx}{\sqrt{a^2-x^2}}=\arcsin\frac xa+C$$
+
+$$\int\frac{dx}{a^2-x^2}=\frac1{2a}\ln\left|\frac{a+x}{a-x}\right|+C,\quad \int\frac{dx}{\sqrt{x^2\pm a^2}}=\ln\left|x+\sqrt{x^2\pm a^2}\right|+C$$
+
+**积分方法**：
+
+1. **第一类换元法（凑微分）**：$\int f[\varphi(x)]\varphi'(x)dx=\int f(u)du$。
+2. **第二类换元法**：令 $x=\varphi(t)$。
+   - 三角代换：$\sqrt{a^2-x^2}$ 令 $x=a\sin t$；$\sqrt{a^2+x^2}$ 令 $x=a\tan t$；$\sqrt{x^2-a^2}$ 令 $x=a\sec t$；
+   - 倒代换：$x=\frac1t$（处理分母次数高的情形）；
+   - 根式代换：$t=\sqrt[n]{ax+b}$。
+3. **分部积分法**：
+
+$$\int u\,dv=uv-\int v\,du$$
+
+**分部积分表格法**：对需多次分部的积分，一列反复求导（$u$ 及其导数），一列反复积分（$dv$ 及其积分），按"正、负、正、负"交替相乘相加，直到导数列为 $0$。
+
+**万能代换**：$t=\tan\frac x2$，则 $\sin x=\frac{2t}{1+t^2},\ \cos x=\frac{1-t^2}{1+t^2},\ dx=\frac{2}{1+t^2}dt$。
+
+**常用凑微分**：
+
+$$\frac1{\sqrt x}dx=2\,d\sqrt x,\quad x\,dx=\frac12 d(x^2),\quad \frac1x dx=d\ln x,\quad e^x dx=d(e^x)$$
+
+### 3.2 定积分
 
 **定义**：
 
-- 线性相关：存在一组不全为 $0$ 的 $k_1,\cdots,k_s$，使 $k_1\alpha_1+\cdots+k_s\alpha_s=0$；
-- 线性无关：上式成立当且仅当 $k_1=\cdots=k_s=0$。
+$$\int_a^b f(x)dx=\lim_{\lambda\to0}\sum_{i=1}^n f(\xi_i)\Delta x_i$$
 
-**判别**：
+**规定**：$\int_a^b f\,dx=-\int_b^a f\,dx$；$\int_a^a f\,dx=0$。
 
-- $m$ 个 $n$ 维向量 $\alpha_1,\cdots,\alpha_m$：
-  - $m>n$：必线性相关；
-  - $m=n$：行列式 $|\alpha_1\cdots\alpha_n|=0$ 相关，$\ne0$ 无关；
-  - $m<n$：求秩，$r(A)<m$ 相关，$r(A)=m$ 无关。
-- 用定义：设 $k_1\alpha_1+\cdots+k_s\alpha_s=0$，恒等变形推出 $k_i$ 是否全为 $0$。
+**可积条件**：
 
-**重要结论**：
+- 必要条件：$f$ 在 $[a,b]$ 上有界；
+- 充分条件（任一）：$f$ 连续；或有界且只有有限个间断点；或单调。
 
-1. 含零向量的向量组必相关；
-2. 部分相关 $\Rightarrow$ 整体相关；整体无关 $\Rightarrow$ 部分无关；
-3. 低维无关 $\Rightarrow$ 高维无关；高维相关 $\Rightarrow$ 低维相关；
-4. $\alpha_1,\cdots,\alpha_s$ 无关，$\alpha_1,\cdots,\alpha_s,\beta$ 相关，则 $\beta$ 可由 $\alpha_1,\cdots,\alpha_s$ 唯一表示；
-5. 若向量组可由更少向量的向量组线性表示，则该向量组相关。
+> **【理解】** 可积（定积分存在）与有原函数是两个概念。$f$ 连续时两者都成立，变上限积分 $\Phi(x)=\int_a^x f(t)dt$ 就是原函数。若 $f$ 有第一类间断点，则仍可积（如 $\operatorname{sgn}x$ 在 $[-1,1]$ 可积），但没有原函数，因为导函数不能有第一类间断点；此时 $\Phi(x)$ 存在且连续，但在间断点处 $\Phi'(x)\ne f(x)$，故 $\Phi$ 是积分、不是原函数。
 
-### 3.3 向量组的秩
+**性质**：
 
-**极大线性无关组**：向量组中一个部分组线性无关，且每个向量都能由它表示。
+$$\int_a^b f\,dx=\int_a^c f\,dx+\int_c^b f\,dx$$
 
-**向量组的秩**：极大无关组所含向量个数。
+$$\int_a^b[f\pm g]dx=\int_a^b f\,dx\pm\int_a^b g\,dx,\quad \int_a^b kf\,dx=k\int_a^b f\,dx$$
 
-**矩阵秩 = 行秩 = 列秩**。
+**积分中值定理**：$f$ 在 $[a,b]$ 连续，则 $\exists\xi\in[a,b]$：
 
-**求极大无关组**：初等行变换（不改变列向量线性关系），主元所在列即为极大无关组，其余向量用其表示。
+$$\int_a^b f(x)dx=f(\xi)(b-a)$$
 
-### 3.4 向量空间（数二了解）
+**变限积分求导**：
 
-- 基、维数、坐标；
-- 过渡矩阵：基变换 $(\beta_1,\cdots,\beta_n)=(\alpha_1,\cdots,\alpha_n)P$；
-- 内积：$(\alpha,\beta)=\alpha^T\beta$；正交：$(\alpha,\beta)=0$；
-- 规范正交基：两两正交、单位长度。
+$$\Phi(x)=\int_a^x f(t)dt\ (f\text{ 连续})\Rightarrow \Phi'(x)=f(x)$$
+
+$$\frac{d}{dx}\int_{\psi(x)}^{\varphi(x)}f(t)dt=f[\varphi(x)]\varphi'(x)-f[\psi(x)]\psi'(x)$$
+
+**牛顿-莱布尼茨公式**：$F'(x)=f(x)$，则
+
+$$\int_a^b f(x)dx=F(b)-F(a)$$
+
+**定积分换元法**：换元必换限，$\int_a^b f(x)dx=\int_\alpha^\beta f[\varphi(t)]\varphi'(t)dt$。
+
+**定积分分部积分**：$\int_a^b u\,dv=[uv]_a^b-\int_a^b v\,du$。
+
+**常用结论（对称区间、华里士公式）**：
+
+$$\int_{-a}^a f(x)dx=\begin{cases}2\int_0^a f\,dx,&f\text{ 为偶}\\0,&f\text{ 为奇}\end{cases}$$
+
+$$\int_0^\pi xf(\sin x)dx=\frac{\pi}{2}\int_0^\pi f(\sin x)dx$$
+
+$$\int_0^{\pi/2}\sin^n x\,dx=\int_0^{\pi/2}\cos^n x\,dx=\begin{cases}\dfrac{n-1}{n}\cdot\dfrac{n-3}{n-2}\cdots\dfrac12\cdot\dfrac{\pi}{2},&n\text{ 为偶}\\[4pt]\dfrac{n-1}{n}\cdot\dfrac{n-3}{n-2}\cdots\dfrac23\cdot1,&n\text{ 为奇}\end{cases}$$
+
+### 3.3 反常积分
+
+**无穷限反常积分**：
+
+$$\int_a^{+\infty}f(x)dx=\lim_{b\to+\infty}\int_a^b f\,dx,\quad \int_{-\infty}^b f\,dx=\lim_{a\to-\infty}\int_a^b f\,dx$$
+
+**无界函数（瑕积分）**：$a$ 为瑕点时 $\int_a^b f\,dx=\lim_{\varepsilon\to0^+}\int_{a+\varepsilon}^b f\,dx$。
+
+**常见敛散性结论**：
+
+$$\int_1^{+\infty}\frac{dx}{x^p}\begin{cases}p>1&\text{收敛}\\p\le1&\text{发散}\end{cases},\qquad \int_0^1\frac{dx}{x^p}\begin{cases}p<1&\text{收敛}\\p\ge1&\text{发散}\end{cases}$$
+
+$$\int_2^{+\infty}\frac{dx}{x(\ln x)^p}\begin{cases}p>1&\text{收敛}\\p\le1&\text{发散}\end{cases}$$
+
+> **【理解】** 由 $\int x^{-p}dx=\frac{x^{1-p}}{1-p}$：无穷远处需 $1-p<0$（$p>1$）；$0$ 点处需 $1-p>0$（$p<1$）。
+
+### 3.4 定积分应用
+
+**平面图形面积**：
+
+- 直角坐标：$S=\int_a^b[\,f(x)-g(x)\,]dx$；
+- 极坐标：$S=\frac12\int_\alpha^\beta r^2(\theta)d\theta$。
+
+**旋转体体积**：
+
+- 绕 $x$ 轴：$V=\pi\int_a^b f^2(x)dx$；
+- 绕 $y$ 轴（柱壳法）：$V=2\pi\int_a^b x\,f(x)dx$。
+
+**平行截面面积已知的立体体积**：$V=\int_a^b A(x)dx$。
+
+**平面曲线弧长**：
+
+$$L=\int_a^b\sqrt{1+y'^2}\,dx,\quad L=\int_\alpha^\beta\sqrt{r^2+r'^2}\,d\theta$$
+
+**旋转曲面面积**：$S=2\pi\int_a^b y\sqrt{1+y'^2}\,dx$。
 
 ### 3.5 本章易错点
 
-1. 相关/无关判别要先看向量个数与维数关系；
-2. 线性表示对应方程组有解，相关对应齐次有非零解；
-3. 求极大无关组用行变换，不能用列变换；
-4. 抽象证明优先用定义，"同乘""重组"是常用手法；
-5. 两个向量组等价与矩阵等价不是一回事。
+1. 变限积分求导前先检查被积函数是否含 $x$，含 $x$ 要先提出或换元；
+2. 可积不等于有原函数；变上限积分只有在 $f$ 连续时才是原函数，$f$ 有第一类间断点时它只是积分；
+2. 定积分换元必须同时换上下限，不必回代；
+3. 反常积分要先找瑕点，分段计算，不能直接用牛莱公式；
+4. 奇偶性结论只适用于对称区间；
+5. 分部积分选 $u$ 顺序：反、对、幂、三、指（排在前的作 $u$）；
+6. $\int\frac1x dx=\ln|x|+C$，绝对值不能漏。
 
 ---
 
-## 第四章 线性方程组
+## 第四章 多元函数微分学
 
-### 4.1 齐次线性方程组 $Ax=0$
+### 4.1 基本概念
 
-**有解判定**（$A$ 为 $m\times n$）：
+**平面点集**：邻域 $U(P_0,\delta)=\{P\mid |PP_0|<\delta\}$；内点、边界点、开集、区域。
 
-- 只有零解 $\iff r(A)=n$；
-- 有非零解 $\iff r(A)<n$。
+**二元函数**：$z=f(x,y),\ (x,y)\in D$。
 
-**解的性质**：
+**二重极限**：
 
-- $\xi_1,\xi_2$ 是解 $\Rightarrow \xi_1+\xi_2$ 是解；
-- $\xi$ 是解 $\Rightarrow k\xi$ 是解。
+$$\lim_{(x,y)\to(x_0,y_0)}f(x,y)=A\iff \forall\varepsilon>0,\ \exists\delta>0,\ 0<\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\Rightarrow |f(x,y)-A|<\varepsilon$$
 
-**基础解系**：解空间的一组基，含 $n-r(A)$ 个线性无关解。
+> 注意：点 $(x,y)$ 以**任意方式**趋于 $(x_0,y_0)$ 极限都为 $A$，若沿两条不同路径极限不同，则二重极限不存在。
 
-**通解**：
+**连续**：$\lim_{(x,y)\to(x_0,y_0)}f(x,y)=f(x_0,y_0)$。
 
-$$x=k_1\xi_1+k_2\xi_2+\cdots+k_{n-r}\xi_{n-r}$$
+**多元连续函数性质**：有界闭区域上连续函数有最大值最小值定理、介值定理。
 
-**求通解步骤**：① 行变换化行阶梯；② 写同解方程组、定自由变量；③ 自由变量依次取 $1$（其余为 $0$）求基础解系；④ 写通解。
+### 4.2 偏导数与全微分
 
-### 4.2 非齐次线性方程组 $Ax=b$
+**偏导数**：
 
-**有解判定**：
+$$f_x(x_0,y_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}$$
 
-$$\begin{cases}\text{无解}\iff r(A)<r(A,b)\\[2pt]\text{唯一解}\iff r(A)=r(A,b)=n\\[2pt]\text{无穷多解}\iff r(A)=r(A,b)<n\end{cases}$$
+$$f_y(x_0,y_0)=\lim_{\Delta y\to0}\frac{f(x_0,y_0+\Delta y)-f(x_0,y_0)}{\Delta y}$$
 
-**解的性质**：
+**高阶偏导**：$f_{xx},f_{xy},f_{yx},f_{yy}$。若混合偏导连续，则 $f_{xy}=f_{yx}$。
 
-- $\eta_1,\eta_2$ 是 $Ax=b$ 的解 $\Rightarrow \eta_1-\eta_2$ 是 $Ax=0$ 的解；
-- $\xi$ 是 $Ax=0$ 的解、$\eta$ 是 $Ax=b$ 的解 $\Rightarrow \xi+\eta$ 是 $Ax=b$ 的解。
+**全微分**：
 
-**通解**：
+$$dz=f_x(x,y)dx+f_y(x,y)dy$$
 
-$$x=k_1\xi_1+\cdots+k_{n-r}\xi_{n-r}+\eta^*$$
+**可微、可导、连续的关系**（数二高频考点）：
 
-**推广**：$\eta_1,\cdots,\eta_s$ 是 $Ax=b$ 的解，则 $\sum k_i\eta_i$ 是：
+- 偏导数连续 $\Rightarrow$ 可微；
+- 可微 $\Rightarrow$ 连续、可微 $\Rightarrow$ 偏导数存在；
+- 偏导数存在 $\not\Rightarrow$ 可微、偏导数存在 $\not\Rightarrow$ 连续；
+- 连续 $\not\Rightarrow$ 偏导数存在。
 
-- $Ax=0$ 的解 $\iff \sum k_i=0$；
-- $Ax=b$ 的解 $\iff \sum k_i=1$。
+**可微判别**：计算
 
-### 4.3 克拉默法则
+$$\lim_{(\Delta x,\Delta y)\to(0,0)}\frac{\Delta z-f_x\Delta x-f_y\Delta y}{\sqrt{\Delta x^2+\Delta y^2}}$$
 
-$n$ 个方程 $n$ 个未知数，$|A|\ne0$ 时唯一解 $x_j=\dfrac{D_j}{D}$，其中 $D_j$ 为 $D$ 中第 $j$ 列换为常数项。
+极限为 $0$ 则可微，否则不可微。
 
-### 4.4 同解与公共解
+> **【理解】** 偏导数只沿 $x,y$ 两轴取值。例：$f(x,y)=\frac{xy}{x^2+y^2}$ 在原点两偏导均为 $0$，但沿 $y=kx$ 趋于 $0$ 得 $\frac{k}{1+k^2}$，极限不存在，故不连续、不可微。
 
-**$Ax=0$ 与 $Bx=0$ 同解**（等价条件）：
+### 4.3 多元复合函数求导
 
-1. $A$ 经初等行变换化为 $B$；
-2. $A,B$ 行向量组等价；
-3. $r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}$（三秩相等）；
-4. 两方程组解集相同；
-5. 存在可逆矩阵 $P$，$PA=B$。
+**链式法则**：设 $u=u(x,y),\ v=v(x,y)$，$z=f(u,v)$：
 
-**同解方程组**：$Ax=0$ 与 $A^TAx=0$ 同解；$Ax=0$ 与 $AA^Tx=0$ 同解。
+$$\frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial x},\qquad \frac{\partial z}{\partial y}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial y}$$
 
-**公共解**：联立 $\begin{pmatrix}A\\B\end{pmatrix}x=0$。
+**方法**：画树状图（$z$ 为根，中间变量为枝，自变量为叶），"沿线相乘、分线相加"。
 
-### 4.5 本章易错点
+**记号**：对第一个中间变量求导记 $f_1'$，对第二个记 $f_2'$；二阶记 $f_{11}'',f_{12}'',f_{22}''$，且 $f_{12}''=f_{21}''$。
 
-1. 判定有解看 $r(A)$ 与 $r(A,b)$，不能只看 $r(A)$；
-2. 基础解系个数是 $n-r(A)$，不是 $m-r(A)$；
-3. 非齐次通解 = 齐次通解 + 一个特解；
-4. 同解、公共解、包含关系三类题要分清；
-5. 若 $Ax=0$ 的解都是 $Bx=0$ 的解，则 $r(A)\ge r(B)$。
+**全微分形式不变性**：$dz=f_u du+f_v dv$。
 
----
+### 4.4 隐函数求导
 
-## 第五章 特征值与特征向量
+**一个方程 $F(x,y)=0$**：
 
-### 5.1 特征值与特征向量
+$$\frac{dy}{dx}=-\frac{F_x}{F_y}\quad (F_y\ne0)$$
 
-**定义**：$A\alpha=\lambda\alpha$（$\alpha\ne0$），$\lambda$ 为特征值，$\alpha$ 为特征向量。
+**$F(x,y,z)=0$ 确定 $z=z(x,y)$**：
 
-**特征方程**：$|\lambda E-A|=0$。
+$$\frac{\partial z}{\partial x}=-\frac{F_x}{F_z},\qquad \frac{\partial z}{\partial y}=-\frac{F_y}{F_z}\quad (F_z\ne0)$$
 
-**求法**：① 解 $|\lambda E-A|=0$ 得特征值；② 解 $(\lambda_i E-A)x=0$ 得特征向量。
+### 4.5 多元函数极值与最值
 
-**性质**：
+**无条件极值（"1+1"）**：
 
-$$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i=1}^n\lambda_i=|A|$$
+- 必要条件：$z=f(x,y)$ 在 $(x_0,y_0)$ 可导且为极值点 $\Rightarrow f_x=0,\ f_y=0$；
+- 充分条件：令 $A=f_{xx}(x_0,y_0),\ B=f_{xy},\ C=f_{yy}$：
+  - $AC-B^2>0$：有极值，$A>0$ 极小、$A<0$ 极大；
+  - $AC-B^2<0$：无极值；
+  - $AC-B^2=0$：无法判定。
 
-- 不同特征值对应的特征向量线性无关；
-- $k$ 重特征值对应线性无关特征向量不超过 $k$ 个。
+**条件极值（拉格朗日乘数法）**：求 $f(x,y)$ 在 $\varphi(x,y)=0$ 下的极值，构造
 
-### 5.2 各种矩阵的特征值
+$$L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)$$
 
-| 矩阵 | $A$ | $A^T$ | $A^{-1}$ | $A^*$ | $A^k$ | $A+kE$ | $f(A)$ | $P^{-1}AP$ |
-|---|---|---|---|---|---|---|---|---|
-| 特征值 | $\lambda$ | $\lambda$ | $\dfrac1\lambda$ | $\dfrac{|A|}\lambda$ | $\lambda^k$ | $\lambda+k$ | $f(\lambda)$ | $\lambda$ |
-| 特征向量 | $\alpha$ | / | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $P^{-1}\alpha$ |
+解方程组 $L_x=0,\ L_y=0,\ L_\lambda=0$。
 
-> **【理解】** 均由 $A\alpha=\lambda\alpha$ 推出：左乘 $A^{-1}$ 得 $A^{-1}\alpha=\frac1\lambda\alpha$；左乘 $A^{k-1}$ 得 $A^k\alpha=\lambda^k\alpha$；加 $kE$ 得 $(A+kE)\alpha=(\lambda+k)\alpha$。
+**有界闭区域上最值**：先求区域内无条件极值，再求边界上条件极值，最后比较。
 
-- 若 $B=P^{-1}AP$，$A$ 的特征向量为 $\alpha$，则 $B$ 的特征向量为 $P^{-1}\alpha$；
-- 若 $A=PBP^{-1}$，$B$ 的特征向量为 $\alpha$，则 $A$ 的特征向量为 $P\alpha$。
+### 4.6 本章易错点
 
-**特殊情形**：
-
-- $A$ 每行元素之和为 $a$：$A\begin{pmatrix}1\\\vdots\\1\end{pmatrix}=a\begin{pmatrix}1\\\vdots\\1\end{pmatrix}$，即特征值 $a$、特征向量 $(1,\cdots,1)^T$；
-- $AB=O$：$B$ 的非零列向量是 $A$ 特征值 $0$ 的特征向量。
-
-### 5.3 相似矩阵
-
-**定义**：$P^{-1}AP=B$（$P$ 可逆），称 $A\sim B$。
-
-**性质**：
-
-$$|A|=|B|,\quad \operatorname{tr}(A)=\operatorname{tr}(B),\quad r(A)=r(B),\quad |\lambda E-A|=|\lambda E-B|$$
-
-- 特征值相同（$A\sim B$）；
-- $A^T\sim B^T,\ A^k\sim B^k,\ A^{-1}\sim B^{-1},\ f(A)\sim f(B)$。
-
-### 5.4 矩阵对角化
-
-**可对角化条件**：
-
-- 充要条件：$A$ 有 $n$ 个线性无关特征向量；
-- 充要条件：每个 $k_i$ 重特征值 $\lambda_i$ 满足 $n-r(\lambda_i E-A)=k_i$（即 $r(\lambda_i E-A)=n-k_i$）；
-- 充分条件：$A$ 有 $n$ 个不同特征值。
-
-**对角化步骤**：
-
-1. 求特征值 $\lambda_1,\cdots,\lambda_n$；
-2. 求特征向量 $\alpha_1,\cdots,\alpha_n$；
-3. 令 $P=(\alpha_1,\cdots,\alpha_n)$，则 $P^{-1}AP=\Lambda=\operatorname{diag}(\lambda_1,\cdots,\lambda_n)$。
-
-### 5.5 实对称矩阵
-
-**性质**：
-
-1. 特征值全为实数；
-2. 不同特征值对应特征向量正交；
-3. 必可对角化，且可正交对角化：存在正交矩阵 $Q$，$Q^{-1}AQ=Q^TAQ=\Lambda$。
-
-**正交矩阵 $Q$ 步骤**：
-
-1. 求特征值；
-2. 求特征向量；
-3. 重根对应的特征向量施密特正交化；
-4. 全部单位化；
-5. 拼 $Q=(\eta_1,\cdots,\eta_n)$。
-
-**施密特正交化**：
-
-$$\beta_1=\alpha_1$$
-
-$$\beta_2=\alpha_2-\frac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1$$
-
-$$\beta_3=\alpha_3-\frac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\frac{(\alpha_3,\beta_2)}{(\beta_2,\beta_2)}\beta_2$$
-
-### 5.6 本章易错点
-
-1. 特征向量必须是非零向量；
-2. 相似矩阵特征值相同，但特征向量经过 $P^{-1}$ 变换；
-3. 可对角化判定要看每个特征值的线性无关特征向量个数是否等于重数；
-4. 实对称矩阵不同特征值特征向量"正交"，普通矩阵只是"无关"；
-5. 正交化只需对重根特征向量进行，单根特征向量只需单位化。
+1. 偏导数存在函数不一定连续，也不一定可微（三者关系要画清）；
+2. 求二重极限不能只验证直线路径，两条路径极限不同只用于证明不存在；
+3. 抽象复合函数求二阶偏导时，$f_1',f_2'$ 仍是同结构的复合函数，要继续用链式法则；
+4. 隐函数求导公式带负号，且分母偏导不为 $0$；
+5. 拉格朗日函数中 $\lambda$ 是辅助变量，求出后要回代比较；
+6. 极值判别式 $AC-B^2$ 符号记反是高频错误。
 
 ---
 
-## 第六章 二次型
+## 第五章 二重积分
 
-### 6.1 二次型及其矩阵
+### 5.1 概念与性质
 
-**二次型**：
+**定义**：
 
-$$f(x_1,\cdots,x_n)=\sum_{i,j}a_{ij}x_ix_j=x^TAx$$
+$$\iint_D f(x,y)d\sigma=\lim_{\lambda\to0}\sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i$$
 
-其中 $A$ 为对称矩阵（$A^T=A$），$a_{ii}$ 为平方项系数，$a_{ij}=a_{ji}$ 为交叉项系数的一半。
+**几何意义**：$f(x,y)\ge0$ 时为曲顶柱体体积；$f\equiv1$ 时 $\iint_D d\sigma=S_D$（区域面积）。
 
-**矩阵表示**：$f=x^TAx$，$A$ 唯一，$r(A)$ 为二次型秩。
+**性质**：线性、可加性、比较性、估值定理、积分中值定理（$\exists(\xi,\eta),\ \iint_D f\,d\sigma=f(\xi,\eta)S_D$）。
 
-> **【理解】** $x^TAx$ 中交叉项 $a_{ij}x_ix_j$ 被 $(i,j)$、$(j,i)$ 两处计入，故写矩阵时交叉项系数除以 $2$。
+### 5.2 二重积分计算
 
-### 6.2 标准形与规范形
+**直角坐标**：
 
-**标准形**：只含平方项 $f=d_1y_1^2+\cdots+d_ny_n^2$。
+$$\iint_D f(x,y)d\sigma=\iint_D f(x,y)dx\,dy$$
 
-**规范形**：系数为 $1,-1,0$：$f=z_1^2+\cdots+z_p^2-z_{p+1}^2-\cdots-z_r^2$。
+- X 型区域（$a\le x\le b,\ \varphi_1(x)\le y\le\varphi_2(x)$）：
 
-**惯性定理**：可逆线性变换下，正、负平方项个数（正惯性指数 $p$、负惯性指数 $q$）不变。
+$$\int_a^b dx\int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y)\,dy$$
 
-### 6.3 化标准形
+- Y 型区域（$c\le y\le d,\ \psi_1(y)\le x\le\psi_2(y)$）：
 
-**正交变换法**：$x=Qy$，则
+$$\int_c^d dy\int_{\psi_1(y)}^{\psi_2(y)} f(x,y)\,dx$$
 
-$$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
+**极坐标**：$x=r\cos\theta,\ y=r\sin\theta,\ d\sigma=r\,dr\,d\theta$：
 
-系数即 $A$ 的特征值。
+$$\iint_D f(x,y)d\sigma=\iint_D f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta$$
 
-**配方法**：依次对变量配方，得到可逆线性变换（配方法标准形系数一般不是特征值）。
+> 适用：区域为圆、圆环、扇形，或被积函数含 $x^2+y^2$、$\frac yx$、$\frac xy$。
 
-### 6.4 合同
+### 5.3 对称性
 
-**定义**：存在可逆矩阵 $C$，$C^TAC=B$，称 $A$ 与 $B$ 合同。
+**普通对称性**：
 
-**性质**：
+- $D$ 关于 $y$ 轴（$x=0$）对称：
 
-- 合同 $\Rightarrow$ 秩相等、正负惯性指数相同；
-- 实对称矩阵合同 $\iff$ 正负惯性指数相同（特征值正负个数相同）。
+$$\iint_D f\,d\sigma=\begin{cases}2\iint_{D_1} f\,d\sigma,&f(-x,y)=f(x,y)\ (\text{关于 }x\text{ 偶})\\0,&f(-x,y)=-f(x,y)\ (\text{关于 }x\text{ 奇})\end{cases}$$
 
-> **【理解】** 等价保秩，相似保特征值（含行列式、迹），合同保正负惯性指数。
+- $D$ 关于 $x$ 轴（$y=0$）对称：同理，看 $f$ 关于 $y$ 的奇偶；
+- 关于 $x=a$、$y=a$ 对称：用 $f(2a-x,y)$ 判别；
+- 关于原点对称：用 $f(-x,-y)$ 判别。
 
-**相似、合同、等价关系**：
+**轮换对称性**：若 $x,y$ 对调后区域 $D$ 不变（$D$ 关于 $y=x$ 对称），则
 
-- 相似一定等价，合同一定等价；
-- 实对称矩阵相似一定合同（特征值相同则正负性相同）；
-- 普通矩阵相似与合同没有必然关系。
+$$\iint_D f(x,y)d\sigma=\iint_D f(y,x)d\sigma$$
 
-### 6.5 正定二次型
+若 $f(x,y)+f(y,x)=a$，则
 
-**定义**：对任意 $x\ne0$，$x^TAx>0$。
+$$I=\frac12\iint_D[f(x,y)+f(y,x)]d\sigma=\frac a2 S_D$$
 
-**充要条件（任一）**：
+### 5.4 交换积分次序
 
-1. 特征值全为正；
-2. 正惯性指数 $p=n=r(A)$；
-3. 与单位矩阵合同：$P^TAP=E$；
-4. 存在可逆矩阵 $P$，$A=P^TP$；
-5. 各阶顺序主子式全大于 $0$。
+**步骤**：① 由原累次积分上下限画出区域 $D$；② 重新确定另一类型区域的上下限。
 
-**必要条件**：$a_{ii}>0$；$|A|>0$。
+**例题**：$\int_0^1 dy\int_0^{y^2} y\sin(1-x)^2 dx$（对 $x$ 积分不好算，换序）。
 
-### 6.6 三种搭桥法
+$$\text{原式}=\int_0^1 dx\int_{\sqrt x}^1 y\sin(1-x)^2 dy=\int_0^1 \sin(1-x)^2\left(\frac12y^2\Big|_{\sqrt x}^1\right) dx=\frac12\int_0^1(1-x)\sin(1-x)^2 dx$$
 
-**搭桥法 1**：求可逆矩阵 $P$ 使 $P^{-1}AP=B$（两非对角矩阵相似）。
+### 5.5 本章易错点
 
-- 分别对角化：$P_1^{-1}AP_1=\Lambda,\ P_2^{-1}BP_2=\Lambda$；
-- 则 $P=P_1P_2^{-1}$。
-
-**搭桥法 2**：求正交矩阵 $Q$ 使一个二次型变为另一个（合同+正交）。
-
-- 分别正交对角化：$Q_1^TAQ_1=\Lambda,\ Q_2^TBQ_2=\Lambda$；
-- 则 $Q=Q_1Q_2^T$。
-
-**搭桥法 3**：求可逆矩阵 $P$ 使一个二次型变为另一个（合同，非正交）。
-
-- 两二次型都用配方法化到**相同标准形**（第一个写标准形、第二个写非标准形）；
-- 则 $P=P_1P_2^{-1}$。
-
-### 6.7 二次型几何应用（数一了解，数二可略）
-
-特征值三正：椭球面；两正一负：单叶双曲面；一正两负：双叶双曲面等。
-
-### 6.8 本章易错点
-
-1. 二次型矩阵必须对称，交叉项系数一半写在对称位置；
-2. 正交变换标准形系数是特征值，配方法不是；
-3. 合同看正负惯性指数，相似看特征值；
-4. 正定判定顺序主子式是"各阶"都大于零，不是只看 $|A|$；
-5. 搭桥法中乘法顺序（$P_1P_2^{-1}$ 或 $Q_1Q_2^T$）不能反。
+1. 极坐标下面积元素是 $r\,dr\,d\theta$，$r$ 不能漏；
+2. 用对称性前必须先验证区域对称性，且被积函数奇偶性要对应；
+3. 交换次序要先画区域，不能直接改上下限；
+4. 极坐标下 $\theta$ 范围与 $r$ 范围要根据图形确定；
+5. 分段函数（含绝对值、max、min）要先分区域去符号。
 
 ---
 
-## 附录：线代思维定势速查
+## 第六章 常微分方程
 
-**"看到……就想到……"**：
+### 6.1 基本概念
 
-1. 看到 $AB=O$：$r(A)+r(B)\le n$；$B$ 的列向量是 $Ax=0$ 的解；$A$ 有特征值 $0$；
-2. 看到 $AB=C$：$C$ 的列向量可由 $A$ 的列向量表示，$C$ 的行向量可由 $B$ 的行向量表示；
-3. 看到 $AB=E$：$A,B$ 均可逆，$A^{-1}=B,\ B^{-1}=A$；
-4. 看到 $A$ 为正交矩阵：$A^{-1}=A^T$，$|A|=\pm1$，特征值 $\pm1$，行列向量两两正交且单位化；
-5. 看到 $A^T=-A$（反对称）：主对角线为 $0$，奇数阶时 $|A|=0$；
-6. 看到秩 1：$A=\alpha\beta^T$，$A^n=[\operatorname{tr}(A)]^{n-1}A$，特征值 $\operatorname{tr}(A),0,\cdots,0$；
-7. 看到 $AA^T$、$A^TA$：必为对称阵，与 $A$ 同秩，与 $Ax=0$ 同解，非零特征值相同；
-8. 看到每行元素之和为 $a$：特征值 $a$、特征向量 $(1,\cdots,1)^T$；
-9. 看到 $A\sim B$：行列式、迹、秩、特征值全相等；
-10. 看到实对称矩阵：特征值实数、特征向量正交、必可正交对角化；
-11. 看到二次型：先写对称矩阵，正交变换看特征值，合同看正负惯性指数，正定看顺序主子式。
+**微分方程**：含未知函数导数（或微分）的方程。阶数（最高阶导数阶数）、解、通解（含独立常数个数等于阶数）、特解、初值条件。
 
-**秩的核心公式**：
+### 6.2 一阶微分方程
 
-$$r(A)=r(A^T)=r(AA^T)=r(A^TA),\quad r(AB)\le\min\{r(A),r(B)\}$$
+**可分离变量**：$\frac{dy}{dx}=f(x)g(y)$，则 $\int\frac{dy}{g(y)}=\int f(x)dx$。
 
-$$r(A)+r(B)-n\le r(AB),\quad AB=O\Rightarrow r(A)+r(B)\le n$$
+**齐次方程**：$\frac{dy}{dx}=\varphi\left(\frac yx\right)$，令 $u=\frac yx$（$y=ux,\ y'=u+xu'$）。
 
-**数二线代题型分布提示**：行列式/矩阵小题、向量相关性、方程组求解（大题高频）、特征值与对角化（大题高频）、二次型标准形与正定（常与特征值综合）。
+**一阶线性微分方程**：$y'+P(x)y=Q(x)$，通解
+
+$$y=e^{-\int P\,dx}\left[\int Q(x)e^{\int P\,dx}dx+C\right]$$
+
+**伯努利方程**：$y'+P(x)y=Q(x)y^n\ (n\ne0,1)$，令 $z=y^{1-n}$，化为 $z'+(1-n)Pz=(1-n)Q$。
+
+### 6.3 可降阶的高阶方程
+
+**$y^{(n)}=f(x)$ 型**：连续积分 $n$ 次。
+
+**$y''=f(x,y')$ 型（不显含 $y$）**：令 $p=y'$，则 $y''=p'$，化为 $p'=f(x,p)$。
+
+**$y''=f(y,y')$ 型（不显含 $x$）**：令 $p=y'$，则 $y''=p\frac{dp}{dy}$，化为 $p\frac{dp}{dy}=f(y,p)$。
+
+### 6.4 高阶线性微分方程
+
+**线性方程解的结构**：
+
+$$y''+P(x)y'+Q(x)y=f(x)$$
+
+- 齐次 $y''+Py'+Qy=0$：两个线性无关解 $y_1,y_2$（$\frac{y_1}{y_2}\ne$ 常数），通解 $Y=C_1y_1+C_2y_2$；
+- 非齐次：通解 $y=Y+y^*$（$y^*$ 为一个特解）；
+- 叠加原理：$f=f_1+f_2$ 时分别求特解相加。
+
+**二阶常系数齐次**：$y''+py'+qy=0$，特征方程 $r^2+pr+q=0$：
+
+| 特征根 | 通解 |
+|---|---|
+| 两不等实根 $r_1\ne r_2$ | $y=C_1e^{r_1x}+C_2e^{r_2x}$ |
+| 两相等实根 $r_1=r_2=r$ | $y=(C_1+C_2x)e^{rx}$ |
+| 一对共轭复根 $r=\alpha\pm i\beta$ | $y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$ |
+
+**二阶常系数非齐次**：
+
+- $f(x)=e^{\lambda x}P_m(x)$：设 $y^*=x^k e^{\lambda x}Q_m(x)$，$k$ 为 $\lambda$ 作为特征根的重数（$0,1,2$）；
+- $f(x)=e^{\lambda x}[P_l(x)\cos\omega x+P_n(x)\sin\omega x]$：设
+
+$$y^*=x^k e^{\lambda x}[R_m(x)\cos\omega x+S_m(x)\sin\omega x],\quad m=\max(l,n)$$
+
+$k$ 为 $\lambda+i\omega$ 是否为特征根（$0$ 或 $1$）。
+
+### 6.5 微分算子法（快速求特解）
+
+**算子定义**：$D=\frac{d}{dx}$，$D^2=\frac{d^2}{dx^2}$，方程 $y''+py'+qy=f(x)$ 写成
+
+$$(D^2+pD+q)y=f(x)\quad\Rightarrow\quad y^*=\frac{1}{D^2+pD+q}f(x)=F(D)^{-1}f(x)$$
+
+**基本规则**：
+
+1. $\frac1{D-a}f(x)=e^{ax}\int e^{-ax}f(x)dx$；
+2. $\frac1{F(D)}e^{kx}=\frac{e^{kx}}{F(k)}$（$F(k)\ne0$），$F(k)=0$ 时提 $x$：$\frac1{F(D)}e^{kx}=x\frac{e^{kx}}{F'(k)}$（$k$ 为单根），二重根再提 $x$；
+3. $\frac1{F(D^2)}\sin ax=\frac{\sin ax}{F(-a^2)}$（$F(-a^2)\ne0$），为零则提 $x$，且 $\frac1{D^2+a^2}\sin ax=-\frac{x}{2a}\cos ax$；
+4. $\frac1{F(D)}x^n$：将 $\frac1{F(D)}$ 展开为 $D$ 的幂级数（到 $D^n$ 项）后逐项作用。
+
+### 6.6 本章易错点
+
+1. 一阶线性方程通解公式中 $e^{\int P\,dx}$ 与 $e^{-\int P\,dx}$ 别用反；
+2. 齐次方程（可分离变量的"齐次"）与齐次线性方程是两个概念；
+3. 可降阶方程中，不显含 $y$ 令 $p=y'$ 用 $p'$；不显含 $x$ 用 $p\frac{dp}{dy}$；
+4. 设特解时 $x^k$ 的 $k$ 由 $\lambda$ 与特征根关系确定，漏乘 $x$ 是高频错误；
+5. 特征根为复根时通解是 $e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$，不要写 $e^{i\beta x}$；
+6. 通解中常数个数必须等于方程阶数。
+
+---
+
+## 附录：高数常用公式速查
+
+**重要极限**：$\frac{\sin x}{x}\to1$；$\left(1+\frac1x\right)^x\to e$。
+
+**等价无穷小（$x\to0$）**：见 1.4。
+
+**泰勒展开**：见 1.5。
+
+**积分公式**：见 3.1。
+
+**方程通解**：见 6.4。
+
+**数二高数题型分布提示**：极限计算（选择/填空高频）、中值定理证明、一元积分计算与应用、多元偏导/全微分、二重积分、微分方程（常与其他章节综合）。
