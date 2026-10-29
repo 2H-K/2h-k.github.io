@@ -202,3 +202,24 @@
 :root[data-bs-theme="dark"] .footnotes ol li::marker {
   color: #8b5cf6;
 }
+
+/* ===== 语义强调色（复用 Chirpy prompt 组件配色，不加粗） ===== */
+/* 红=符号/易错  橙=条件/区别  绿=结论/必背  蓝=定义/概念 */
+:root {
+  --hl-red: #d93a2b;
+  --hl-orange: #b87400;
+  --hl-green: #0a8f0a;
+  --hl-blue: #0b65b8;
+}
+
+:root[data-bs-theme="dark"] {
+  --hl-red: #ff8a80;
+  --hl-orange: #ffb545;
+  --hl-green: #56d364;
+  --hl-blue: #6cb6ff;
+}
+
+.hl-red { color: var(--hl-red); }
+.hl-orange { color: var(--hl-orange); }
+.hl-green { color: var(--hl-green); }
+.hl-blue { color: var(--hl-blue); }

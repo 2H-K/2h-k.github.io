@@ -8,21 +8,44 @@ math: true
 > 数二线代范围：行列式、矩阵、向量、线性方程组、特征值与特征向量、二次型。
 > 每章结构：知识框架 → 定义定理 → 题型方法 → 易错点 → 公式速查。
 
+> 全文颜色约定：<span class="hl-red">红色 = 符号 / 易错</span>，<span class="hl-orange">橙色 = 条件 / 区别</span>，<span class="hl-green">绿色 = 结论 / 必背</span>，<span class="hl-blue">蓝色 = 定义 / 概念</span>。
+
 ---
 
 ## 第一章 行列式
 
 ### 1.1 行列式的概念
 
+**先备一个工具：排列与逆序数**（定义里那堆正负号全来自这里）
+
+把 $1,2,\dots,n$ 排成一列 $j_1j_2\cdots j_n$，称为一个 $n$ 元**排列**，共有 $n!$ 个。若排列中前面的数大于后面的数，即 $j_s>j_t\ (s<t)$，就说它们构成一个**逆序**；一个排列中逆序的总个数称为**逆序数**，记作 <span class="hl-blue">$\tau(j_1j_2\cdots j_n)$</span>。逆序数为偶数的叫偶排列，为奇数的叫奇排列。
+
+$$\tau(123)=0\ (\text{偶}),\qquad \tau(213)=1\ (\text{奇}),\qquad \tau(321)=3\ (\text{奇})$$
+
+> **【理解】** $\tau$ 只数"大小顺序错了几对"，从左往右逐个往后数即可：$312$ 中 $3>1,\ 3>2$，其余 $1<2$，故 $\tau(312)=2$，是偶排列。
+> **对换改变奇偶性**：交换排列中任意两个数，逆序数的奇偶性必然改变——这正是后面"互换两行（列）行列式变号"的根源。
+
 **二阶、三阶**：
 
 $$\begin{vmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{vmatrix}=a_{11}a_{22}-a_{12}a_{21}$$
 
+三阶展开时，每一项正负号也由列标排列决定：$a_{11}a_{22}a_{33}$ 对应 $123$（$\tau=0$）取正，$a_{12}a_{23}a_{31}$ 对应 $231$（$\tau=2$）取正，$a_{13}a_{22}a_{31}$ 对应 $321$（$\tau=3$）取负。
+
 **$n$ 阶行列式定义**：
 
-$$D=\begin{vmatrix}a_{11}&\cdots&a_{1n}\\\vdots&&\vdots\\a_{n1}&\cdots&a_{nn}\end{vmatrix}=\sum_{j_1j_2\cdots j_n}(-1)^{\tau(j_1j_2\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}$$
+$$D=\begin{vmatrix}a_{11}&\cdots&a_{1n}\\\vdots&&\vdots\\a_{n1}&\cdots&a_{nn}\end{vmatrix}=\sum_{j_1j_2\cdots j_n}\textcolor{#e05252}{(-1)^{\tau(j_1j_2\cdots j_n)}}a_{1j_1}a_{2j_2}\cdots a_{nj_n}$$
 
-即取自不同行不同列的 $n$ 个元素乘积的代数和，共 $n!$ 项。
+即取自不同行不同列的 $n$ 个元素乘积的代数和，共 $n!$ 项。逐项拆开看：
+
+| 记号 | 含义 |
+| --- | --- |
+| <span class="hl-blue">$\sum\limits_{j_1j_2\cdots j_n}$</span> | 对列标 $1,2,\dots,n$ 的全部 $n!$ 个排列求和（行标固定为 $1,2,\dots,n$） |
+| <span class="hl-orange">$a_{1j_1}a_{2j_2}\cdots a_{nj_n}$</span> | 第 $i$ 行取第 $j_i$ 列，故每行每列各取一个元素，共 $n$ 个因子 |
+| <span class="hl-blue">$\tau(j_1j_2\cdots j_n)$</span> | 列标排列的逆序数 |
+| <span class="hl-red">$(-1)^{\tau}$</span> | 该项的符号：$\tau$ 取偶数得 $+1$，取奇数得 $-1$ |
+
+> **【理解】** 定义里只在列标上写 $\tau$，换成按行标数逆序数结果也一样——因为两个排列互为逆排列，逆序数奇偶性相同。这也是 <span class="hl-green">$\lvert A^T\rvert =\lvert A\rvert $</span> 的直观来源。
+> 记忆口诀：**"每行每列各取一个，再看列标逆序数定正负"**。<span class="hl-red">$(-1)^{\tau}$</span> 不是"负一的多少次方"这么随意，它是一个由排列奇偶性决定的符号。
 
 ### 1.2 行列式的性质
 
@@ -35,7 +58,7 @@ $$D=\begin{vmatrix}a_{11}&\cdots&a_{1n}\\\vdots&&\vdots\\a_{n1}&\cdots&a_{nn}\en
 
 ### 1.3 展开定理
 
-**余子式**：划去 $a_{ij}$ 所在行、列后剩下的 $n-1$ 阶行列式，记 $M_{ij}$；**代数余子式**：$A_{ij}=(-1)^{i+j}M_{ij}$。
+**余子式**：划去 $a_{ij}$ 所在行、列后剩下的 $n-1$ 阶行列式，记 $M_{ij}$；**代数余子式**：<span class="hl-red">$A_{ij}=\textcolor{#e05252}{(-1)^{i+j}}M_{ij}$</span>。
 
 **展开定理**：
 
@@ -53,11 +76,15 @@ $$\begin{vmatrix}a_{11}&&0\\&\ddots&\\0&&a_{nn}\end{vmatrix}=a_{11}a_{22}\cdots 
 
 **副对角**：
 
-$$\begin{vmatrix}0&&a_{1n}\\&\ddots&\\a_{n1}&&0\end{vmatrix}=(-1)^{\frac{n(n-1)}2}a_{1n}a_{2,n-1}\cdots a_{n1}$$
+$$\begin{vmatrix}0&&a_{1n}\\&\ddots&\\a_{n1}&&0\end{vmatrix}=\textcolor{#e05252}{(-1)^{\frac{n(n-1)}2}}a_{1n}a_{2,n-1}\cdots a_{n1}$$
+
+> **【理解】** 指数 $\frac{n(n-1)}2$ 就是列标排列 $n,n-1,\dots,1$ 的<span class="hl-blue">逆序数</span>（$n-1+n-2+\cdots+1$），正好把 1.1 的定义落地。
 
 **拉普拉斯（分块）行列式**：
 
-$$\begin{vmatrix}A_{m\times m}&O\\O&B_{n\times n}\end{vmatrix}=|A||B|,\quad \begin{vmatrix}O&A_{m\times m}\\B_{n\times n}&O\end{vmatrix}=(-1)^{mn}|A||B|$$
+$$\begin{vmatrix}A_{m\times m}&O\\O&B_{n\times n}\end{vmatrix}=|A||B|,\quad \begin{vmatrix}O&A_{m\times m}\\B_{n\times n}&O\end{vmatrix}=\textcolor{#e05252}{(-1)^{mn}}|A||B|$$
+
+> **【理解】** 副对角分块相当于把 $B$ 的 $n$ 行整体跨过 $A$ 的 $m$ 行，共做 $mn$ 次相邻对换，每次改一次奇偶，故符号为 <span class="hl-red">$(-1)^{mn}$</span>。
 
 **范德蒙行列式**：
 
@@ -65,9 +92,13 @@ $$D_n=\begin{vmatrix}1&1&\cdots&1\\x_1&x_2&\cdots&x_n\\x_1^2&x_2^2&\cdots&x_n^2\
 
 ### 1.5 重要结论
 
+<div class="hl-green" markdown="1">
+
 $$|A^T|=|A|,\quad |kA|=k^n|A|,\quad |AB|=|A||B|,\quad |A^{-1}|=|A|^{-1}$$
 
 $$|A^*|=|A|^{n-1},\quad |A|=\prod_{i=1}^n\lambda_i$$
+
+</div>
 
 **爪形（箭形）、行和相等行列式**：
 
@@ -75,9 +106,9 @@ $$D_n=\begin{vmatrix}a&b&\cdots&b\\b&a&\cdots&b\\\vdots&\vdots&&\vdots\\b&b&\cdo
 
 ### 1.6 本章易错点
 
-1. $\lvert kA\rvert =k^n\lvert A\rvert $，不是 $k\lvert A\rvert $；
-2. 行列式互换两行变号，展开式代数余子式 $A_{ij}=(-1)^{i+j}M_{ij}$ 符号别漏；
-3. 拉普拉斯副对角分块带 $(-1)^{mn}$；
+1. <span class="hl-red">$\lvert kA\rvert =k^n\lvert A\rvert $</span>，不是 $k\lvert A\rvert $；
+2. 行列式互换两行变号，展开式代数余子式 <span class="hl-red">$A_{ij}=(-1)^{i+j}M_{ij}$</span> 符号别漏；
+3. 拉普拉斯副对角分块带 <span class="hl-red">$(-1)^{mn}$</span>（$mn$ 次对换），副对角行列式的指数是 <span class="hl-red">$\frac{n(n-1)}2$</span>（逆序数），都别数错；
 4. 范德蒙是"列标对应元素、大减小"，顺序看清楚；
 5. 抽象行列式先化为 $\lvert A\rvert $ 或特征值的形式，不要硬算。
 
