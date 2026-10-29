@@ -8,7 +8,7 @@ math: true
 > 数二线代范围：行列式、矩阵、向量、线性方程组、特征值与特征向量、二次型。
 > 每章结构：知识框架 → 定义定理 → 题型方法 → 易错点 → 公式速查。
 
-> 全文颜色约定：<span class="hl-red">红色 = 符号 / 易错</span>，<span class="hl-orange">橙色 = 条件 / 区别</span>，<span class="hl-green">绿色 = 结论 / 必背</span>，<span class="hl-blue">蓝色 = 定义 / 概念</span>。
+> 全文颜色约定：<span class="hl-red">红色 = 符号 / 易错</span>，<span class="hl-orange">橙色 = 条件 / 区别</span>，<span class="hl-green">绿色 = 结论 / 必背</span>，<span class="hl-blue">蓝色 = 定义 / 基本关系</span>。
 
 ---
 
@@ -133,7 +133,7 @@ $$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
 - $AB=O\ \not\Rightarrow\ A=O$ 或 $B=O$；
 - 满足结合律、分配律。
 
-**转置**：$(A^T)^T=A,\ (A+B)^T=A^T+B^T,\ (kA)^T=kA^T,\ (AB)^T=B^TA^T$。
+**转置**：$(A^T)^T=A,\ (A+B)^T=A^T+B^T,\ (kA)^T=kA^T,\ <span class="hl-red">$(AB)^T=B^TA^T$</span>。
 
 **方阵的幂**：$A^k=A\cdots A$（$k$ 个），$A^kA^l=A^{k+l},\ (A^k)^l=A^{kl}$。
 
@@ -147,17 +147,25 @@ $$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
 
 **伴随矩阵法**：
 
+<div class="hl-green" markdown="1">
+
 $$A^{-1}=\frac{1}{|A|}A^*$$
+
+</div>
 
 **伴随矩阵性质**：
 
+<div class="hl-green" markdown="1">
+
 $$AA^*=A^*A=|A|E,\quad |A^*|=|A|^{n-1},\quad (A^*)^*=|A|^{n-2}A,\quad (A^*)^{-1}=\frac{A}{|A|}$$
+
+</div>
 
 > **【理解】** 由 $$AA^*=\lvert A\rvert E$$ 两边取行列式：$$\lvert A\rvert \lvert A^*\rvert =\lvert A\rvert ^n$$，故 $$\lvert A^*\rvert =\lvert A\rvert ^{n-1}$$。
 
 **可逆矩阵性质**：
 
-$$(A^{-1})^{-1}=A,\quad (kA)^{-1}=\frac1kA^{-1},\quad (AB)^{-1}=B^{-1}A^{-1},\quad (A^T)^{-1}=(A^{-1})^T,\quad |A^{-1}|=\frac1{|A|}$$
+$$(A^{-1})^{-1}=A,\quad (kA)^{-1}=\frac1kA^{-1},\quad \textcolor{#e05252}{(AB)^{-1}=B^{-1}A^{-1}},\quad (A^T)^{-1}=(A^{-1})^T,\quad |A^{-1}|=\frac1{|A|}$$
 
 > 注意：$(A+B)^{-1}\ne A^{-1}+B^{-1}$。
 
@@ -192,17 +200,29 @@ $$E_{ij}^{-1}=E_{ij},\quad E_i^{-1}(k)=E_i\left(\frac1k\right),\quad E_{ij}^{-1}
 
 $$r(A)\le\min\{m,n\}$$
 
+<div class="hl-blue" markdown="1">
+
 $$r(AB)\le\min\{r(A),r(B)\}$$
+
+</div>
 
 $$r(A)+r(B)-n\le r(AB)\le\min\{r(A),r(B)\}$$
 
 $$r(A+B)\le r(A)+r(B)$$
 
+<div class="hl-blue" markdown="1">
+
 $$r(A)=r(A^T)=r(AA^T)=r(A^TA)$$
+
+</div>
 
 $$r(kA)=r(A)\ (k\ne0)$$
 
+<div class="hl-green" markdown="1">
+
 $$AB=O\Rightarrow r(A)+r(B)\le n$$
+
+</div>
 
 **满秩**：$r(A)=n$（方阵即可逆）。
 
@@ -234,7 +254,7 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 2. 伴随矩阵 $$A^*$$ 元素是"代数余子式按列排列"，注意转置；
 3. 求逆只能用初等行变换（不能行列混用）；
 4. 抽象矩阵求逆优先用定义 $AB=E$ 或因式分解；
-5. 秩的不等式中 $AB=O\Rightarrow r(A)+r(B)\le n$ 是高频考点。
+5. 秩的不等式中 <span class="hl-red">$AB=O\Rightarrow r(A)+r(B)\le n$</span> 是高频考点，$n$ 是 $B$ 的行数（也是 $A$ 的列数）。
 
 ---
 
@@ -258,15 +278,15 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 **判别**：
 
 - $m$ 个 $n$ 维向量 $\alpha_1,\cdots,\alpha_m$：
-  - $m>n$：必线性相关；
-  - $m=n$：行列式 $\lvert \alpha_1\cdots\alpha_n\rvert =0$ 相关，$\ne0$ 无关；
+  - $m>n$：<span class="hl-red">必线性相关</span>；
+  - $m=n$：行列式 <span class="hl-green">$\lvert \alpha_1\cdots\alpha_n\rvert =0$</span> 相关，$\ne0$ 无关；
   - $m<n$：求秩，$r(A)<m$ 相关，$r(A)=m$ 无关。
 - 用定义：设 $k_1\alpha_1+\cdots+k_s\alpha_s=0$，恒等变形推出 $k_i$ 是否全为 $0$。
 
 **重要结论**：
 
 1. 含零向量的向量组必相关；
-2. 部分相关 $\Rightarrow$ 整体相关；整体无关 $\Rightarrow$ 部分无关；
+2. <span class="hl-red">部分相关 $\Rightarrow$ 整体相关；整体无关 $\Rightarrow$ 部分无关</span>；
 3. 低维无关 $\Rightarrow$ 高维无关；高维相关 $\Rightarrow$ 低维相关；
 4. $\alpha_1,\cdots,\alpha_s$ 无关，$\alpha_1,\cdots,\alpha_s,\beta$ 相关，则 $\beta$ 可由 $\alpha_1,\cdots,\alpha_s$ 唯一表示；
 5. 若向量组可由更少向量的向量组线性表示，则该向量组相关。
@@ -292,9 +312,9 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 
 1. 相关/无关判别要先看向量个数与维数关系；
 2. 线性表示对应方程组有解，相关对应齐次有非零解；
-3. 求极大无关组用行变换，不能用列变换；
+3. 求极大无关组用行变换，<span class="hl-red">不能用列变换</span>；
 4. 抽象证明优先用定义，"同乘""重组"是常用手法；
-5. 两个向量组等价与矩阵等价不是一回事。
+5. 两个向量组等价与矩阵等价<span class="hl-orange">不是一回事</span>。
 
 ---
 
@@ -312,11 +332,15 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 - $\xi_1,\xi_2$ 是解 $\Rightarrow \xi_1+\xi_2$ 是解；
 - $\xi$ 是解 $\Rightarrow k\xi$ 是解。
 
-**基础解系**：解空间的一组基，含 $n-r(A)$ 个线性无关解。
+**基础解系**：解空间的一组基，含 <span class="hl-green">$n-r(A)$</span> 个线性无关解。
 
 **通解**：
 
+<div class="hl-green" markdown="1">
+
 $$x=k_1\xi_1+k_2\xi_2+\cdots+k_{n-r}\xi_{n-r}$$
+
+</div>
 
 **求通解步骤**：① 行变换化行阶梯；② 写同解方程组、定自由变量；③ 自由变量依次取 $1$（其余为 $0$）求基础解系；④ 写通解。
 
@@ -324,7 +348,11 @@ $$x=k_1\xi_1+k_2\xi_2+\cdots+k_{n-r}\xi_{n-r}$$
 
 **有解判定**：
 
+<div class="hl-orange" markdown="1">
+
 $$\begin{cases}\text{无解}\iff r(A)<r(A,b)\\[2pt]\text{唯一解}\iff r(A)=r(A,b)=n\\[2pt]\text{无穷多解}\iff r(A)=r(A,b)<n\end{cases}$$
+
+</div>
 
 **解的性质**：
 
@@ -342,7 +370,7 @@ $$x=k_1\xi_1+\cdots+k_{n-r}\xi_{n-r}+\eta^*$$
 
 ### 4.3 克拉默法则
 
-$n$ 个方程 $n$ 个未知数，$\lvert A\rvert \ne0$ 时唯一解 $x_j=\dfrac{D_j}{D}$，其中 $D_j$ 为 $D$ 中第 $j$ 列换为常数项。
+$n$ 个方程 $n$ 个未知数，<span class="hl-orange">$\lvert A\rvert \ne0$</span> 时唯一解 $x_j=\dfrac{D_j}{D}$，其中 $D_j$ 为 $D$ 中第 $j$ 列换为常数项。
 
 ### 4.4 同解与公共解
 
@@ -360,8 +388,8 @@ $n$ 个方程 $n$ 个未知数，$\lvert A\rvert \ne0$ 时唯一解 $x_j=\dfrac{
 
 ### 4.5 本章易错点
 
-1. 判定有解看 $r(A)$ 与 $r(A,b)$，不能只看 $r(A)$；
-2. 基础解系个数是 $n-r(A)$，不是 $m-r(A)$；
+1. 判定有解看 $r(A)$ 与 $r(A,b)$，<span class="hl-red">不能只看 $r(A)$</span>；
+2. 基础解系个数是 <span class="hl-red">$n-r(A)$</span>，不是 $m-r(A)$；
 3. 非齐次通解 = 齐次通解 + 一个特解；
 4. 同解、公共解、包含关系三类题要分清；
 5. 若 $Ax=0$ 的解都是 $Bx=0$ 的解，则 $r(A)\ge r(B)$。
@@ -380,7 +408,11 @@ $n$ 个方程 $n$ 个未知数，$\lvert A\rvert \ne0$ 时唯一解 $x_j=\dfrac{
 
 **性质**：
 
+<div class="hl-green" markdown="1">
+
 $$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i=1}^n\lambda_i=|A|$$
+
+</div>
 
 - 不同特征值对应的特征向量线性无关；
 - $k$ 重特征值对应线性无关特征向量不超过 $k$ 个。
@@ -410,7 +442,7 @@ $$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i
 
 $$|A|=|B|,\quad \operatorname{tr}(A)=\operatorname{tr}(B),\quad r(A)=r(B),\quad |\lambda E-A|=|\lambda E-B|$$
 
-- 特征值相同（$A\sim B$）；
+- 特征值相同（$A\sim B$，但<span class="hl-red">反之不成立</span>）；
 - $A^T\sim B^T,\ A^k\sim B^k,\ A^{-1}\sim B^{-1},\ f(A)\sim f(B)$。
 
 ### 5.4 矩阵对角化
@@ -418,7 +450,7 @@ $$|A|=|B|,\quad \operatorname{tr}(A)=\operatorname{tr}(B),\quad r(A)=r(B),\quad 
 **可对角化条件**：
 
 - 充要条件：$A$ 有 $n$ 个线性无关特征向量；
-- 充要条件：每个 $k_i$ 重特征值 $\lambda_i$ 满足 $n-r(\lambda_i E-A)=k_i$（即 $r(\lambda_i E-A)=n-k_i$）；
+- 充要条件：每个 $k_i$ 重特征值 $\lambda_i$ 满足 <span class="hl-green">$n-r(\lambda_i E-A)=k_i$</span>（即 $r(\lambda_i E-A)=n-k_i$）；
 - 充分条件：$A$ 有 $n$ 个不同特征值。
 
 **对角化步骤**：
@@ -433,7 +465,7 @@ $$|A|=|B|,\quad \operatorname{tr}(A)=\operatorname{tr}(B),\quad r(A)=r(B),\quad 
 
 1. 特征值全为实数；
 2. 不同特征值对应特征向量正交；
-3. 必可对角化，且可正交对角化：存在正交矩阵 $Q$，$Q^{-1}AQ=Q^TAQ=\Lambda$。
+3. 必可对角化，且可正交对角化：存在正交矩阵 $Q$，<span class="hl-green">$Q^{-1}AQ=Q^TAQ=\Lambda$</span>。
 
 **正交矩阵 $Q$ 步骤**：
 
@@ -454,9 +486,9 @@ $$\beta_3=\alpha_3-\frac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\frac{(\a
 ### 5.6 本章易错点
 
 1. 特征向量必须是非零向量；
-2. 相似矩阵特征值相同，但特征向量经过 $P^{-1}$ 变换；
+2. 相似矩阵特征值相同，但特征向量要经过 <span class="hl-red">$P^{-1}$ 变换</span>；
 3. 可对角化判定要看每个特征值的线性无关特征向量个数是否等于重数；
-4. 实对称矩阵不同特征值特征向量"正交"，普通矩阵只是"无关"；
+4. 实对称矩阵不同特征值特征向量"正交"，普通矩阵只是<span class="hl-orange">"无关"</span>；
 5. 正交化只需对重根特征向量进行，单根特征向量只需单位化。
 
 ---
@@ -467,7 +499,7 @@ $$\beta_3=\alpha_3-\frac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\frac{(\a
 
 **二次型**：
 
-$$f(x_1,\cdots,x_n)=\sum_{i,j}a_{ij}x_ix_j=x^TAx$$
+$$f(x_1,\cdots,x_n)=\sum_{i,j}a_{ij}x_ix_j=\textcolor{#3f8fd6}{x^TAx}$$
 
 其中 $A$ 为对称矩阵（$A^T=A$），$a_{ii}$ 为平方项系数，$a_{ij}=a_{ji}$ 为交叉项系数的一半。
 
@@ -487,7 +519,11 @@ $$f(x_1,\cdots,x_n)=\sum_{i,j}a_{ij}x_ix_j=x^TAx$$
 
 **正交变换法**：$x=Qy$，则
 
+<div class="hl-green" markdown="1">
+
 $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
+
+</div>
 
 系数即 $A$ 的特征值。
 
@@ -502,7 +538,7 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 - 合同 $\Rightarrow$ 秩相等、正负惯性指数相同；
 - 实对称矩阵合同 $\iff$ 正负惯性指数相同（特征值正负个数相同）。
 
-> **【理解】** 等价保秩，相似保特征值（含行列式、迹），合同保正负惯性指数。
+> **【理解】** <span class="hl-orange">等价保秩，相似保特征值（含行列式、迹），合同保正负惯性指数</span>。
 
 **相似、合同、等价关系**：
 
@@ -516,11 +552,11 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 
 **充要条件（任一）**：
 
-1. 特征值全为正；
+1. <span class="hl-green">特征值全为正</span>；
 2. 正惯性指数 $p=n=r(A)$；
 3. 与单位矩阵合同：$P^TAP=E$；
 4. 存在可逆矩阵 $P$，$A=P^TP$；
-5. 各阶顺序主子式全大于 $0$。
+5. <span class="hl-green">各阶顺序主子式全大于 $0$</span>。
 
 **必要条件**：$a_{ii}>0$；$\lvert A\rvert >0$。
 
@@ -548,10 +584,10 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 ### 6.8 本章易错点
 
 1. 二次型矩阵必须对称，交叉项系数一半写在对称位置；
-2. 正交变换标准形系数是特征值，配方法不是；
-3. 合同看正负惯性指数，相似看特征值；
+2. 正交变换标准形系数是特征值，<span class="hl-orange">配方法不是</span>；
+3. <span class="hl-orange">合同看正负惯性指数，相似看特征值</span>；
 4. 正定判定顺序主子式是"各阶"都大于零，不是只看 $\lvert A\rvert $；
-5. 搭桥法中乘法顺序（$P_1P_2^{-1}$ 或 $Q_1Q_2^T$）不能反。
+5. 搭桥法中乘法顺序（<span class="hl-red">$P_1P_2^{-1}$</span> 或 <span class="hl-red">$Q_1Q_2^T$</span>）不能反。
 
 ---
 
@@ -562,7 +598,7 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 1. 看到 $AB=O$：$r(A)+r(B)\le n$；$B$ 的列向量是 $Ax=0$ 的解；$A$ 有特征值 $0$；
 2. 看到 $AB=C$：$C$ 的列向量可由 $A$ 的列向量表示，$C$ 的行向量可由 $B$ 的行向量表示；
 3. 看到 $AB=E$：$A,B$ 均可逆，$A^{-1}=B,\ B^{-1}=A$；
-4. 看到 $A$ 为正交矩阵：$A^{-1}=A^T$，$\lvert A\rvert =\pm1$，特征值 $\pm1$，行列向量两两正交且单位化；
+4. 看到 $A$ 为正交矩阵：$A^{-1}=A^T$，<span class="hl-red">$\lvert A\rvert =\pm1$</span>，特征值 $\pm1$，行列向量两两正交且单位化；
 5. 看到 $A^T=-A$（反对称）：主对角线为 $0$，奇数阶时 $\lvert A\rvert =0$；
 6. 看到秩 1：$A=\alpha\beta^T$，$A^n=[\operatorname{tr}(A)]^{n-1}A$，特征值 $\operatorname{tr}(A),0,\cdots,0$；
 7. 看到 $AA^T$、$A^TA$：必为对称阵，与 $A$ 同秩，与 $Ax=0$ 同解，非零特征值相同；
