@@ -9,6 +9,8 @@ math: true
 > 适用范围：数二（高数 + 线代）。数二高数不考：空间解析几何、三重积分、曲线/曲面积分、无穷级数。
 > 每章结构：知识框架 → 定义定理 → 题型方法 → 易错点 → 公式速查。
 
+> 全文颜色约定：<span class="hl-red">红色 = 符号 / 易错</span>，<span class="hl-orange">橙色 = 条件 / 区别</span>，<span class="hl-green">绿色 = 结论 / 必背</span>，<span class="hl-blue">蓝色 = 定义 / 基本关系</span>。
+
 ---
 
 ## 第一章 函数、极限、连续
@@ -88,7 +90,11 @@ $$\arcsin x+\arccos x=\frac{\pi}{2},\quad \arctan x+\operatorname{arccot}x=\frac
 
 **两个重要极限**：
 
+<div class="hl-green" markdown="1">
+
 $$\lim_{x\to0}\frac{\sin x}{x}=1,\qquad \lim_{x\to\infty}\left(1+\frac{1}{x}\right)^x=e\ \left(\text{即}\ \lim_{x\to0}(1+x)^{1/x}=e\right)$$
+
+</div>
 
 ### 1.4 无穷小与无穷大
 
@@ -105,7 +111,7 @@ $$\lim_{x\to0}\frac{\sin x}{x}=1,\qquad \lim_{x\to\infty}\left(1+\frac{1}{x}\rig
 
 **等价无穷小替换定理**：$\alpha\sim\alpha',\ \beta\sim\beta'$，且 $\lim\frac{\beta'}{\alpha'}$ 存在，则 $\lim\frac{\beta}{\alpha}=\lim\frac{\beta'}{\alpha'}$。
 
-> 注意：等价无穷小只能用于**乘除因子**，加减中不能直接替换（加减需用泰勒展开）。
+> 注意：等价无穷小只能用于**乘除因子**，<span class="hl-red">加减中不能直接替换</span>（加减需用泰勒展开）。
 
 **常用等价无穷小（$x\to0$）**：
 
@@ -118,8 +124,6 @@ $$\sqrt{1+x}-1\sim\frac12x,\quad x-\sin x\sim\frac16x^3,\quad x-\tan x\sim-\frac
 $$\tan x-x\sim\frac13x^3,\quad x-\arcsin x\sim-\frac16x^3,\quad x-\arctan x\sim\frac13x^3$$
 
 $$\sec x-1\sim\frac12x^2,\quad x-\ln(1+x)\sim\frac12x^2$$
-
-> **【理解】** 高阶等价无穷小由泰勒展开直接得到，不必单独记：$\sin x=x-\frac{x^3}{6}+o(x^3)$，故 $x-\sin x\sim\frac{x^3}{6}$；$\tan x=x+\frac{x^3}{3}+o(x^3)$，故 $\tan x-x\sim\frac{x^3}{3}$。
 
 > **【理解】** 高阶等价无穷小由泰勒展开直接得到，不必单独记：$\sin x=x-\frac{x^3}{6}+o(x^3)$，故 $x-\sin x\sim\frac{x^3}{6}$；$\tan x=x+\frac{x^3}{3}+o(x^3)$，故 $\tan x-x\sim\frac{x^3}{3}$。
 
@@ -148,7 +152,11 @@ $$\lim_{x\to\infty}\frac{a_mx^m+\cdots+a_0}{b_nx^n+\cdots+b_0}=\begin{cases}\inf
 
 **方法五：$1^\infty$ 型**：用公式
 
+<div class="hl-green" markdown="1">
+
 $$\lim f(x)^{g(x)}=e^{\lim [f(x)-1]g(x)}$$
+
+</div>
 
 **方法六、七：$\infty^0$、$0^0$ 型**：幂指函数对数化 $u(x)^{v(x)}=e^{v(x)\ln u(x)}$。
 
@@ -231,7 +239,7 @@ $$f'_-(x_0)=\lim_{h\to0^-}\frac{f(x_0+h)-f(x_0)}h,\quad f'_+(x_0)=\lim_{h\to0^+}
 
 $f'(x_0)$ 存在 $\iff f'_-(x_0)=f'_+(x_0)$。
 
-**可导与连续的关系**：可导必连续；连续不一定可导（如 $\lvert x\rvert $ 在 $x=0$ 连续但不可导）。
+**可导与连续的关系**：可导必连续；<span class="hl-red">连续不一定可导</span>（如 $\lvert x\rvert $ 在 $x=0$ 连续但不可导）。
 
 **导数的几何意义**：$f'(x_0)$ 是曲线 $y=f(x)$ 在 $(x_0,f(x_0))$ 处切线斜率。
 
@@ -292,7 +300,11 @@ $$(uv)^{(n)}=\sum_{k=0}^n C_n^k u^{(k)}v^{(n-k)}$$
 
 **拉格朗日中值定理**：$f$ 在 $[a,b]$ 连续、$(a,b)$ 可导，则 $\exists\xi\in(a,b)$：
 
+<div class="hl-green" markdown="1">
+
 $$f(b)-f(a)=f'(\xi)(b-a)$$
+
+</div>
 
 有限增量形式：$f(x+\Delta x)-f(x)=f'(x+\theta\Delta x)\Delta x$。
 
@@ -433,7 +445,11 @@ $$\frac{d}{dx}\int_{\psi(x)}^{\varphi(x)}f(t)dt=f[\varphi(x)]\varphi'(x)-f[\psi(
 
 **牛顿-莱布尼茨公式**：$F'(x)=f(x)$，则
 
+<div class="hl-green" markdown="1">
+
 $$\int_a^b f(x)dx=F(b)-F(a)$$
+
+</div>
 
 **定积分换元法**：换元必换限，$\int_a^b f(x)dx=\int_\alpha^\beta f[\varphi(t)]\varphi'(t)dt$。
 
@@ -441,11 +457,23 @@ $$\int_a^b f(x)dx=F(b)-F(a)$$
 
 **常用结论（对称区间、华里士公式）**：
 
+<div class="hl-orange" markdown="1">
+
 $$\int_{-a}^a f(x)dx=\begin{cases}2\int_0^a f\,dx,&f\text{ 为偶}\\0,&f\text{ 为奇}\end{cases}$$
+
+</div>
+
+<div class="hl-green" markdown="1">
 
 $$\int_0^\pi xf(\sin x)dx=\frac{\pi}{2}\int_0^\pi f(\sin x)dx$$
 
+</div>
+
+<div class="hl-green" markdown="1">
+
 $$\int_0^{\pi/2}\sin^n x\,dx=\int_0^{\pi/2}\cos^n x\,dx=\begin{cases}\dfrac{n-1}{n}\cdot\dfrac{n-3}{n-2}\cdots\dfrac12\cdot\dfrac{\pi}{2},&n\text{ 为偶}\\[4pt]\dfrac{n-1}{n}\cdot\dfrac{n-3}{n-2}\cdots\dfrac23\cdot1,&n\text{ 为奇}\end{cases}$$
+
+</div>
 
 ### 3.3 反常积分
 
@@ -487,11 +515,11 @@ $$L=\int_a^b\sqrt{1+y'^2}\,dx,\quad L=\int_\alpha^\beta\sqrt{r^2+r'^2}\,d\theta$
 
 1. 变限积分求导前先检查被积函数是否含 $x$，含 $x$ 要先提出或换元；
 2. 可积不等于有原函数；变上限积分只有在 $f$ 连续时才是原函数，$f$ 有第一类间断点时它只是积分；
-2. 定积分换元必须同时换上下限，不必回代；
-3. 反常积分要先找瑕点，分段计算，不能直接用牛莱公式；
-4. 奇偶性结论只适用于对称区间；
-5. 分部积分选 $u$ 顺序：反、对、幂、三、指（排在前的作 $u$）；
-6. $\int\frac1x dx=\ln\lvert x\rvert +C$，绝对值不能漏。
+3. 定积分换元必须同时换上下限，不必回代；
+4. 反常积分要先找瑕点，分段计算，<span class="hl-red">不能直接用牛莱公式</span>；
+5. 奇偶性结论<span class="hl-orange">只适用于对称区间</span>；
+6. 分部积分选 $u$ 顺序：反、对、幂、三、指（排在前的作 $u$）；
+7. $\int\frac1x dx=\ln\lvert x\rvert +C$，<span class="hl-red">绝对值不能漏</span>。
 
 ---
 
@@ -531,8 +559,8 @@ $$dz=f_x(x,y)dx+f_y(x,y)dy$$
 
 - 偏导数连续 $\Rightarrow$ 可微；
 - 可微 $\Rightarrow$ 连续、可微 $\Rightarrow$ 偏导数存在；
-- 偏导数存在 $\not\Rightarrow$ 可微、偏导数存在 $\not\Rightarrow$ 连续；
-- 连续 $\not\Rightarrow$ 偏导数存在。
+- <span class="hl-red">偏导数存在 $\not\Rightarrow$ 可微、偏导数存在 $\not\Rightarrow$ 连续</span>；
+- <span class="hl-red">连续 $\not\Rightarrow$ 偏导数存在</span>。
 
 **可微判别**：计算
 
@@ -643,7 +671,11 @@ $$\iint_D f(x,y)d\sigma=\iint_D f(y,x)d\sigma$$
 
 若 $f(x,y)+f(y,x)=a$，则
 
+<div class="hl-green" markdown="1">
+
 $$I=\frac12\iint_D[f(x,y)+f(y,x)]d\sigma=\frac a2 S_D$$
+
+</div>
 
 ### 5.4 交换积分次序
 
@@ -655,7 +687,7 @@ $$\text{原式}=\int_0^1 dx\int_{\sqrt x}^1 y\sin(1-x)^2 dy=\int_0^1 \sin(1-x)^2
 
 ### 5.5 本章易错点
 
-1. 极坐标下面积元素是 $r\,dr\,d\theta$，$r$ 不能漏；
+1. 极坐标下面积元素是 <span class="hl-red">$r\,dr\,d\theta$</span>，$r$ 不能漏；
 2. 用对称性前必须先验证区域对称性，且被积函数奇偶性要对应；
 3. 交换次序要先画区域，不能直接改上下限；
 4. 极坐标下 $\theta$ 范围与 $r$ 范围要根据图形确定；
@@ -677,7 +709,11 @@ $$\text{原式}=\int_0^1 dx\int_{\sqrt x}^1 y\sin(1-x)^2 dy=\int_0^1 \sin(1-x)^2
 
 **一阶线性微分方程**：$y'+P(x)y=Q(x)$，通解
 
+<div class="hl-green" markdown="1">
+
 $$y=e^{-\int P\,dx}\left[\int Q(x)e^{\int P\,dx}dx+C\right]$$
+
+</div>
 
 **伯努利方程**：$y'+P(x)y=Q(x)y^n\ (n\ne0,1)$，令 $z=y^{1-n}$，化为 $z'+(1-n)Pz=(1-n)Q$。
 
@@ -709,10 +745,10 @@ $$y''+P(x)y'+Q(x)y=f(x)$$
 
 **二阶常系数非齐次**：
 
-- $f(x)=e^{\lambda x}P_m(x)$：设 $$y^*=x^k e^{\lambda x}Q_m(x)$$，$k$ 为 $\lambda$ 作为特征根的重数（$0,1,2$）；
+- $f(x)=e^{\lambda x}P_m(x)$：设 $$y^*=\textcolor{#e05252}{x^k} e^{\lambda x}Q_m(x)$$，$k$ 为 $\lambda$ 作为特征根的重数（$0,1,2$）；
 - $f(x)=e^{\lambda x}[P_l(x)\cos\omega x+P_n(x)\sin\omega x]$：设
 
-$$y^*=x^k e^{\lambda x}[R_m(x)\cos\omega x+S_m(x)\sin\omega x],\quad m=\max(l,n)$$
+$$y^*=\textcolor{#e05252}{x^k} e^{\lambda x}[R_m(x)\cos\omega x+S_m(x)\sin\omega x],\quad m=\max(l,n)$$
 
 $k$ 为 $\lambda+i\omega$ 是否为特征根（$0$ 或 $1$）。
 
@@ -734,7 +770,7 @@ $$(D^2+pD+q)y=f(x)\quad\Rightarrow\quad y^*=\frac{1}{D^2+pD+q}f(x)=F(D)^{-1}f(x)
 1. 一阶线性方程通解公式中 $e^{\int P\,dx}$ 与 $e^{-\int P\,dx}$ 别用反；
 2. 齐次方程（可分离变量的"齐次"）与齐次线性方程是两个概念；
 3. 可降阶方程中，不显含 $y$ 令 $p=y'$ 用 $p'$；不显含 $x$ 用 $p\frac{dp}{dy}$；
-4. 设特解时 $x^k$ 的 $k$ 由 $\lambda$ 与特征根关系确定，漏乘 $x$ 是高频错误；
+4. 设特解时 $x^k$ 的 $k$ 由 $\lambda$ 与特征根关系确定，<span class="hl-red">漏乘 $x$ 是高频错误</span>；
 5. 特征根为复根时通解是 $e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$，不要写 $e^{i\beta x}$；
 6. 通解中常数个数必须等于方程阶数。
 
