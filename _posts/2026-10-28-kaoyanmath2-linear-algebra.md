@@ -436,13 +436,22 @@ $$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i
 
 ### 5.3 相似矩阵
 
-**定义**：$P^{-1}AP=B$（$P$ 可逆），称 $A\sim B$。
+**定义**：$P^{-1}AP=B$（$P$ 可逆），称 $A\sim B$。相似是等价关系（反身、对称、传递）。
+
+**充要条件**（以下任一）：
+
+1. 存在可逆矩阵 $P$，使 <span class="hl-green">$P^{-1}AP=B$</span>（定义本身）；
+2. $A$、$B$ 是同一线性变换在两组基下的矩阵；
+3. <span class="hl-orange">双方均可对角化时</span>：特征值相同（含重数），即 $|\lambda E-A|=|\lambda E-B|$；实对称矩阵必可对角化，故只需特征值相同；
+4. <span class="hl-orange">一般情形</span>（数一了解）：有相同的 Jordan 标准形（或初等因子相同）。
+
+> **【理解】** $|A|=|B|$、$\operatorname{tr}(A)=\operatorname{tr}(B)$、$r(A)=r(B)$、特征多项式相同、特征值相同，都只是<span class="hl-red">必要非充分</span>。反例：$E$ 与 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 特征值全为 $1$，前者可对角化、后者不可，故不相似。
 
 **性质**：
 
 $$|A|=|B|,\quad \operatorname{tr}(A)=\operatorname{tr}(B),\quad r(A)=r(B),\quad |\lambda E-A|=|\lambda E-B|$$
 
-- 特征值相同（$A\sim B$，但<span class="hl-red">反之不成立</span>）；
+- 特征值相同只是必要，<span class="hl-red">不足以判定相似</span>；
 - $A^T\sim B^T,\ A^k\sim B^k,\ A^{-1}\sim B^{-1},\ f(A)\sim f(B)$。
 
 ### 5.4 矩阵对角化
@@ -486,7 +495,7 @@ $$\beta_3=\alpha_3-\frac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\frac{(\a
 ### 5.6 本章易错点
 
 1. 特征向量必须是非零向量；
-2. 相似矩阵特征值相同，但特征向量要经过 <span class="hl-red">$P^{-1}$ 变换</span>；
+2. 相似矩阵特征值相同，但特征向量要经过 <span class="hl-red">$P^{-1}$ 变换</span>；两方阵相似的充要<span class="hl-red">不是</span>特征值相同，只有双方都可对角化（含实对称）时才是；
 3. 可对角化判定要看每个特征值的线性无关特征向量个数是否等于重数；
 4. 实对称矩阵不同特征值特征向量"正交"，普通矩阵只是<span class="hl-orange">"无关"</span>；
 5. 正交化只需对重根特征向量进行，单根特征向量只需单位化。
