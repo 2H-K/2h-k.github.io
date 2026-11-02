@@ -237,7 +237,7 @@ $$f'(x_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=\lim_{x\to 
 
 $$f'_-(x_0)=\lim_{h\to0^-}\frac{f(x_0+h)-f(x_0)}h,\quad f'_+(x_0)=\lim_{h\to0^+}\frac{f(x_0+h)-f(x_0)}h$$
 
-$f'(x_0)$ 存在 $\iff f'_-(x_0)=f'_+(x_0)$。
+$$f'(x_0)\text{ 存在}\iff f'_-(x_0)=f'_+(x_0)$$
 
 **可导与连续的关系**：可导必连续；<span class="hl-red">连续不一定可导</span>（如 $\lvert x\rvert $ 在 $x=0$ 连续但不可导）。
 
@@ -510,6 +510,22 @@ $$\int_2^{+\infty}\frac{dx}{x(\ln x)^p}\begin{cases}p>1&\text{收敛}\\p\le1&\te
 $$L=\int_a^b\sqrt{1+y'^2}\,dx,\quad L=\int_\alpha^\beta\sqrt{r^2+r'^2}\,d\theta$$
 
 **旋转曲面面积**：$S=2\pi\int_a^b y\sqrt{1+y'^2}\,dx$。
+
+**平面图形质心**（密度均匀，由 $y=f(x)$、$y=g(x)$、$x=a$、$x=b$ 围成，$S$ 为面积）：
+
+$$\bar{x}=\frac{1}{S}\int_a^b x[f(x)-g(x)]\,dx,\quad \bar{y}=\frac{1}{S}\int_a^b\frac12\bigl[f^2(x)-g^2(x)\bigr]dx$$
+
+若区域在 $x$ 轴上方、由 $y=f(x)$、$x=a$、$x=b$ 围成，则
+
+$$\bar{x}=\frac{1}{S}\int_a^b xf(x)\,dx,\quad \bar{y}=\frac{1}{S}\int_a^b\frac12[f(x)]^2 dx$$
+
+**平面曲线质心**（弧长为 $L$）：
+
+$$\bar{x}=\frac{1}{L}\int_a^b x\sqrt{1+y'^2}\,dx,\quad \bar{y}=\frac{1}{L}\int_a^b y\sqrt{1+y'^2}\,dx$$
+
+**旋转体质心**（绕 $x$ 轴，$V$ 为体积）：
+
+$$\bar{x}=\frac{1}{V}\int_a^b\pi x[f(x)]^2 dx,\quad \bar{y}=0$$
 
 ### 3.5 本章易错点
 
