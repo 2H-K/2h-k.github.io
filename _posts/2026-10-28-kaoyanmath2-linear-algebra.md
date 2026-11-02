@@ -454,6 +454,18 @@ $$|A|=|B|,\quad \operatorname{tr}(A)=\operatorname{tr}(B),\quad r(A)=r(B),\quad 
 - 特征值相同只是必要，<span class="hl-red">不足以判定相似</span>；
 - $A^T\sim B^T,\ A^k\sim B^k,\ A^{-1}\sim B^{-1},\ f(A)\sim f(B)$。
 
+**题型：含参矩阵求参数使 $A\sim B$**（$A$、$B$ 至少一方含未知参数）
+
+相似 $\Rightarrow$ 特征多项式相同，故先用必要条件列方程求出候选值，再回代验证充分性。
+
+1. <span class="hl-green">$\lvert A\rvert=\lvert B\rvert$</span>，得第一个含参等式（恒可用）；
+2. 再补第二个等式，两条路二选一：
+   - **迹**：<span class="hl-green">$\operatorname{tr}(A)=\operatorname{tr}(B)$</span>。参数出现在对角线上时这个等式才含未知数，优先用；
+   - **特征多项式比系数**：分别算 $\lvert\lambda E-A\rvert$、$\lvert\lambda E-B\rvert$，按 $\lambda$ 的降幂展开，对应系数相等。2 阶时 $\lvert\lambda E-A\rvert=\lambda^2-\operatorname{tr}(A)\lambda+\lvert A\rvert$，故行列式 + 迹已穷尽全部系数；3 阶还要再比 $\lambda$ 的一次项（主子式之和）。
+3. 解出候选参数后<span class="hl-red">必须回代</span>：双方均可对角化（或实对称）时，特征多项式相同即相似；有一方不可对角化时，还要看几何重数 / Jordan 块是否一致，必要时直接找可逆 $P$ 使 $P^{-1}AP=B$。
+
+> **【理解】** 行列式、迹是特征多项式的两个系数，不是两套独立理论。参数不在对角就别硬用迹，改展开比系数。求得的是必要条件下的候选值，<span class="hl-orange">不回代就当答案会漏掉不相似的情形</span>。
+
 ### 5.4 矩阵对角化
 
 **可对角化条件**：
@@ -495,7 +507,7 @@ $$\beta_3=\alpha_3-\frac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\frac{(\a
 ### 5.6 本章易错点
 
 1. 特征向量必须是非零向量；
-2. 相似矩阵特征值相同，但特征向量要经过 <span class="hl-red">$P^{-1}$ 变换</span>；两方阵相似的充要<span class="hl-red">不是</span>特征值相同，只有双方都可对角化（含实对称）时才是；
+2. 相似矩阵特征值相同，但特征向量要经过 <span class="hl-red">$P^{-1}$ 变换</span>；两方阵相似的充要<span class="hl-red">不是</span>特征值相同，只有双方都可对角化（含实对称）时才是；含参求值时 $\lvert A\rvert=\lvert B\rvert$ 与 $\operatorname{tr}(A)=\operatorname{tr}(B)$ 只给候选，<span class="hl-red">必须回代</span>；
 3. 可对角化判定要看每个特征值的线性无关特征向量个数是否等于重数；
 4. 实对称矩阵不同特征值特征向量"正交"，普通矩阵只是<span class="hl-orange">"无关"</span>；
 5. 正交化只需对重根特征向量进行，单根特征向量只需单位化。
