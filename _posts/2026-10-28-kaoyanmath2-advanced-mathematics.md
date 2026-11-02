@@ -527,6 +527,22 @@ $$\bar{x}=\frac{1}{L}\int_a^b x\sqrt{1+y'^2}\,dx,\quad \bar{y}=\frac{1}{L}\int_a
 
 $$\bar{x}=\frac{1}{V}\int_a^b\pi x[f(x)]^2 dx,\quad \bar{y}=0$$
 
+**细棒质心**（位于 $[a,b]$，<span class="hl-orange">线密度 $\rho(x)$ 可变</span>）：
+
+质量 $$m=\int_a^b\rho(x)\,dx,\qquad \bar{x}=\frac{1}{m}\int_a^b x\rho(x)\,dx$$
+
+均匀密度时 $\rho$ 为常数，质心退化为区间中点 $\bar{x}=\frac{a+b}{2}$。
+
+> **【理解】** 质心 $=$ 静力矩 $/$ 质量。平面图形、曲线、旋转体公式都是均匀密度下把 $\rho$ 提出去，用面积 $S$、弧长 $L$、体积 $V$ 代替质量。细棒变密度时必须把 $\rho(x)$ 留在积分里，<span class="hl-red">不能套平面图形公式</span>。
+
+> **【例】** 细棒位于 $x$ 轴 $[0,1]$，线密度 $\rho(x)=-x^2+2x+1$，求质心 $\bar{x}$。
+>
+> $$m=\int_0^1\rho(x)\,dx=\Bigl[-\frac{x^3}{3}+x^2+x\Bigr]_0^1=\frac53$$
+>
+> $$\int_0^1 x\rho(x)\,dx=\int_0^1(-x^3+2x^2+x)\,dx=\Bigl[-\frac{x^4}{4}+\frac{2x^3}{3}+\frac{x^2}{2}\Bigr]_0^1=\frac{11}{12}$$
+>
+> 故 $$\bar{x}=\frac{11/12}{5/3}=\frac{11}{20}$$
+
 ### 3.5 本章易错点
 
 1. 变限积分求导前先检查被积函数是否含 $x$，含 $x$ 要先提出或换元；
