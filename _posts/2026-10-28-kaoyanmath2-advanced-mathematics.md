@@ -387,6 +387,10 @@ $$\int\sec^2x\,dx=\tan x+C,\quad \int\csc^2x\,dx=-\cot x+C$$
 
 $$\int\sec x\tan x\,dx=\sec x+C,\quad \int\csc x\cot x\,dx=-\csc x+C$$
 
+$$\int\sec x\,dx=\ln\lvert\sec x+\tan x\rvert+C,\quad \int\csc x\,dx=\ln\lvert\csc x-\cot x\rvert+C$$
+
+> **【理解】** $\sec$ 常与 $\tan$ 成对、$\csc$ 常与 $-\cot$ 成对：导数里 $(\sec x)'=\sec x\tan x$、$(\csc x)'=-\csc x\cot x$；积分里也按这对来记。这两个不好推，直接背。
+
 $$\int\frac{dx}{1+x^2}=\arctan x+C,\quad \int\frac{dx}{\sqrt{1-x^2}}=\arcsin x+C$$
 
 $$\int\frac{dx}{a^2+x^2}=\frac1a\arctan\frac xa+C,\quad \int\frac{dx}{\sqrt{a^2-x^2}}=\arcsin\frac xa+C$$
