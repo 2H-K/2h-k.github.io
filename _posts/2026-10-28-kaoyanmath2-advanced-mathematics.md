@@ -111,7 +111,7 @@ $$\lim_{x\to0}\frac{\sin x}{x}=1,\qquad \lim_{x\to\infty}\left(1+\frac{1}{x}\rig
 
 **等价无穷小替换定理**：$\alpha\sim\alpha',\ \beta\sim\beta'$，且 $\lim\frac{\beta'}{\alpha'}$ 存在，则 $\lim\frac{\beta}{\alpha}=\lim\frac{\beta'}{\alpha'}$。
 
-> 注意：等价无穷小只能用于**乘除因子**，<span class="hl-red">加减中不能直接替换</span>（加减需用泰勒展开）。
+> 注意：等价无穷小只能用于**乘除因子**，<span class="hl-red">加减中不能直接替换</span>（加减需用泰勒展开）。→ 什么信号下必须改用泰勒，见 §1.5.2。
 
 **常用等价无穷小（$x\to0$）**：
 
@@ -121,13 +121,65 @@ $$\ln(1+x)\sim x,\quad 1-\cos x\sim\frac12x^2,\quad (1+x)^a-1\sim ax$$
 
 $$\sqrt{1+x}-1\sim\frac12x,\quad x-\sin x\sim\frac16x^3,\quad x-\tan x\sim-\frac13x^3$$
 
+$$\sqrt{1+x^2}-1\sim\frac12x^2$$
+
 $$\tan x-x\sim\frac13x^3,\quad x-\arcsin x\sim-\frac16x^3,\quad x-\arctan x\sim\frac13x^3$$
 
 $$\sec x-1\sim\frac12x^2,\quad x-\ln(1+x)\sim\frac12x^2$$
 
-> **【理解】** 高阶等价无穷小由泰勒展开直接得到，不必单独记：$\sin x=x-\frac{x^3}{6}+o(x^3)$，故 $x-\sin x\sim\frac{x^3}{6}$；$\tan x=x+\frac{x^3}{3}+o(x^3)$，故 $\tan x-x\sim\frac{x^3}{3}$。
+> **【理解】** 高阶等价无穷小由泰勒展开直接得到，不必单独记：$\sin x=x-\frac{x^3}{6}+o(x^3)$，故 $x-\sin x\sim\frac{x^3}{6}$；$\tan x=x+\frac{x^3}{3}+o(x^3)$，故 $\tan x-x\sim\frac{x^3}{3}$。（各函数的完整展开见 §1.5.3 泰勒展开表）
 
 ### 1.5 极限计算方法（七种未定式）
+
+> 本节分两层读：<span class="hl-green">1.5.1–1.5.2 是"选法层"</span>（看到什么信号 → 优先用什么工具），<span class="hl-blue">1.5.3 是"手册层"</span>（逐型展开怎么做），<span class="hl-green">1.5.4</span> 是数列极限的选法表，<span class="hl-green">1.5.5</span> 单独展开第 9 种方法（中值定理法）。
+
+> 表中"第一反应""优先级"是应试归纳的经验顺序（民间速查口诀），<span class="hl-orange">属方法选择经验而非定理</span>；结论仍以 §1.2–§1.4 的定义为准。
+
+#### 1.5.1 选法总则：先化简 → 再定型 → 后选工具
+
+**总原则**：<span class="hl-green">先化简 → 再定型 → 后选工具</span>。
+
+1. **无害化简**：有理化、通分、提非零因子、变量代换、取对数——不改变极限本质，但能把式子压成标准未定式，直接缩小选法范围；
+2. **定型是选法的前提**：$0/0$、$\infty/\infty$、$0\cdot\infty$、$\infty-\infty$、$1^\infty$、$0^0$、$\infty^0$ 七型的工具池完全不同，<span class="hl-red">不先定型就套洛必达是最高频的错源</span>；
+3. **优先级不是绝对的**：等价无穷小最快，但只在**乘除结构**中无条件安全；加减结构要满足"代换后不抵消"，否则改用泰勒；<span class="hl-red">洛必达是备选方案，不是首选方案</span>；
+4. **泰勒展开到第几阶由分母决定**：分子分母同阶时，展开到"相减不为 $0$、且能与分母约掉"的最低阶即可。
+
+**九种常用工具与本节位置对照**
+
+| 工具 | 本节位置 | 一句话判据 |
+|---|---|---|
+| 基本极限（两个重要极限） | §1.3、§1.5.3 方法一 | $\frac{\sin x}{x}\to1$，$\left(1+\frac1x\right)^x\to e$ |
+| 等价无穷小代换 | §1.4 | <span class="hl-green">只在乘除因子中无条件安全</span>；加减要改用泰勒 |
+| 有理运算法则（通分、有理化、抓大头） | §1.5.3 方法一、二、四 | 把式子压成标准未定式 |
+| 洛必达法则 | §1.5.3 | 三个条件缺一不可；<span class="hl-red">$\sin\infty$、$\cos\infty$ 型禁用</span> |
+| 泰勒公式 | §1.5.3 泰勒展开 | 展开阶数由分母决定 |
+| 夹逼准则 | §1.2、§1.5.3 三大招 | 放缩后左右两端极限必须相等 |
+| 单调有界准则 | §1.2、§1.5.3 三大招 | 先证单调 + 有界，再代入求极限 |
+| 定积分定义 | §1.5.3 三大招 | 提 $\frac1n$、写成 $f\left(\frac in\right)$ |
+| 中值定理（微分 / 积分） | §1.5.5、§2.4、§3.2 | 把 $f(A)-f(B)$ 型变成导数型；<span class="hl-orange">多半只能定阶，给不出精确系数</span> |
+
+#### 1.5.2 信号速查：函数极限
+
+拿到题第一步永远是<span class="hl-green">判断未定式类型</span>，类型决定第一优先方法。
+
+| 看到的信号 | 第一反应 | 关键判据 / 陷阱 | 对应 |
+|---|---|---|---|
+| $0/0$ 型，分子分母都是简单初等函数 | 等价无穷小 → 洛必达 → 泰勒 | <span class="hl-green">等价代换最快</span>；代换后仍是未定式再换工具 | §1.5.3 方法一 |
+| $0/0$ 型，分子或分母含 $\sin x-x$、$x-\ln(1+x)$ 等"经典差" | 泰勒公式 | <span class="hl-red">等价代换会把差项消成 $0$</span>，必须展到非零的最低阶（$\sin x-x\sim-\frac{x^3}{6}$） | §1.4、§1.5.3 |
+| $\infty/\infty$ 型，$x\to\infty$，分子分母为多项式或幂函数 | 抓大头 / 有理运算法则 | 指数增长 $>$ 幂函数 $>$ 对数；<span class="hl-orange">只有乘除结构可直接抓，加减结构不能直接丢低阶项</span> | §1.5.3 方法二 |
+| $\infty-\infty$ 型，分式差 | 通分 | 化为 $0/0$ 或 $\infty/\infty$ 再选工具 | §1.5.3 方法四 |
+| $\infty-\infty$ 型，根式差 | 有理化 | $\sqrt A-\sqrt B$ 有理化后，分母常趋于非零常数或无穷 | §1.5.3 方法四 |
+| $0\cdot\infty$ 型 | 下放或上提 | 化 $0/0$ 或 $\infty/\infty$ | §1.5.3 方法三 |
+| 幂指型 $1^\infty$、$0^0$、$\infty^0$ | 取对数 / 凑重要极限 | $u^v=e^{v\ln u}$；$1^\infty$ 型也可用"三部曲"直接写 | §1.5.3 方法五、六、七 |
+| 含变上限积分 $\int_a^x f(t)dt$ | 洛必达法则 | 求导消去积分号；一次求导后仍是未定式可继续求导（<span class="hl-orange">数二了解层级</span>） | §1.5.3 洛必达 |
+| 含根式但不是根式差（如 $\frac{\sqrt{1+x}-1}{x}$） | 有理化 或 等价无穷小 | $\sqrt{1+x}-1\sim\frac x2$，优先等价 | §1.4 |
+| 非零因子与另一部分相乘 / 相除 | 先求出非零因子的极限 | 极限非零的因子可以先算出来，简化剩余部分 | — |
+| 求无穷小的阶数 | 等价无穷小 / 泰勒 | 展开到第一个非零项 | §1.4 |
+| 差商型 $\frac{f(A(x))-f(B(x))}{A(x)-B(x)}$，$A,B\to$ 同一点 $a$ | 中值定理（拉格朗日 / 柯西） | $\to f'(a)$；<span class="hl-green">能凑成商时中值定理是主力</span> | §1.5.5 |
+| 裸的 $f(A)-f(B)$，$A,B\to a$（不除以 $A-B$） | 和差化积（$\cos$、$\sin$）或泰勒 | <span class="hl-red">中值定理只能定阶，给不出精确系数</span> | §1.5.5 |
+| $\frac1x\int_0^x f(t)dt$，或 $\int f\cdot g$ | 积分中值定理 | $f$ 被"提出"积分号，$\to f(0)$ | §3.2、§1.5.5 |
+
+#### 1.5.3 七种未定式的逐型处理
 
 未定式共七种：$\frac00$、$\frac{\infty}{\infty}$、$0\cdot\infty$、$\infty-\infty$、$1^\infty$、$\infty^0$、$0^0$。
 
@@ -172,19 +224,108 @@ $$\lim\frac{f(x)}{F(x)}=\lim\frac{f'(x)}{F'(x)}$$
 2. **单调有界**：递推数列 $x_{n+1}=f(x_n)$，先证有界、再证单调；
 3. **定积分定义**：$\lim_{n\to\infty}\frac1n\sum_{i=1}^n f\left(\frac{i}{n}\right)=\int_0^1 f(x)\,dx$。
 
-**常用泰勒（麦克劳林）展开（$x\to0$）**：
+**常用泰勒（麦克劳林）展开（$x\to0$，统一展开到 4 阶及以上）**：
 
-$$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$$
+$$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+o(x^4)$$
 
-$$\sin x=x-\frac{x^3}{3!}+o(x^3),\quad \cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+o(x^4)$$
+$$\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}+o(x^5)$$
 
-$$\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$$
+$$\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+o(x^4)$$
 
-$$(1+x)^a=1+ax+\frac{a(a-1)}{2}x^2+o(x^2)$$
+$$\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+o(x^4)$$
 
-$$\tan x=x+\frac{x^3}{3}+o(x^3),\quad \arcsin x=x+\frac{x^3}{6}+o(x^3),\quad \arctan x=x-\frac{x^3}{3}+o(x^3)$$
+$$(1+x)^a=1+ax+\frac{a(a-1)}{2}x^2+\frac{a(a-1)(a-2)}{6}x^3+\frac{a(a-1)(a-2)(a-3)}{24}x^4+o(x^4)$$
 
-> **【理解】** $e^x$ 的导数等于自身，第 $n$ 项系数须为 $1/n!$，求导后才降为前一项；$\sin$ 只含奇次、$\cos$ 只含偶次、符号交替，由奇偶性决定。
+$$\sqrt{1+x^2}=1+\frac{1}{2}x^2-\frac{1}{8}x^4+o(x^4)$$
+
+$$\tan x=x+\frac{x^3}{3}+\frac{2x^5}{15}+o(x^5)$$
+
+$$\arcsin x=x+\frac{x^3}{6}+\frac{3x^5}{40}+o(x^5)$$
+
+$$\arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}+o(x^5)$$
+
+> **【理解】** $e^x$ 的导数等于自身，第 $n$ 项系数须为 $1/n!$，求导后才降为前一项；$\sin$ 只含奇次、$\cos$ 只含偶次、符号交替，由奇偶性决定；<span class="hl-orange">奇函数的 4 阶项恒为 $0$，所以 $\sin x$、$\tan x$、$\arcsin x$、$\arctan x$ 的"4 阶及以上"只能展到 5 阶</span>；<span class="hl-blue">$\sqrt{1+x^2}$ 是偶函数，$x^3$ 项为 $0$，表中只写非零项</span>。
+
+#### 1.5.4 信号速查：数列极限
+
+1.5.3 中的"数列极限三大招"给出三件套，本表回答<span class="hl-green">看到什么信号用哪一招</span>。数列与函数的信号不同，重点看 <span class="hl-blue">$n$ 项和、$n$ 项连乘、递推</span> 三种结构。
+
+| 看到的信号 | 第一反应 | 关键判据 / 陷阱 |
+|---|---|---|
+| $n$ 项和 $\sum_{i=1}^n a_i$，变化部分相对主体是<span class="hl-green">次量级</span> | 夹逼准则 | 放缩后左右两端极限必须相等；若两端不等说明"夹不住"，换招 |
+| $n$ 项和，变化部分与主体<span class="hl-green">同量级</span>，能提出 $\frac1n$ 并写成 $f\left(\frac in\right)$ | 定积分定义 | <span class="hl-red">与夹逼的判据就是"同量级还是次量级"</span>；提 $\frac1n$ 后再定被积函数与积分区间 |
+| $n$ 项连乘 | 取对数化为 $n$ 项和 | 化完再按上面两条选 |
+| 递推关系 $x_{n+1}=f(x_n)$ | 单调有界准则 | 先证单调 + 有界（存在性），再令极限为 $A$ 代入递推式求 $A$；不单调时先求候选值，再证 $\lvert x_n-A\rvert\to0$ |
+| 通项是函数型 $a_n=f(n)$ 且 $f$ 可导 | 转化为函数极限 | <span class="hl-red">大题中不能直接对 $n$ 用洛必达</span>：先把 $n$ 换成 $x$ 求函数极限，再离散化回数列 |
+| $\sqrt[n]{a_1^n+\cdots+a_m^n}$ | 基本极限结论 | 直接得 $\max a_i$ |
+
+#### 1.5.5 中值定理法求极限（第 9 种方法）
+
+**定位**：中值定理是<span class="hl-green">与前八种并列</span>的第 9 种工具，不是夹逼准则的附属品。它的作用是**结构化简**——把 $f(A)-f(B)$ 型变成导数型、把被积函数提出积分号；夹逼的作用是**估值与界定**。两者常配合（<span class="hl-orange">中值定理先行化简，夹逼准则后续收尾</span>），但目的不同。定理本身见 §2.4（微分）、§3.2（积分）。
+
+**三条核心公式**
+
+<div class="hl-green" markdown="1">
+
+$$f(A)-f(B)=f'(\xi)(A-B),\quad \xi\in(A,B)\quad\text{（拉格朗日）}$$
+
+$$\frac{f(A)-f(B)}{g(A)-g(B)}=\frac{f'(\xi)}{g'(\xi)}\quad\text{（柯西）}$$
+
+$$\int_a^b f(x)g(x)dx=f(\xi)\int_a^b g(x)dx\quad\text{（积分中值定理）}$$
+
+</div>
+
+**触发条件（信号 → 结论）**
+
+| 看到的信号 | 用哪条 | 结论 |
+|---|---|---|
+| $\frac{f(A(x))-f(B(x))}{A(x)-B(x)}$，且 $A,B\to$ 同一点 $a$ | 拉格朗日 / 柯西 | $\to f'(a)$；<span class="hl-green">这是中值定理的主场</span> |
+| 裸的 $f(A)-f(B)$，$A,B\to a$（不除以 $A-B$） | 拉格朗日 | $=f'(\xi)(A-B)$，<span class="hl-orange">只能定"是几阶零点"</span>，<span class="hl-red">系数拿不到</span> |
+| $\frac1x\int_0^x f(t)dt$，或 $\int f\cdot g$ | 积分中值定理 | $f$ 被提出积分号，$\to f(0)$ |
+| 要证 $f$ 在区间上单调（再接单调有界准则） | 拉格朗日 | $f'>0\Rightarrow$ 单调 |
+| 要证不等式（如 $\cos x<\frac{\sin x}{x}<1$） | 拉格朗日 | 构造辅助函数取极值 |
+
+**案例：$\cos(\sin x)-\cos x$**
+
+<span class="hl-blue">信号识别</span>：$f(A)-f(B)$ 型，$f=\cos$，$A=\sin x$，$B=x$。注意 $A-B=\sin x-x$ 是<span class="hl-orange">高阶小量</span>，不是一阶。
+
+路线一（中值定理）：只定阶，给不出系数
+
+设 $\xi$ 介于 $\sin x$ 与 $x$ 之间，则
+
+$$\cos(\sin x)-\cos x=-\sin\xi\,(\sin x-x)$$
+
+由 $\lvert\sin\xi\rvert\le\lvert\xi\rvert\le\lvert x\rvert$、$\sin x-x=O(x^3)$，得 $\cos(\sin x)-\cos x=O(x^4)$。
+
+<span class="hl-red">但 $\xi$ 的位置只知道在 $(\sin x,x)$ 内，系数 $\frac16$ 拿不到</span>——中值定理在这里只是"定阶工具"。
+
+路线二（和差化积 + 等价无穷小）：拿精确值
+
+$$\cos(\sin x)-\cos x=-2\sin\frac{\sin x+x}{2}\,\sin\frac{\sin x-x}{2}$$
+
+其中
+
+$$\sin\frac{\sin x+x}{2}\sim\frac{\sin x+x}{2}\sim x,\qquad \sin\frac{\sin x-x}{2}\sim\frac{\sin x-x}{2}\sim-\frac{x^3}{12}$$
+
+故
+
+$$\cos(\sin x)-\cos x\sim-2\cdot x\cdot\left(-\frac{x^3}{12}\right)=\frac{x^4}{6},\qquad \lim_{x\to0}\frac{\cos(\sin x)-\cos x}{x^4}=\frac16$$
+
+路线三（泰勒）：也能拿，但要展两层
+
+$$\sin^2x=x^2-\frac{x^4}{3}+O(x^6),\quad \sin^4x=x^4+O(x^6)$$
+
+$$\cos(\sin x)=1-\frac{\sin^2x}{2!}+\frac{\sin^4x}{4!}+o(x^4)=1-\frac{x^2}{2}+\frac{5x^4}{24}+o(x^4)$$
+
+$$\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+o(x^4)$$
+
+两式相减得 $\frac{x^4}{6}+o(x^4)$，与路线二一致。
+
+**结论**
+
+- <span class="hl-green">$f(A)-f(B)$ 能凑成商 $\frac{f(A)-f(B)}{A-B}$ → 中值定理直接给 $f'(a)$，此时它是主力</span>；
+- <span class="hl-red">裸的差 → 中值定理只给阶，精确值交给和差化积 / 泰勒</span>；
+- <span class="hl-orange">$\cos A-\cos B$、$\sin A-\sin B$ 是"两函数值之差"的特例：先和差化积再等价无穷小，是这类题的固定套路</span>。
 
 ### 1.6 函数的连续性
 
@@ -214,6 +355,8 @@ $$\tan x=x+\frac{x^3}{3}+o(x^3),\quad \arcsin x=x+\frac{x^3}{6}+o(x^3),\quad \ar
 
 $$\text{原式}=\lim_{x\to0}\frac{\frac13x^3}{x^2\cdot 2x}=\frac16$$
 
+> **【信号拆解】** 分子分母都趋于 $0$（$0/0$ 型）；但分子 $\tan x-x$ 是"经典差"，<span class="hl-red">直接等价代换会把差项消成 $0$</span>，所以取**高阶等价无穷小** $\tan x-x\sim\frac{x^3}{3}$（等价于泰勒展到 3 阶），分母 $x^2\ln(1+2x)\sim x^2\cdot 2x$。→ 对照 §1.5.2 第 2 行。
+
 ### 1.7 本章易错点
 
 1. $\lim_{x\to\infty}\frac{\sin x}{x}=0$（不是 $1$，用有界乘无穷小）；
@@ -221,7 +364,11 @@ $$\text{原式}=\lim_{x\to0}\frac{\frac13x^3}{x^2\cdot 2x}=\frac16$$
 3. 极限 $\lim_{x\to\infty}(1+\frac1x)^x=e$ 与 $\lim_{x\to0}(1+x)^{1/x}=e$ 别混淆；
 4. 判断间断点要先看左右极限是否都存在，再分类；
 5. 数列 $$\{x_n\}$$ 有界不一定收敛，但收敛一定有界；
-6. 洛必达使用前必须验证三个条件，且结果不存在不代表原极限不存在。
+6. 洛必达使用前必须验证三个条件，且结果不存在不代表原极限不存在；
+7. <span class="hl-red">洛必达是备选不是首选</span>：$0/0$ 型先试等价无穷小，含"经典差"才上泰勒（见 §1.5.1）；
+8. 抓大头只能在乘除结构用，<span class="hl-red">加减结构不能直接丢低阶项</span>；
+9. $n$ 项和到底用夹逼还是定积分定义，判据是"变化部分与主体同量级还是次量级"（见 §1.5.4）。
+10. <span class="hl-red">中值定理给的是"阶"不是"系数"</span>：差商型 $\frac{f(A)-f(B)}{A-B}$ 可直接用中值定理得 $f'(a)$，但裸的 $f(A)-f(B)$ 只能定阶，精确值要靠和差化积 / 泰勒（见 §1.5.5）。
 
 ---
 
@@ -307,6 +454,8 @@ $$f(b)-f(a)=f'(\xi)(b-a)$$
 </div>
 
 有限增量形式：$f(x+\Delta x)-f(x)=f'(x+\theta\Delta x)\Delta x$。
+
+> **【用途】** 中值定理求极限（求极限的第 9 种方法）见 §1.5.5。
 
 **柯西中值定理**：$f,F$ 在 $[a,b]$ 连续、$(a,b)$ 可导且 $F'(x)\ne0$，则 $\exists\xi$：
 
@@ -440,6 +589,8 @@ $$\int_a^b[f\pm g]dx=\int_a^b f\,dx\pm\int_a^b g\,dx,\quad \int_a^b kf\,dx=k\int
 **积分中值定理**：$f$ 在 $[a,b]$ 连续，则 $\exists\xi\in[a,b]$：
 
 $$\int_a^b f(x)dx=f(\xi)(b-a)$$
+
+> **【用途】** 把被积函数提出积分号求极限，见 §1.5.5。
 
 **变限积分求导**：
 
@@ -823,5 +974,7 @@ $$(D^2+pD+q)y=f(x)\quad\Rightarrow\quad y^*=\frac{1}{D^2+pD+q}f(x)=F(D)^{-1}f(x)
 **积分公式**：见 3.1。
 
 **方程通解**：见 6.4。
+
+**方法选择速查**：见 §1.5.1（先化简 → 再定型 → 后选工具）、§1.5.2（函数极限信号表）、§1.5.4（数列极限信号表）。
 
 **数二高数题型分布提示**：极限计算（选择/填空高频）、中值定理证明、一元积分计算与应用、多元偏导/全微分、二重积分、微分方程（常与其他章节综合）。
