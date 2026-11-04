@@ -90,6 +90,21 @@ $$\begin{vmatrix}A_{m\times m}&O\\O&B_{n\times n}\end{vmatrix}=|A||B|,\quad \beg
 
 $$D_n=\begin{vmatrix}1&1&\cdots&1\\x_1&x_2&\cdots&x_n\\x_1^2&x_2^2&\cdots&x_n^2\\\vdots&\vdots&&\vdots\\x_1^{n-1}&x_2^{n-1}&\cdots&x_n^{n-1}\end{vmatrix}=\prod_{1\le i<j\le n}(x_j-x_i)$$
 
+**递推法**（三对角型等结构）：这类行列式阶数不定，目标是把它化成**只含 $D_{n-1},D_{n-2}$ 的递推式**，再解特征方程求通项。常用手段：按首行（或末行）展开，或用性质 6（某行的倍数加到另一行）把多余项消掉。
+
+以三对角型为例：
+
+$$D_n=\begin{vmatrix}a&b&0&0\\b&a&b&0\\0&b&a&b\\0&0&b&a\end{vmatrix}\quad(n\text{ 阶同理})$$
+
+按第一行展开（$M_{12}=bD_{n-2}$，$A_{12}=-bD_{n-2}$）得
+
+$$D_n=aD_{n-1}-b^2D_{n-2},\qquad D_1=a,\quad D_2=a^2-b^2$$
+
+**特征方程** $\lambda^2-a\lambda+b^2=0$，根 $\lambda_{1,2}=\dfrac{a\pm\sqrt{a^2-4b^2}}2$；再用 $D_1,D_2$ 定出常数 $c_1,c_2$，得通项 $D_n=c_1\lambda_1^n+c_2\lambda_2^n$。
+
+> **【例】** $a=2,b=1$：特征方程 $(\lambda-1)^2=0$ 为重根 $\lambda=1$，故 $D_n=c_1+c_2n$；由 $D_1=2,D_2=3$ 得 $c_1=c_2=1$，即 $D_n=n+1$。
+> $a=3,b=1$：$r=\dfrac{3+\sqrt5}2,\ s=\dfrac{3-\sqrt5}2$，则 $D_n=\dfrac{r^{n+1}-s^{n+1}}{\sqrt5}$（$D_1,\dots,D_6=3,8,21,55,144,377$）。
+
 ### 1.5 重要结论
 
 <div class="hl-green" markdown="1">
@@ -100,9 +115,16 @@ $$|A^*|=|A|^{n-1},\quad |A|=\prod_{i=1}^n\lambda_i$$
 
 </div>
 
-**爪形（箭形）、行和相等行列式**：
+**爪形（箭形）行列式**：
 
 $$D_n=\begin{vmatrix}a&b&\cdots&b\\b&a&\cdots&b\\\vdots&\vdots&&\vdots\\b&b&\cdots&a\end{vmatrix}=[a+(n-1)b](a-b)^{n-1}$$
+
+**行和相等的行列式**：若 $n$ 阶行列式每行元素之和都等于 $k$，$A_{ij}$ 为元素 $a_{ij}$ 的代数余子式，则
+
+$$|A| = k\left(A_{11}+A_{21}+\cdots+A_{n1}\right)$$
+
+> **【理解】** 把第 $2,3,\dots,n$ 列都加到第 $1$ 列（行列式不变），第 $1$ 列元素全为 $k$；再按第 $1$ 列展开，此时各行的代数余子式与原来相同，得上式。
+> 推论：<span class="hl-green">$k$ 是 $A$ 的特征值，特征向量为 $(1,\dots,1)^T$</span>（见 §5.2）。
 
 ### 1.6 本章易错点
 
@@ -131,13 +153,21 @@ $$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
 - 矩阵乘法**不满足交换律**：$AB\ne BA$（一般）；
 - 不满足消去律：$AB=AC\ \not\Rightarrow\ B=C$；
 - $AB=O\ \not\Rightarrow\ A=O$ 或 $B=O$；
-- 满足结合律、分配律。
+- 满足结合律、分配律；
+- 若 $AB=BA$，则 <span class="hl-green">$A^kB=BA^k$、$AB^k=BA^k$</span>（可交换矩阵的幂可与对方换位），常用来处理 $A^nB$ 这类式子。
 
 **转置**：$(A^T)^T=A,\ (A+B)^T=A^T+B^T,\ (kA)^T=kA^T,\ <span class="hl-red">$(AB)^T=B^TA^T$</span>。
 
 **方阵的幂**：$A^k=A\cdots A$（$k$ 个），$A^kA^l=A^{k+l},\ (A^k)^l=A^{kl}$。
 
 **方阵的行列式**：$\lvert AB\rvert =\lvert A\rvert \lvert B\rvert =\lvert BA\rvert $。
+
+**矩阵的迹**：$\operatorname{tr}(A)=\sum_{i=1}^{n}a_{ii}$（方阵对角线元素之和）。
+
+- $\operatorname{tr}(kA)=k\operatorname{tr}(A)$，$\operatorname{tr}(A+B)=\operatorname{tr}(A)+\operatorname{tr}(B)$；
+- $\operatorname{tr}(AB)=\operatorname{tr}(BA)$；
+- <span class="hl-red">一般 $\operatorname{tr}(AB)\ne\operatorname{tr}(A)\operatorname{tr}(B)$</span>（例 $A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$，$B=\begin{pmatrix}1&2\\3&4\end{pmatrix}$：$\operatorname{tr}(AB)=17$，$\operatorname{tr}(A)\operatorname{tr}(B)=25$）；
+- $\operatorname{tr}(A^T)=\operatorname{tr}(A)$。
 
 ### 2.2 逆矩阵
 
@@ -254,7 +284,8 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 2. 伴随矩阵 $$A^*$$ 元素是"代数余子式按列排列"，注意转置；
 3. 求逆只能用初等行变换（不能行列混用）；
 4. 抽象矩阵求逆优先用定义 $AB=E$ 或因式分解；
-5. 秩的不等式中 <span class="hl-red">$AB=O\Rightarrow r(A)+r(B)\le n$</span> 是高频考点，$n$ 是 $B$ 的行数（也是 $A$ 的列数）。
+5. 秩的不等式中 <span class="hl-red">$AB=O\Rightarrow r(A)+r(B)\le n$</span> 是高频考点，$n$ 是 $B$ 的行数（也是 $A$ 的列数）；
+6. 三组"推不出"必须记牢：<span class="hl-red">$A^2=0\not\Rightarrow A=0$</span>（$A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$）；<span class="hl-red">$A^2=B^2\not\Rightarrow A=B$</span>（$A=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$、$B=-A$，两者平方都是 $E$）；<span class="hl-red">$\lvert A\rvert=\lvert B\rvert\not\Rightarrow A\sim B$</span>。
 
 ---
 
@@ -301,20 +332,38 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 
 **求极大无关组**：初等行变换（不改变列向量线性关系），主元所在列即为极大无关组，其余向量用其表示。
 
-### 3.4 向量空间（数二了解）
+### 3.4 向量组的等价
+
+**定义**：设 $\alpha_1,\dots,\alpha_s$ 与 $\beta_1,\dots,\beta_t$ 是两组 $n$ 维向量，若 $\alpha_1,\dots,\alpha_s$ 均可由 $\beta_1,\dots,\beta_t$ 线性表示，且 $\beta_1,\dots,\beta_t$ 也均可由 $\alpha_1,\dots,\alpha_s$ 线性表示，则称两组向量**等价**，记 $\alpha\cong\beta$。
+
+**判定定理**：
+
+$$\alpha\cong\beta\iff r(\alpha)=r(\beta)=r(\alpha,\beta)$$
+
+其中 $r(\alpha,\beta)$ 指把两组向量拼成一个矩阵所得的秩。
+
+**三条关系**：
+
+1. 等价 $\Rightarrow$ 秩相等；<span class="hl-red">秩相等不一定等价</span>——秩只管"最多能表示出几个"，不管"能不能互相表示"；
+2. <span class="hl-green">向量组等价 $\Rightarrow$ 矩阵等价</span>（同型且秩相等）；<span class="hl-red">矩阵等价 $\not\Rightarrow$ 向量组等价</span>——矩阵等价只保证秩相等；
+3. 当 $A=(\alpha_1,\dots,\alpha_n)$、$B=(\beta_1,\dots,\beta_n)$ 都是 $n$ 阶可逆矩阵时：<span class="hl-green">$A,B$ 的列向量组等价 $\iff$ 存在可逆矩阵 $P$ 使 $B=PA\iff A\sim B$</span>。
+
+> **【理解】** "向量组等价"是**双向**的（互相可表示），"矩阵等价"只是"秩相等"，单向可达：向量组等价 $\Rightarrow$ 矩阵等价，反之不行。
+
+### 3.5 向量空间（数二了解）
 
 - 基、维数、坐标；
 - 过渡矩阵：基变换 $(\beta_1,\cdots,\beta_n)=(\alpha_1,\cdots,\alpha_n)P$；
 - 内积：$(\alpha,\beta)=\alpha^T\beta$；正交：$(\alpha,\beta)=0$；
 - 规范正交基：两两正交、单位长度。
 
-### 3.5 本章易错点
+### 3.6 本章易错点
 
 1. 相关/无关判别要先看向量个数与维数关系；
 2. 线性表示对应方程组有解，相关对应齐次有非零解；
 3. 求极大无关组用行变换，<span class="hl-red">不能用列变换</span>；
 4. 抽象证明优先用定义，"同乘""重组"是常用手法；
-5. 两个向量组等价与矩阵等价<span class="hl-orange">不是一回事</span>。
+5. 两个向量组等价与矩阵等价<span class="hl-orange">不是一回事</span>（见 §3.4）：<span class="hl-green">向量组等价 $\Rightarrow$ 矩阵等价</span>，反向不成立。
 
 ---
 
@@ -386,13 +435,51 @@ $n$ 个方程 $n$ 个未知数，<span class="hl-orange">$\lvert A\rvert \ne0$</
 
 **公共解**：联立 $$\begin{pmatrix}A\\B\end{pmatrix}x=0$$。
 
-### 4.5 本章易错点
+- <span class="hl-green">有非零公共解 $\iff r\begin{pmatrix}A\\B\end{pmatrix}<n$</span>；
+- 只有零公共解 $\iff r\begin{pmatrix}A\\B\end{pmatrix}=n$。
+
+**解集的包含关系**：$Ax=0$ 的解**都是** $Bx=0$ 的解（即 $\ker A\subseteq\ker B$），<span class="hl-orange">充要条件是</span>
+
+$$r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$$
+
+（此时必有 $r(A)\ge r(B)$）。
+
+> **【理解】** $\ker A=(\text{A 的行空间})^\perp$，故 $\ker A\subseteq\ker B$ 等价于"B 的行向量组被 A 的行向量组张成"，即 $r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$。与"同解"的 $r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}$ 对照记忆：**同解要两边都含，包含只要一头含**。
+
+### 4.5 题型：含参线性方程组的讨论
+
+**目标**：求参数 $t$ 的取值，使 $Ax=b$ 无解 / 唯一解 / 无穷多解。
+
+**情形一：增广矩阵含参（参数在常数列或增广列）**
+
+1. 对增广矩阵 $(A\mid b)$ 只做**行**变换，把含参的列一起变过去，令参数为 $t$；
+2. 看末行：出现 $0=c\ne0$（恒不成立）→ <span class="hl-red">恒无解</span>；出现 $0=k(t)$ → 解 $k(t)=0$ 得"无解"的临界值；
+3. 剩下的 $t$ 值再按 $r(A)$ 与 $r(A,b)$ 分类：<span class="hl-green">相等 $\Rightarrow$ 有解</span>，不等 $\Rightarrow$ 无解；
+4. 若 $r(A)=r(A,b)<n$ → 无穷多解（自由变量 $n-r(A)$ 个）；若 $r(A)=r(A,b)=n$ → 唯一解。
+
+**情形二：系数矩阵含参（参数在 $A$ 中、$b$ 不含参）**
+
+1. 先算 $\Delta(t)=|A(t)|$：<span class="hl-green">$\Delta(t)\ne0$ 时一律唯一解</span>（对一切使 $\Delta\ne0$ 的 $t$）；
+2. 只需再讨论 $\Delta(t)=0$ 的那些 $t$：此时按 $r(A)=r(A,b)$ 判有解性。
+
+**情形三：参数在常数列的"加方程"技巧**
+
+把 $Ax=b+tC$ 改写成两个方程组的联立：
+
+$$\begin{cases}Ax=b\\Cy=-t\end{cases}$$
+
+于是 $Ax=b+tC$ 有解 $\iff$ 联立方程组有解 $\iff r\begin{pmatrix}A\\C\end{pmatrix}=r\begin{pmatrix}A&\mid&b\\C&\mid&-t\end{pmatrix}$。
+
+> **【理解】** 参数在常数列时不要去算 $|A|$，而是把参数"搬"成另一个方程，与原方程组联立后比秩——"比秩"就变成了"方程个数与解的关系"，这是含参方程组最省力的入口。
+
+### 4.6 本章易错点
 
 1. 判定有解看 $r(A)$ 与 $r(A,b)$，<span class="hl-red">不能只看 $r(A)$</span>；
 2. 基础解系个数是 <span class="hl-red">$n-r(A)$</span>，不是 $m-r(A)$；
 3. 非齐次通解 = 齐次通解 + 一个特解；
-4. 同解、公共解、包含关系三类题要分清；
-5. 若 $Ax=0$ 的解都是 $Bx=0$ 的解，则 $r(A)\ge r(B)$。
+4. 同解、公共解、包含关系三类题要分清（见 §4.4）；
+5. 若 $Ax=0$ 的解都是 $Bx=0$ 的解，则 $r(A)\ge r(B)$；<span class="hl-orange">充要条件是 $r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$</span>；
+6. 含参方程组<span class="hl-red">先比秩、再按 $\Delta(t)$ 分情况</span>，别一上来就求通解（见 §4.5）。
 
 ---
 
@@ -412,6 +499,8 @@ $n$ 个方程 $n$ 个未知数，<span class="hl-orange">$\lvert A\rvert \ne0$</
 
 $$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i=1}^n\lambda_i=|A|$$
 
+$$\sum_{i=1}^n\lambda_i^k=\operatorname{tr}(A^k)\quad (k=1,2,3,\dots)$$
+
 </div>
 
 - 不同特征值对应的特征向量线性无关；
@@ -425,6 +514,16 @@ $$\sum_{i=1}^n\lambda_i=\sum_{i=1}^n a_{ii}=\operatorname{tr}(A),\qquad \prod_{i
 | 特征向量 | $\alpha$ | / | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $P^{-1}\alpha$ |
 
 > **【理解】** 均由 $A\alpha=\lambda\alpha$ 推出：左乘 $A^{-1}$ 得 $A^{-1}\alpha=\frac1\lambda\alpha$；左乘 $A^{k-1}$ 得 $A^k\alpha=\lambda^k\alpha$；加 $kE$ 得 $(A+kE)\alpha=(\lambda+k)\alpha$。
+
+**矩阵函数的行列式**：若 $f$ 是多项式，$f(A)$ 的特征值为 $f(\lambda_i)$，故
+
+<div class="hl-green" markdown="1">
+
+$$|f(A)|=\prod_{i=1}^n f(\lambda_i)$$
+
+</div>
+
+特别地 $|A+kE|=\prod_{i=1}^n(\lambda_i+k)$、$|A^k|=|A|^k$。
 
 - 若 $B=P^{-1}AP$，$A$ 的特征向量为 $\alpha$，则 $B$ 的特征向量为 $P^{-1}\alpha$；
 - 若 $A=PBP^{-1}$，$B$ 的特征向量为 $\alpha$，则 $A$ 的特征向量为 $P\alpha$。
