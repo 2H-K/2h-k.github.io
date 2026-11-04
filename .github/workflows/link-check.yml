@@ -1,0 +1,56 @@
+name: "Link Check"
+
+# 内部链接检查（htmlproofer）：
+#   - pull_request：每次 PR 自动跑
+#   - workflow_dispatch：没有 PR 也能随时手动跑
+# Pages 部署流程不再执行本检查，避免一个死链卡住整次发布。
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "link-check-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # posts-lastmod-hook.rb 需要完整 git 历史来取最后修改时间
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+
+      - name: Cache Jekyll build cache
+        uses: actions/cache@v4
+        with:
+          path: .jekyll-cache
+          key: jekyll-${{ runner.os }}-${{ hashFiles('Gemfile.lock') }}-${{ hashFiles('_config.yml', '_data/**', '_posts/**') }}
+          restore-keys: |
+            jekyll-${{ runner.os }}-${{ hashFiles('Gemfile.lock') }}-
+
+      - name: Build site
+        run: bundle exec jekyll b -d "_site"
+        env:
+          JEKYLL_ENV: "production"
+
+      - name: Check internal links
+        run: |
+          bundle exec htmlproofer _site \
+            --disable-external \
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
