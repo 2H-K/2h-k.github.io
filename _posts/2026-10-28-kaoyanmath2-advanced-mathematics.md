@@ -25,16 +25,133 @@ math: true
 - 符号函数：$$\operatorname{sgn}x=\begin{cases}1,&x>0\\0,&x=0\\-1,&x<0\end{cases}$$，有 $x=\lvert x\rvert \operatorname{sgn}x$
 - 取整函数：$[x]$（不超过 $x$ 的最大整数），有 $x-1<[x]\le x$，$[x+n]=[x]+n$
 
-**函数的四种特性**：
+**函数的四种特性**（判定流程见 §1.1.1，用法见 §1.1.2–§1.1.4）：
 
-| 特性 | 定义 |
-|---|---|
-| 有界性 | $\exists M>0$，使 $\lVert f(x)\rVert \le M,\ \forall x\in X$；否则无界 |
-| 单调性 | 单增：$f(x_1)<f(x_2)$；单减：$f(x_1)>f(x_2)$（$x_1<x_2$） |
-| 奇偶性 | 定义域关于原点对称；$f(-x)=f(x)$ 为偶，$f(-x)=-f(x)$ 为奇 |
-| 周期性 | $\exists T>0$，$f(x+T)=f(x),\ \forall x\in D$ |
+| 特性 | 定义 | 判定动作 |
+|---|---|---|
+| 有界性 | $\exists M>0$，使 $\lvert f(x)\rvert \le M,\ \forall x\in X$；否则无界 | 找"危险点"：区间端点、间断点、$x\to\infty$ 的行为 |
+| 单调性 | 单增：$x_1<x_2\Rightarrow f(x_1)<f(x_2)$；单减：$x_1<x_2\Rightarrow f(x_1)>f(x_2)$ | 定义法（取两点比）/ 导数法 $f'\gtrless0$（§2.5） |
+| 奇偶性 | 定义域关于原点对称；$f(-x)=f(x)$ 为偶，$f(-x)=-f(x)$ 为奇 | <span class="hl-orange">先查定义域</span>，再算 $f(-x)$ 并化简比较 |
+| 周期性 | $\exists T>0$，$f(x+T)=f(x),\ \forall x\in D$ | 找"平移不变"结构；证"不是周期"时比较 $f(x+T)$ 与 $f(x)$ |
 
-**反函数**：$y=f(x)$ 单射（如单调）才有反函数 $x=f^{-1}(y)$，习惯写成 $y=f^{-1}(x)$。$f$ 与 $f^{-1}$ 图像关于 $y=x$ 对称。
+> **【大纲定位】** 数二大纲对四性的要求是"<span class="hl-orange">了解</span>"：直接考多是选择/填空里的"性质判断题"，更多时候是作为**解题工具**出现在证明题与计算题中（什么时候该想到它，见 §1.1.2）。
+
+#### 1.1.1 判定流程：五步走（按序做，别跳步）
+
+<span class="hl-green">Step 0 · 先看定义域</span>：定义域是一切判定的地基。
+- 定义域不关于原点对称 ⇒ 直接出局"奇/偶"（如 $\ln x$、$y=\frac{1}{x-1}$）；
+- 定义域有"洞"（$\tan x$、$\frac{1}{x}$）⇒ 先看洞附近是否 $\to\pm\infty$，这直接决定有界性。
+
+<span class="hl-green">Step 1 · 奇偶（最快、结论最硬）</span>：定义域对称 + 化简 $f(-x)$。
+- $f(-x)=f(x)$ ⇒ 偶；$f(-x)=-f(x)$ ⇒ 奇；都不满足 ⇒ 非奇非偶；
+- <span class="hl-red">$f\equiv0$ 既奇又偶</span>；奇函数必有 $f(0)=0$（若 $0\in D$）。
+
+<span class="hl-green">Step 2 · 周期</span>：找"加上同一个数后不变"的结构。
+- 直接成立：$f(x+T)=f(x)$；
+- 变号型：$f(x+a)=-f(x)\Rightarrow 2a$ 是周期；
+- 取倒数型：$f(x+a)=\frac{1}{f(x)}\Rightarrow 2a$ 是周期；
+- 平移加常数型：$f(x+a)=f(x)+b\ (b\ne0)\Rightarrow$ <span class="hl-red">无周期</span>；
+- <span class="hl-orange">证"不是周期函数"的严格写法</span>：假设存在周期 $T>0$，把 $f(x+T)$ 算出来与 $f(x)$ 比；若含 $x$ 这类非周期因子，比系数会逼出 $T=0$，矛盾（例 1）。
+
+<span class="hl-green">Step 3 · 单调</span>：三选一。
+- 定义法：取 $x_1<x_2$ 比较 $f(x_1),f(x_2)$（适合分段函数、选择题）；
+- 导数法：$f'(x)>0$（$<0$）⇒ 单调增（减）（§2.5）；
+- 复合保序：内增外增得增、内增外减得减、内减外增得减、内减外减得增；
+- <span class="hl-orange">与奇偶联动</span>：奇函数在关于原点对称的两个区间上单调性<span class="hl-green">相同</span>，偶函数<span class="hl-orange">相反</span>。
+
+<span class="hl-green">Step 4 · 有界</span>：先找"危险点"，再看三类有界源。
+- 危险点：区间端点、间断点、$x\to\infty$ 的行为（$\tan x$ 型）；
+- 有界源：$\lvert\sin x\rvert\le1$、$\lvert\operatorname{arctan}x\rvert\le\frac{\pi}{2}$、<span class="hl-green">闭区间上连续 ⇒ 有界</span>（§1.6）、<span class="hl-green">有界 × 无穷小 = 0</span>（§1.5）；
+- <span class="hl-orange">证无界的标准写法</span>：构造 $x_k\to\infty$（或趋近间断点），使 $\lvert f(x_k)\rvert\to\infty$。
+
+#### 1.1.2 信号速查：看到什么 → 想到哪个性质 → 拿到什么结论
+
+| 题面信号 | 想到的性质 | 立刻能做什么 |
+|---|---|---|
+| 选项把"奇/偶/周期/单调/有界"各列一个 | 四性直判 | 按 §1.1.1 的 Step 1→4 逐项排除（<span class="hl-green">奇偶最快、周期最易骗、单调要造反例、无界要造一列</span>） |
+| 题面出现 $f(-x)$、积分区间 $[-a,a]$、区域关于某轴对称 | 奇偶 | $\int_{-a}^{a}f=0$（奇）或 $2\int_{0}^{a}f$（偶）；二重积分同理（§5.3） |
+| 变上限积分 $F(x)=\int_{0}^{x}f(t)dt$ | 奇偶 | <span class="hl-green">$f$ 奇 ⇒ $F$ 偶；$f$ 偶 ⇒ $F$ 奇</span>（2024 数二选择题原题） |
+| 问"在某区间是否有界" | 有界 | 只看端点与间断点邻域的极限；区间内部连续 ⇒ 局部有界（例 2） |
+| 分母 $\to0$、分子是三角型（$\frac{\sin x}{x}$） | 有界 | 有界 × 无穷小 = 0（§1.5） |
+| $\lim_{x\to\infty}f(x)$，其中 $f$ 是周期函数 | 周期 | 极限存在 ⇒ $f$ 必为常函数（例 3） |
+| 求周期函数一周期内的积分、按周期求和 | 周期 | $\int_{a}^{a+T}f=\int_{0}^{T}f$；$\int_{kT}^{(k+1)T}f$ 恒相等 |
+| 问"方程有几个根""证明解唯一" | 单调 + 连续 | 连续给<span class="hl-green">存在</span>（零点定理），单调给<span class="hl-green">唯一</span>（例 4） |
+| 证不等式 | 单调 | 构造"左减右"的辅助函数 $F$，证 $F$ 单调（§2.5 的同一套路） |
+| 递推数列 $x_{n+1}=f(x_n)$ 求极限 | 单调 + 有界 | 单调有界准则（§1.2） |
+| 出现反函数 $f^{-1}$ | 单调 | 单射才可逆；<span class="hl-green">$f$ 与 $f^{-1}$ 单调性相同</span>、图像关于 $y=x$ 对称 |
+| 奇/偶函数 + 求 $f'(0)$ | 奇偶 | <span class="hl-green">偶函数在 $0$ 处可导 ⇒ $f'(0)=0$</span>；<span class="hl-orange">奇函数则不一定</span>（$f(x)=x$ 即反例），但 $f'$ 是偶函数 |
+
+#### 1.1.3 必背推论
+
+1. <span class="hl-green">奇函数</span>：$f(0)=0$；在关于原点对称的区间上单调性<span class="hl-green">相同</span>；图像关于原点对称。
+2. <span class="hl-green">偶函数</span>：在关于原点对称的区间上单调性<span class="hl-orange">相反</span>；$f(x)$ 与 $f(-x)$ 同号。
+3. <span class="hl-green">周期 + 单调 ⇒ 常函数</span>：对任意 $x<y$，取 $n$ 使 $x+nT>y$，则 $f(x)\le f(y)\le f(x+nT)=f(x)$。
+4. <span class="hl-green">周期 + 连续 ⇒ 在 $\mathbb{R}$ 上有界</span>（闭区间上连续有界 + 周期性）。
+5. <span class="hl-green">周期函数在无穷远处极限存在 ⇒ 它是常函数</span>（例 3）。
+6. <span class="hl-green">有界 × 无穷小 = 0</span>；无穷大 ÷ 有界（其极限非 0）= 无穷大。
+7. <span class="hl-green">严格单调 ⇒ 单射 ⇒ 有反函数</span>；$f$ 与 $f^{-1}$ 单调性<span class="hl-green">相同</span>，别记成相反。
+8. <span class="hl-green">闭区间上连续 ⇒ 有界</span>，且最大最小值存在（§1.6）。
+9. <span class="hl-green">$f$ 奇 ⇒ $\int_{0}^{x}f(t)dt$ 偶；$f$ 偶 ⇒ $\int_{0}^{x}f(t)dt$ 奇</span>（变上限积分的奇偶性）。
+10. <span class="hl-green">偶函数在 $0$ 处可导 ⇒ $f'(0)=0$</span>；<span class="hl-red">奇函数不一定</span>（反例 $f(x)=x$），但奇函数若处处可导，则 $f'$ 是偶函数。
+11. 奇函数若在 $0$ 处取极值且可导，则 $f'(0)=0$（费马引理，§2.4）。
+
+**跨章复用**（四性不是第一章的孤岛）：
+
+- 奇偶 → §3.2 对称区间定积分、§5.3 二重积分对称性；
+- 周期 → §3.2 周期函数的定积分、变上限积分；
+- 单调 → §1.2 单调有界准则、§2.5 极值/最值/不等式证明、§6 微分方程解的单调性；
+- 有界 → §1.5 有界 × 无穷小、§1.6 最大最小值定理。
+
+#### 1.1.4 例题：四性怎么用
+
+**例 1 · 四性判断（选择题的逐项排除法）**：设 $f(x)=x\tan x\cdot e^{\sin x}$，则 $f$ 是（　）　A. 偶函数　B. 无界函数　C. 周期函数　D. 单调函数
+
+<span class="hl-blue">信号识别</span>：四个选项正好对应四性 ⇒ <span class="hl-green">逐项排除</span>，顺序按 Step 1→4。
+
+- **A（偶）**：$f(-x)=(-x)\tan(-x)e^{-\sin x}=x\tan x\,e^{-\sin x}\ne f(x)$ ⇒ 非偶 ⇒ A 错。
+- **C（周期）**：设 $T>0$ 为周期。由 $f(0)=0=f(T)$ 且 $T>0$ 得 $\tan T=0$，即 $T=k\pi$（$k\ge1$）。于是 $\tan(x+T)=\tan x$、$\sin(x+T)=\sin x$，代入 $f(x+T)=f(x)$ 得 $(x+T)e^{\sin x}=xe^{\sin x}$ ⇒ $T=0$，与 $T>0$ 矛盾 ⇒ 非周期 ⇒ C 错。
+- **D（单调）**：取 $x_1=\frac{\pi}{4}<x_2=\frac{3\pi}{4}$，有 $f(x_1)>0>f(x_2)$，与单增矛盾；再取 $x_1=\frac{3\pi}{4}<x_2=\frac{5\pi}{4}$，有 $f(x_1)<0<f(x_2)$，与单减矛盾 ⇒ 非单调 ⇒ D 错。
+- **B（无界）**：取 $x_k=2k\pi+\frac{\pi}{2}\to+\infty$，$\tan x_k\to+\infty$，$x_ke^{\sin x_k}\to\infty$，故 $\lvert f(x_k)\rvert\to\infty$ ⇒ 无界。
+
+答案：<span class="hl-green">B</span>。
+
+**例 2 · 有界性判定（只看危险点）**：$f(x)=\frac{\lvert x\rvert\sin(x-2)}{x(x-1)(x-2)^2}$ 在下列哪个区间内有界（　）　A. $(-1,0)$　B. $(0,1)$　C. $(1,2)$　D. $(2,3)$
+
+<span class="hl-blue">信号识别</span>："在某区间是否有界" ⇒ 区间内部连续 ⇒ 只需检查**端点与间断点邻域**（局部有界性，§1.3）。
+
+- B：$x\to1^{-}$ 时分子 $\to\sin(-1)\ne0$、分母 $\to0$ ⇒ $\lvert f\rvert\to\infty$ ⇒ 无界；
+- C、D：$x\to2$ 时 $\sin(x-2)\sim-(x-2)$，分母含 $(x-2)^2$，故 $f\sim-\frac{1}{x-2}$ ⇒ 无界；
+- A：唯一危险点 $x\to0^{-}$：$f=\frac{\lvert x\rvert}{x}\cdot\frac{\sin(x-2)}{(x-1)(x-2)^2}\to(-1)\cdot\frac{-\sin2}{-4}=-\frac{\sin2}{4}$，有限 ⇒ 有界。
+
+答案：<span class="hl-green">A</span>。
+
+**例 3 · 周期性 → 常函数（极限型）**：设 $f$ 是以 $T>0$ 为周期的连续函数，且 $\lim_{x\to+\infty}f(x)=A$ 存在，证明 $f(x)\equiv A$。
+
+证明：任取 $x\in\mathbb{R}$，令 $x_n=x+nT\to+\infty$。由周期性 $f(x_n)=f(x)$（与 $n$ 无关）；由极限存在 $f(x_n)\to A$。由数列极限唯一性，$f(x)=A$。
+
+<span class="hl-orange">对照</span>：$\sin x$、$\tan x$ 有周期但无穷远处极限不存在——"周期 + 无穷远极限"这个组合本身就是强信号。
+
+**例 4 · 单调 + 连续 → 唯一解（证明题模板）**：证明方程 $x-\sin x-1=0$ 在 $[0,\pi]$ 上有唯一解。
+
+- 存在性：$F(x)=x-\sin x-1$ 在 $[0,\pi]$ 上连续，$F(0)=-1<0$，$F(\pi)=\pi-1>0$ ⇒ 零点定理（§1.6）；
+- 唯一性：$F'(x)=1-\cos x\ge0$ ⇒ $F$ 单调不减 ⇒ $F$ 至多有一个零点 ⇒ 唯一。
+
+<span class="hl-green">套路</span>："证明方程有唯一解" = <span class="hl-green">连续性给存在，单调性给唯一</span>，两个关键词缺一不可。
+
+**例 5 · 奇偶性 → 定积分化简**：设 $f$ 在 $[-1,1]$ 上连续且为奇函数，求 $\int_{-1}^{1}f(x)dx$；若 $f$ 为偶函数呢？
+
+- 奇：$\int_{-1}^{1}f=0$（对称区间上奇函数的积分为 $0$，§3.2）；
+- 偶：$\int_{-1}^{1}f=2\int_{0}^{1}f$。
+
+变上限版本（2024 数二真题）：设 $f(x)=\int_{0}^{\sin x}\sin^{3}t\,dt$，$g(x)=\int_{0}^{x}f(t)\,dt$，判断 $f,g$ 的奇偶性。
+
+- $\sin^{3}t$ 是奇函数 ⇒ $h(x)=\int_{0}^{x}\sin^{3}t\,dt$ 是偶函数；
+- $f(x)=h(\sin x)$：偶函数复合 $\sin$ 仍是偶函数；
+- $f$ 偶 ⇒ $g(x)=\int_{0}^{x}f(t)dt$ 是奇函数。
+
+答案：<span class="hl-green">$f$ 偶、$g$ 奇</span>。
+
+**反函数**：$y=f(x)$ 单射（如单调）才有反函数 $x=f^{-1}(y)$，习惯写成 $y=f^{-1}(x)$。$f$ 与 $f^{-1}$ 图像关于 $y=x$ 对称，<span class="hl-green">单调性相同</span>（不是相反，见 §1.1.3 第 7 条）。
 
 **复合函数**：$y=f(u),\ u=g(x)$，$y=f[g(x)]$。
 
@@ -369,6 +486,13 @@ $$\text{原式}=\lim_{x\to0}\frac{\frac13x^3}{x^2\cdot 2x}=\frac16$$
 8. 抓大头只能在乘除结构用，<span class="hl-red">加减结构不能直接丢低阶项</span>；
 9. $n$ 项和到底用夹逼还是定积分定义，判据是"变化部分与主体同量级还是次量级"（见 §1.5.4）。
 10. <span class="hl-red">中值定理给的是"阶"不是"系数"</span>：差商型 $\frac{f(A)-f(B)}{A-B}$ 可直接用中值定理得 $f'(a)$，但裸的 $f(A)-f(B)$ 只能定阶，精确值要靠和差化积 / 泰勒（见 §1.5.5）。
+11. 定义域不关于原点对称 ⇒ <span class="hl-red">既非奇函数也非偶函数</span>（$\ln x$、$\frac{1}{x-1}$）；$f\equiv0$ 既是奇函数也是偶函数；
+12. <span class="hl-red">$\lvert x\rvert$ 不是周期函数</span>（"看起来会重复"≠周期）；周期函数不一定有界（$\tan x$），<span class="hl-green">连续</span>周期函数才有界；
+13. <span class="hl-red">因子会破坏周期性</span>：$x\tan x$ 含 $\tan$ 的周期，整体却不是周期函数——只能靠 $f(x+T)=f(x)$ 反证（见 §1.1.4 例 1）；
+14. 周期 + 单调 ⇒ 常函数；周期函数在无穷远处极限存在 ⇒ 常函数；
+15. 单调函数不一定有界（$\tan x$ 在 $(-\frac{\pi}{2},\frac{\pi}{2})$ 上），有界函数不一定单调；
+16. 奇函数在对称区间上单调性<span class="hl-green">相同</span>、偶函数<span class="hl-orange">相反</span>，别记反；$f$ 与 $f^{-1}$ 的单调性也是<span class="hl-green">相同</span>，不是相反。
+17. <span class="hl-red">偶函数</span>在 $0$ 处可导 ⇒ $f'(0)=0$，<span class="hl-red">奇函数则不一定</span>（$f(x)=x$ 反例），别记混（见 §1.1.3 第 10 条）。
 
 ---
 
@@ -976,5 +1100,7 @@ $$(D^2+pD+q)y=f(x)\quad\Rightarrow\quad y^*=\frac{1}{D^2+pD+q}f(x)=F(D)^{-1}f(x)
 **方程通解**：见 6.4。
 
 **方法选择速查**：见 §1.5.1（先化简 → 再定型 → 后选工具）、§1.5.2（函数极限信号表）、§1.5.4（数列极限信号表）。
+
+**函数四性速查**：见 §1.1.1（判定流程 Step 0–4）、§1.1.2（四性信号表）、§1.1.3（必背推论）、§1.1.4（例题）。
 
 **数二高数题型分布提示**：极限计算（选择/填空高频）、中值定理证明、一元积分计算与应用、多元偏导/全微分、二重积分、微分方程（常与其他章节综合）。
