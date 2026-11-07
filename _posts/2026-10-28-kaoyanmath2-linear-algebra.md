@@ -7,8 +7,59 @@ math: true
 ---
 > 数二线代范围：行列式、矩阵、向量、线性方程组、特征值与特征向量、二次型。
 > 每章结构：知识框架 → 定义定理 → 题型方法 → 易错点 → 公式速查。
+> 做题前先过开篇两张表：**表 1 把题干翻译成数学语言，表 2 决定第一笔写什么**。
 
 > 全文颜色约定：<span class="hl-red">红色 = 符号 / 易错</span>，<span class="hl-orange">橙色 = 条件 / 区别</span>，<span class="hl-green">绿色 = 结论 / 必背</span>，<span class="hl-blue">蓝色 = 定义 / 基本关系</span>。
+
+---
+
+## 开篇 · 先翻译，再落笔
+
+> 大题卡住，多半不是题型没见过，是**题干那句话没翻译成数学语言**，翻译完了又**不知道第一笔写什么**。
+> 所以做题的顺序是：查表 1 定性 → 查表 2 落笔 → 再算。
+
+### 表 1 · 措辞翻译表
+
+| 题干出现 | 翻译成 | 立刻能写 | 别搞混 |
+|---|---|---|---|
+| A 可经初等**行**变换化为 B | 存在可逆 P，$PA=B$ | $r(A)=r(B)$（必要） | 同秩还不够，行空间也要相同 |
+| A 可经初等**列**变换化为 B | 存在可逆 P，$AP=B$ | $r(A)=r(B)$（必要） | 同秩还不够，列空间也要相同；不是相似 |
+| A 与 B 等价 | 同上（行、列变换都可以） | $r(A)=r(B)$（同型同秩即可） | 只保秩 |
+| A 与 B 相似 | 存在可逆 P，$P^{-1}AP=B$ | 特征值相同（双方可对角化时） | 特征值相同 $\not\Rightarrow$ 相似 |
+| A 与 B 合同 | 存在可逆 C，$C^TAC=B$ | 正负惯性指数相同 | 与相似是另一回事 |
+| A 与 B 有相同的行空间 | 行向量组等价 | 互相线性表出 | 列空间相同是另一回事 |
+| 求满足 $AP=B$ 的**可逆** P | 矩阵方程 | 解 $AX=B$ | A 奇异时不能写 $P=A^{-1}B$ |
+| $AX=B$ 有解 | $B=AX$ | $r(A)=r(A\mid B)$ | 光有 $r(A)=r(B)$ 不够 |
+| B 的列可由 A 的列表出 | $B=AX$ | X 就是矩阵方程的解 | 行方向反过来是 $A=YB$ |
+| $A\sim B$ 必然有 | $A,B$ 相似 | $\lvert A\rvert=\lvert B\rvert$，$\operatorname{tr}(A)=\operatorname{tr}(B)$，$r(A)=r(B)$，特征值相同 | 全是必要条件 |
+| $A^T=-A$ | 反对称 | 主对角线全 0，奇数阶 $\lvert A\rvert=0$ | |
+| $A^TA=E$ | 正交矩阵 | $A^{-1}=A^T$，$\lvert A\rvert=\pm1$ | |
+
+**行、列别搞反**：
+
+- 初等**行**变换 $=$ 左乘可逆阵：$PA=B$，动的是行，**行空间**保持不变；
+- 初等**列**变换 $=$ 右乘可逆阵：$AP=B$，动的是列，**列空间**保持不变。
+
+题干写"列变换"，手上却做行变换，$P$ 的形式会全错。
+
+### 表 2 · 起手式表
+
+| 题面信号 | 第一笔写什么 | 拿到什么 | 陷阱 |
+|---|---|---|---|
+| 秩、初等变换、矩阵等价、伴随、逆矩阵 | 对 $A$ 做初等行变换化阶梯形，数非零行 | $r(A)$ | 别用列变换 |
+| 求逆 | $(A\mid E)\xrightarrow{\text{行变换}}(E\mid A^{-1})$ | $A^{-1}$ | 行、列不能混用 |
+| 矩阵方程 $AX=B$ | 写 $(A\mid B)$ 行变换；或把那串列变换的矩阵乘积记下来 | $X$ | A 奇异时 $P$ 不唯一 |
+| 方程组 $Ax=b$ | 写增广矩阵行变换，比 $r(A)$ 与 $r(A,b)$ | 有解性与通解 | 自由变量 $n-r(A)$ 个 |
+| 含参方程组 | 先看参数在哪：增广列 / 系数阵 / 常数列 | 见 §4.6 | 别一上来求通解 |
+| 特征值 | 先写 $\lvert\lambda E-A\rvert=0$，再按降幂展开 | 特征值 | 三阶手算容易漏项 |
+| 特征向量 | 解 $(\lambda_iE-A)x=0$，自由变量取 1 | 基础解系 | 特征向量不能取零 |
+| 对角化 | 先分重数：代数重数 vs $n-r(\lambda_iE-A)$ | 能否对角化 | 特征值相同不等于相似 |
+| 实对称矩阵 | 求特征值 → 不同特征值的向量已经正交 → 只对重根做正交化 | 正交矩阵 $Q$ | 单根只需单位化 |
+| 二次型 | 先写对称矩阵 $A$（交叉项系数除 2） | $f=x^TAx$ | $A$ 必须对称 |
+| 化标准形 | 正交变换看特征值；配方法要记下变换矩阵 | 标准形、规范形 | 配方法的系数不是特征值 |
+| 正定 | 顺序主子式全大于 0，或特征值全大于 0 | 判定 | 只看 $\lvert A\rvert>0$ 不够 |
+
+> 表 2 的用法：命中哪行就照"第一笔"列写，**别跳过第一笔直接想结论**。2018 数二那道题就是卡在没写行变换上——条件想对了，工具没落笔。
 
 ---
 
@@ -156,7 +207,7 @@ $$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
 - 满足结合律、分配律；
 - 若 $AB=BA$，则 <span class="hl-green">$A^kB=BA^k$、$AB^k=BA^k$</span>（可交换矩阵的幂可与对方换位），常用来处理 $A^nB$ 这类式子。
 
-**转置**：$(A^T)^T=A,\ (A+B)^T=A^T+B^T,\ (kA)^T=kA^T,\ <span class="hl-red">$(AB)^T=B^TA^T$</span>。
+**转置**：$(A^T)^T=A,\ (A+B)^T=A^T+B^T,\ (kA)^T=kA^T$，<span class="hl-red">$(AB)^T=B^TA^T$</span>。
 
 **方阵的幂**：$A^k=A\cdots A$（$k$ 个），$A^kA^l=A^{k+l},\ (A^k)^l=A^{kl}$。
 
@@ -165,7 +216,7 @@ $$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
 **矩阵的迹**：$\operatorname{tr}(A)=\sum_{i=1}^{n}a_{ii}$（方阵对角线元素之和）。
 
 - $\operatorname{tr}(kA)=k\operatorname{tr}(A)$，$\operatorname{tr}(A+B)=\operatorname{tr}(A)+\operatorname{tr}(B)$；
-- $\operatorname{tr}(AB)=\operatorname{tr}(BA)$；
+- $\operatorname{tr}(AB)=\operatorname{tr}(BA)$（<span class="hl-orange">$A,B$ 同阶方阵</span>）；
 - <span class="hl-red">一般 $\operatorname{tr}(AB)\ne\operatorname{tr}(A)\operatorname{tr}(B)$</span>（例 $A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$，$B=\begin{pmatrix}1&2\\3&4\end{pmatrix}$：$\operatorname{tr}(AB)=17$，$\operatorname{tr}(A)\operatorname{tr}(B)=25$）；
 - $\operatorname{tr}(A^T)=\operatorname{tr}(A)$。
 
@@ -175,7 +226,7 @@ $$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
 
 **可逆充要条件**：$\lvert A\rvert \ne0$（即非奇异、满秩）。
 
-**伴随矩阵法**：
+**伴随矩阵法**（需 <span class="hl-orange">$\lvert A\rvert \ne0$</span>）：
 
 <div class="hl-green" markdown="1">
 
@@ -183,7 +234,7 @@ $$A^{-1}=\frac{1}{|A|}A^*$$
 
 </div>
 
-**伴随矩阵性质**：
+**伴随矩阵性质**（$(A^*)^*$、$(A^*)^{-1}$ 两条需 <span class="hl-orange">$\lvert A\rvert \ne0$</span>）：
 
 <div class="hl-green" markdown="1">
 
@@ -238,6 +289,8 @@ $$r(AB)\le\min\{r(A),r(B)\}$$
 
 $$r(A)+r(B)-n\le r(AB)\le\min\{r(A),r(B)\}$$
 
+<span class="hl-orange">其中 $n$ 为 $A$ 的列数（也是 $B$ 的行数）：设 $A$ 为 $m\times n$，$B$ 为 $n\times p$。</span>
+
 $$r(A+B)\le r(A)+r(B)$$
 
 <div class="hl-blue" markdown="1">
@@ -253,6 +306,8 @@ $$r(kA)=r(A)\ (k\ne0)$$
 $$AB=O\Rightarrow r(A)+r(B)\le n$$
 
 </div>
+
+<span class="hl-orange">$n$ 为 $A$ 的列数（也是 $B$ 的行数）</span>。
 
 **满秩**：$r(A)=n$（方阵即可逆）。
 
@@ -345,10 +400,12 @@ $$\alpha\cong\beta\iff r(\alpha)=r(\beta)=r(\alpha,\beta)$$
 **三条关系**：
 
 1. 等价 $\Rightarrow$ 秩相等；<span class="hl-red">秩相等不一定等价</span>——秩只管"最多能表示出几个"，不管"能不能互相表示"；
-2. <span class="hl-green">向量组等价 $\Rightarrow$ 矩阵等价</span>（同型且秩相等）；<span class="hl-red">矩阵等价 $\not\Rightarrow$ 向量组等价</span>——矩阵等价只保证秩相等；
-3. 当 $A=(\alpha_1,\dots,\alpha_n)$、$B=(\beta_1,\dots,\beta_n)$ 都是 $n$ 阶可逆矩阵时：<span class="hl-green">$A,B$ 的列向量组等价 $\iff$ 存在可逆矩阵 $P$ 使 $B=PA\iff A\sim B$</span>。
+2. <span class="hl-green">向量组等价 $\Rightarrow$ 矩阵等价</span>（<span class="hl-orange">两组向量个数相同</span>时才谈得上同型，此时秩也相等）；<span class="hl-red">矩阵等价 $\not\Rightarrow$ 向量组等价</span>——矩阵等价只保证秩相等；
+3. 当 $A=(\alpha_1,\dots,\alpha_n)$、$B=(\beta_1,\dots,\beta_n)$ 都是 $n$ 阶可逆矩阵时：<span class="hl-green">$A,B$ 的列向量组等价 $\iff$ 存在可逆矩阵 $P$ 使 $B=PA\iff A,B$ 矩阵等价</span>（左乘关系，见 §2.3）。
 
 > **【理解】** "向量组等价"是**双向**的（互相可表示），"矩阵等价"只是"秩相等"，单向可达：向量组等价 $\Rightarrow$ 矩阵等价，反之不行。
+> <span class="hl-orange">别把"左乘"当"相似"</span>：$B=PA$ 是**矩阵等价**（只保秩），$A\sim B$ 是**相似**（§5.3，保特征值），二者不是一回事。反例 $A=E$，$B=\begin{pmatrix}1&1\\0&1\end{pmatrix}$：取 $P=B$ 即 $B=PA$，但 $E$ 与 $B$ 不相似（$B$ 不可对角化）。
+> 三种关系一句话：<span class="hl-orange">等价保秩，相似保特征值（行列式、迹），合同保正负惯性指数</span>（合同见 §6.4）。
 
 ### 3.5 向量空间（数二了解）
 
@@ -417,11 +474,86 @@ $$x=k_1\xi_1+\cdots+k_{n-r}\xi_{n-r}+\eta^*$$
 - $Ax=0$ 的解 $\iff \sum k_i=0$；
 - $Ax=b$ 的解 $\iff \sum k_i=1$。
 
-### 4.3 克拉默法则
+### 4.3 矩阵方程 $AX=B$
+
+$A$ 是 $m\times n$，$X$ 是 $n\times p$，$B$ 是 $m\times p$。把 $AX=B$ 按列拆开，就是 $n$ 个右端不同的方程组 $Ax=b_j$。
+
+**有解判定**：
+
+<div class="hl-green" markdown="1">
+
+$$AX=B\ \text{有解}\iff r(A)=r(A\mid B)$$
+
+</div>
+
+也就是 B 的列向量组能由 A 的列向量组线性表出。
+
+<span class="hl-red">光有 $r(A)=r(B)$ 不够</span>：取 $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$、$B=\begin{pmatrix}0&0\\1&0\end{pmatrix}$，两者秩都是 1，但 B 的第一列 $(0,1)^T$ 不在 A 的列空间 $\mathrm{span}\{(1,0)^T\}$ 里，无解。
+
+**解法一（通用）**：对增广矩阵 $(A\mid B)$ 做初等行变换，系数部分化阶梯形后逐列解，或者通过化简后的两个矩阵的秩依然相等，来求一些参数的值，比如某行必须全0，必须非0等。
+
+- $A$ 可逆：$X=A^{-1}B$，唯一解；
+- $A$ 不可逆但有解：解不唯一，通解写成 $X=X_0+NZ$，$X_0$ 是任一组特解，$N$ 的列取自 $Ax=0$ 的基础解系，$Z$ 任意。
+
+**解法二（题干说"可经初等列变换化为 B"时最快）**：
+
+初等列变换就是右乘初等矩阵，所以那串列变换做完后
+
+$$B=A\cdot E_1E_2\cdots E_k=A\cdot P$$
+
+$P=E_1E_2\cdots E_k$ 可逆，**$P$ 本身就是要找的答案**，连方程组都不用解。
+
+**易错点**：
+
+1. $A$ 不可逆时不能写 $P=A^{-1}B$，也不能"除以 $A$"；
+2. 题目要"**可逆**矩阵 $P$"时，通解写出来还要**回代验 $\lvert P\rvert\ne0$**；
+3. 用解法二时记牢是**列**变换的矩阵之积，写成行的就全错了。
+
+**例 · 2018 数二**
+
+$$A=\begin{pmatrix}1&2&a\\1&3&0\\2&7&-a\end{pmatrix},\qquad B=\begin{pmatrix}1&a&2\\0&1&1\\-1&1&1\end{pmatrix}$$
+
+(1) 求 $a$，使 A 可经初等列变换化为 B。
+
+翻译：初等列变换 $=$ 右乘可逆阵，所以 $B=AP$（$P$ 可逆），$P$ 可逆则 $\lvert B\rvert=\lvert A\rvert\lvert P\rvert$，于是
+
+$$r(A)=r(B)\quad(\text{必要条件})$$
+
+先算 $r(A)$：
+
+$$A\xrightarrow{\text{行变换}}\begin{pmatrix}1&2&a\\0&1&-a\\0&3&-3a\end{pmatrix}\xrightarrow{r_3-3r_2}\begin{pmatrix}1&2&a\\0&1&-a\\0&0&0\end{pmatrix}$$
+
+$r(A)=2$，与 $a$ 无关；于是要 $r(B)=2$，即 $\lvert B\rvert=0$：
+
+$$\lvert B\rvert=1(1-1)-a(0+1)+2(0+1)=2-a=0\ \Rightarrow\ a=2$$
+
+$a=2$ 确实做得到：第 (2) 问求出的 $P$ 可逆且 $AP=B$，而 $P$ 本身能拆成初等矩阵，$B=AP$ 就是那串列变换。
+
+(2) 求可逆矩阵 $P$，使 $AP=B$。
+
+此时 $A$ 奇异，$P$ 不唯一，只能解矩阵方程。增广矩阵行变换：
+
+$$\begin{array}{ccc|ccc}1&2&2&1&2&2\\1&3&0&0&1&1\\2&7&-2&-1&1&1\end{array}\ \xrightarrow{\text{行变换}}\ \begin{array}{ccc|ccc}1&0&6&3&4&4\\0&1&-2&-1&-1&-1\\0&0&0&0&0&0\end{array}$$
+
+设 $P$ 第 $j$ 列第三个元为 $c_j$，回代得
+
+$$P=\begin{pmatrix}3-6c_1&4-6c_2&4-6c_3\\-1+2c_1&-1+2c_2&-1+2c_3\\c_1&c_2&c_3\end{pmatrix}$$
+
+再由 $P$ 可逆定 $c$：第一行加 6 倍第三行、第二行减 2 倍第三行（不改变行列式），得
+
+$$\lvert P\rvert=\begin{vmatrix}3&4&4\\-1&-1&-1\\c_1&c_2&c_3\end{vmatrix}=c_3-c_2\ne0$$
+
+取 $c_1=c_2=0,\ c_3=1$：
+
+$$P=\begin{pmatrix}3&4&-2\\-1&-1&1\\0&0&1\end{pmatrix},\qquad \lvert P\rvert=1\ne0$$
+
+> **【理解】** 两问各考一样东西：(1) 考"初等列变换 $=$ 矩阵等价 $=$ 同秩"，(2) 考"矩阵方程 $AX=B$ $=$ 拿增广矩阵做行变换"。两问都是老套路，坑在 (1) 的措辞——"列变换"这个词平时几乎不出现，翻译成 $AP=B$、$r(A)=r(B)$ 之后就没什么了。
+
+### 4.4 克拉默法则
 
 $n$ 个方程 $n$ 个未知数，<span class="hl-orange">$\lvert A\rvert \ne0$</span> 时唯一解 $x_j=\dfrac{D_j}{D}$，其中 $D_j$ 为 $D$ 中第 $j$ 列换为常数项。
 
-### 4.4 同解与公共解
+### 4.5 同解与公共解
 
 **$Ax=0$ 与 $Bx=0$ 同解**（等价条件）：
 
@@ -431,7 +563,9 @@ $n$ 个方程 $n$ 个未知数，<span class="hl-orange">$\lvert A\rvert \ne0$</
 4. 两方程组解集相同；
 5. 存在可逆矩阵 $P$，$PA=B$。
 
-**同解方程组**：$Ax=0$ 与 $A^TAx=0$ 同解；$Ax=0$ 与 $AA^Tx=0$ 同解。
+**同解方程组**：<span class="hl-green">$Ax=0$ 与 $A^TAx=0$ 同解</span>（因为 $x^TA^TAx=\lVert Ax\rVert^2=0\iff Ax=0$）。
+
+<span class="hl-red">$Ax=0$ 与 $AA^Tx=0$ 一般不同解</span>：$AA^Tx=0\iff A^Tx=0$，说的是 $A^T$ 的核，只有当 $\ker A=\ker A^T$（如 $A$ 对称）时才与 $Ax=0$ 同解。反例 $A=\begin{pmatrix}1&1\\0&0\end{pmatrix}$：$Ax=0\Rightarrow x_1=-x_2$，而 $AA^T=\begin{pmatrix}2&0\\0&0\end{pmatrix}\Rightarrow x_1=0$，两者解集不同。
 
 **公共解**：联立 $$\begin{pmatrix}A\\B\end{pmatrix}x=0$$。
 
@@ -446,7 +580,7 @@ $$r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$$
 
 > **【理解】** $\ker A=(\text{A 的行空间})^\perp$，故 $\ker A\subseteq\ker B$ 等价于"B 的行向量组被 A 的行向量组张成"，即 $r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$。与"同解"的 $r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}$ 对照记忆：**同解要两边都含，包含只要一头含**。
 
-### 4.5 题型：含参线性方程组的讨论
+### 4.6 题型：含参线性方程组的讨论
 
 **目标**：求参数 $t$ 的取值，使 $Ax=b$ 无解 / 唯一解 / 无穷多解。
 
@@ -472,14 +606,16 @@ $$\begin{cases}Ax=b\\Cy=-t\end{cases}$$
 
 > **【理解】** 参数在常数列时不要去算 $|A|$，而是把参数"搬"成另一个方程，与原方程组联立后比秩——"比秩"就变成了"方程个数与解的关系"，这是含参方程组最省力的入口。
 
-### 4.6 本章易错点
+### 4.7 本章易错点
 
 1. 判定有解看 $r(A)$ 与 $r(A,b)$，<span class="hl-red">不能只看 $r(A)$</span>；
 2. 基础解系个数是 <span class="hl-red">$n-r(A)$</span>，不是 $m-r(A)$；
 3. 非齐次通解 = 齐次通解 + 一个特解；
-4. 同解、公共解、包含关系三类题要分清（见 §4.4）；
+4. 同解、公共解、包含关系三类题要分清（见 §4.5）；
 5. 若 $Ax=0$ 的解都是 $Bx=0$ 的解，则 $r(A)\ge r(B)$；<span class="hl-orange">充要条件是 $r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$</span>；
-6. 含参方程组<span class="hl-red">先比秩、再按 $\Delta(t)$ 分情况</span>，别一上来就求通解（见 §4.5）。
+6. 含参方程组<span class="hl-red">先比秩、再按 $\Delta(t)$ 分情况</span>，别一上来就求通解（见 §4.6）；
+7. <span class="hl-red">$Ax=0$ 只与 $A^TAx=0$ 同解</span>，与 $AA^Tx=0$ <span class="hl-red">一般不同解</span>（后者 $\iff A^Tx=0$）；
+8. 矩阵方程 $AX=B$：<span class="hl-red">$A$ 奇异时不能写 $P=A^{-1}B$</span>，解出通解后还要回代验 $\lvert P\rvert\ne0$（见 §4.3）。
 
 ---
 
@@ -508,14 +644,15 @@ $$\sum_{i=1}^n\lambda_i^k=\operatorname{tr}(A^k)\quad (k=1,2,3,\dots)$$
 
 ### 5.2 各种矩阵的特征值
 
-| 矩阵 | $A$ | $A^T$ | $A^{-1}$ | $$A^*$$ | $A^k$ | $A+kE$ | $f(A)$ | $P^{-1}AP$ |
+| 矩阵 | $A$ | $A^T$ | $A^{-1}$ | $A^*$ | $A^k$ | $A+kE$ | $f(A)$ | $P^{-1}AP$ |
 |---|---|---|---|---|---|---|---|---|
 | 特征值 | $\lambda$ | $\lambda$ | $\dfrac1\lambda$ | $\dfrac{\lvert A\rvert }\lambda$ | $\lambda^k$ | $\lambda+k$ | $f(\lambda)$ | $\lambda$ |
 | 特征向量 | $\alpha$ | / | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $\alpha$ | $P^{-1}\alpha$ |
 
 > **【理解】** 均由 $A\alpha=\lambda\alpha$ 推出：左乘 $A^{-1}$ 得 $A^{-1}\alpha=\frac1\lambda\alpha$；左乘 $A^{k-1}$ 得 $A^k\alpha=\lambda^k\alpha$；加 $kE$ 得 $(A+kE)\alpha=(\lambda+k)\alpha$。
+> <span class="hl-orange">条件</span>：$A^{-1}$、$A^*$ 两列需 $A$ 可逆（$\lambda\ne0$）；$A^T$ 的特征向量与 $A$ 无确定关系（表中"/"）。
 
-**矩阵函数的行列式**：若 $f$ 是多项式，$f(A)$ 的特征值为 $f(\lambda_i)$，故
+**矩阵函数的行列式**：若 $f$ 是多项式（$f(A)$ 指把 $A$ 代入 $f$ 得到的矩阵，如 $f(A)=A^2-3A+2E$），$f(A)$ 的特征值为 $f(\lambda_i)$，故
 
 <div class="hl-green" markdown="1">
 
@@ -631,7 +768,7 @@ $$f(x_1,\cdots,x_n)=\sum_{i,j}a_{ij}x_ix_j=\textcolor{#3f8fd6}{x^TAx}$$
 
 **标准形**：只含平方项 $f=d_1y_1^2+\cdots+d_ny_n^2$。
 
-**规范形**：系数为 $1,-1,0$：$f=z_1^2+\cdots+z_p^2-z_{p+1}^2-\cdots-z_r^2$。
+**规范形**：系数为 $1,-1,0$：$f=z_1^2+\cdots+z_p^2-z_{p+1}^2-\cdots-z_r^2$（从标准形提成规范形的步骤见 §6.3 第 6 步）。
 
 **惯性定理**：可逆线性变换下，正、负平方项个数（正惯性指数 $p$、负惯性指数 $q$）不变。
 
@@ -647,7 +784,51 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 
 系数即 $A$ 的特征值。
 
-**配方法**：依次对变量配方，得到可逆线性变换（配方法标准形系数一般不是特征值）。
+**配方法**：不算特征值，直接对变量配方；标准形的系数是**顺序主子式之比**。
+
+**步骤**：
+
+1. **配 $x_1$**：把含 $x_1$ 的项全收进一个平方
+
+$$f=a_{11}\left(x_1+\frac{a_{12}}{a_{11}}x_2+\cdots+\frac{a_{1n}}{a_{11}}x_n\right)^2+\{\text{不含 }x_1\text{ 的二次式}\}$$
+
+（要 $a_{11}\ne0$）
+
+2. **换元**：令 $y_1=x_1+\frac{a_{12}}{a_{11}}x_2+\cdots+\frac{a_{1n}}{a_{11}}x_n$，剩下的部分记成 $f_1(y_2,\dots,y_n)$；
+3. 对 $f_1$ 重复第 1、2 步，依次配出 $y_2,y_3,\dots,y_n$；
+4. **记代换**：最后把 $x$ 用 $y$ 反解出来，写成 $x=P_1y$，这个 $P_1$ 就是配方用的变换矩阵（§6.6 搭桥法要用）；
+5. 得到标准形 $f=d_1y_1^2+\cdots+d_ny_n^2$，其中 $d_k=\dfrac{\Delta_k}{\Delta_{k-1}}$，$\Delta_k$ 是 $A$ 的 $k$ 阶顺序主子式，$\Delta_0=1$；
+6. **提规范形**：$d_i$ 分三堆——正的留下、负的带负号、零的丢掉，再缩放 $z_i=\sqrt{\lvert d_i\rvert}y_i$：
+
+$$f=z_1^2+\cdots+z_p^2-z_{p+1}^2-\cdots-z_r^2$$
+
+$p$ 是正惯性指数，$r-p$ 是负惯性指数。
+
+> **【理解】** 第 5 步的 $d_k=\Delta_k/\Delta_{k-1}$，就是配方剩下那部分（$A$ 的 Schur 补）的对角元。所以**一旦某个 $\Delta_k=0$，这一步就配不下去**（系数为 0），得先用一次合同变换换主元，或调整变量顺序。
+
+**例**：$f=x_1^2+2x_1x_2+2x_1x_3+2x_2^2+4x_2x_3+3x_3^2$，即 $A=\begin{pmatrix}1&1&1\\1&2&2\\1&2&3\end{pmatrix}$。
+
+配 $x_1$：
+
+$$f=(x_1+x_2+x_3)^2+x_2^2+2x_2x_3+2x_3^2$$
+
+再配 $x_2$：
+
+$$f=(x_1+x_2+x_3)^2+(x_2+x_3)^2+x_3^2$$
+
+令 $y_1=x_1+x_2+x_3,\ y_2=x_2+x_3,\ y_3=x_3$，反解得 $x=P_1y$：
+
+$$P_1=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix},\qquad f=y_1^2+y_2^2+y_3^2$$
+
+回头看顺序主子式：$\Delta_1=1,\ \Delta_2=\begin{vmatrix}1&1\\1&2\end{vmatrix}=1,\ \Delta_3=1$，于是 $d_1=d_2=d_3=1$，与配方结果对得上；规范形为 $z_1^2+z_2^2+z_3^2$，三正，$f$ 正定。
+
+**两种方法怎么挑**：
+
+| | 正交变换法 | 配方法 |
+|---|---|---|
+| 标准形系数 | $A$ 的特征值 | 顺序主子式之比 $\Delta_k/\Delta_{k-1}$ |
+| 代价 | 要算特征值，三阶以上比较烦 | 逐步配方，但**变换矩阵要写出来** |
+| 什么时候用 | 要求正交矩阵 $Q$；实对称矩阵 | 合同、正定、惯性指数、搭桥法 |
 
 ### 6.4 合同
 
@@ -684,7 +865,7 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 
 **搭桥法 1**：求可逆矩阵 $P$ 使 $P^{-1}AP=B$（两非对角矩阵相似）。
 
-- 分别对角化：$P_1^{-1}AP_1=\Lambda,\ P_2^{-1}BP_2=\Lambda$；
+- 分别对角化：$P_1^{-1}AP_1=\Lambda,\ P_2^{-1}BP_2=\Lambda$（$P_1$ 的列是 $A$ 的特征向量）；
 - 则 $P=P_1P_2^{-1}$。
 
 **搭桥法 2**：求正交矩阵 $Q$ 使一个二次型变为另一个（合同+正交）。
@@ -692,10 +873,15 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 - 分别正交对角化：$Q_1^TAQ_1=\Lambda,\ Q_2^TBQ_2=\Lambda$；
 - 则 $Q=Q_1Q_2^T$。
 
-**搭桥法 3**：求可逆矩阵 $P$ 使一个二次型变为另一个（合同，非正交）。
+**搭桥法 3**：求可逆矩阵 $P$ 使 $P^TAP=B$（合同，非正交）。
 
-- 两二次型都用配方法化到**相同标准形**（第一个写标准形、第二个写非标准形）；
-- 则 $P=P_1P_2^{-1}$。
+- 两边都用**配方法**化到**同一个标准形**（系数完全一样；或两边都化到**规范形**，系数只剩 $1,-1,0$，最省事）；
+- 记下配方的代换：$x=P_1y$（$f$ 的）、$x=P_2z$（$g$ 的）；
+- 则 $P=P_1P_2^{-1}$；
+- 两个标准形只差一个正比例时（$g$ 的是 $f$ 的 $\lambda$ 倍），再乘个缩放：$P=\sqrt\lambda\,P_1P_2^{-1}$；
+- <span class="hl-red">前置检查</span>：惯性指数（正、负系数个数）必须相同，否则两型不合同，这样的 $P$ 压根不存在。
+
+> **【理解】** 三个 $P$ 的来源不一样：法 1 的 $P_1$ 用**特征向量**拼（配合 $P_1^{-1}AP_1=\Lambda$），法 3 的 $P_1$ 是**配方代换**（$x=P_1y$），别把两者的 $P_1$ 混用；法 2 那个 $Q_1Q_2^T$ 多一个转置，正交阵要正交着拼。
 
 ### 6.7 二次型几何应用（数一了解，数二可略）
 
@@ -707,7 +893,9 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 2. 正交变换标准形系数是特征值，<span class="hl-orange">配方法不是</span>；
 3. <span class="hl-orange">合同看正负惯性指数，相似看特征值</span>；
 4. 正定判定顺序主子式是"各阶"都大于零，不是只看 $\lvert A\rvert $；
-5. 搭桥法中乘法顺序（<span class="hl-red">$P_1P_2^{-1}$</span> 或 <span class="hl-red">$Q_1Q_2^T$</span>）不能反。
+5. 搭桥法中乘法顺序（<span class="hl-red">$P_1P_2^{-1}$</span> 或 <span class="hl-red">$Q_1Q_2^T$</span>）不能反；
+6. 配方法要把变换矩阵 <span class="hl-orange">$x=P_1y$</span> 写出来（§6.6 搭桥法 3 靠它拼 $P$），配到某个 $\Delta_k=0$ 配不下去时要换主元；
+7. 合同题先比惯性指数，正负个数不同就没有 $P$（§6.6）。
 
 ---
 
@@ -715,13 +903,13 @@ $$f=\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2$$
 
 **"看到……就想到……"**：
 
-1. 看到 $AB=O$：$r(A)+r(B)\le n$；$B$ 的列向量是 $Ax=0$ 的解；$A$ 有特征值 $0$；
+1. 看到 $AB=O$：$r(A)+r(B)\le n$（$n$ 为 $A$ 的列数、$B$ 的行数）；$B$ 的列向量是 $Ax=0$ 的解；<span class="hl-orange">$A,B$ 为 $n$ 阶方阵时</span>，$A$ 有特征值 $0$；
 2. 看到 $AB=C$：$C$ 的列向量可由 $A$ 的列向量表示，$C$ 的行向量可由 $B$ 的行向量表示；
 3. 看到 $AB=E$：$A,B$ 均可逆，$A^{-1}=B,\ B^{-1}=A$；
 4. 看到 $A$ 为正交矩阵：$A^{-1}=A^T$，<span class="hl-red">$\lvert A\rvert =\pm1$</span>，特征值 $\pm1$，行列向量两两正交且单位化；
 5. 看到 $A^T=-A$（反对称）：主对角线为 $0$，奇数阶时 $\lvert A\rvert =0$；
 6. 看到秩 1：$A=\alpha\beta^T$，$A^n=[\operatorname{tr}(A)]^{n-1}A$，特征值 $\operatorname{tr}(A),0,\cdots,0$；
-7. 看到 $AA^T$、$A^TA$：必为对称阵，与 $A$ 同秩，与 $Ax=0$ 同解，非零特征值相同；
+7. 看到 $AA^T$、$A^TA$：必为对称阵，与 $A$ 同秩，非零特征值相同；<span class="hl-green">$A^TAx=0\iff Ax=0$</span>（与 $Ax=0$ 同解），<span class="hl-red">但 $AA^Tx=0\iff A^Tx=0$</span>，一般不与 $Ax=0$ 同解；
 8. 看到每行元素之和为 $a$：特征值 $a$、特征向量 $(1,\cdots,1)^T$；
 9. 看到 $A\sim B$：行列式、迹、秩、特征值全相等；
 10. 看到实对称矩阵：特征值实数、特征向量正交、必可正交对角化；
