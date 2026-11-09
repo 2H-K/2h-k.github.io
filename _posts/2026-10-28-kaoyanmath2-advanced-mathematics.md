@@ -1042,6 +1042,46 @@ $$\iint_D f(x,y)d\sigma=\iint_D f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta$$
 
 > 适用：区域为圆、圆环、扇形，或被积函数含 $x^2+y^2$、$\frac yx$、$\frac xy$。
 
+**积分区域由参数方程给出**（2018 数二第 17 题考法）：
+
+边界为单参数曲线 $x=x(t),\ y=y(t)\ (\alpha\le t\le\beta)$、另一边界为某坐标轴时，按三步走：
+
+1. 先化成直角坐标累次积分（通常是 X 型）：$a\le x\le b,\ 0\le y\le y(x)$；
+2. 内层对 $y$ 积分到底，结果只含 $x$，如 $\int_0^{y(x)}(x+2y)\,dy=x\,y(x)+y(x)^2$；
+3. 外层再代参数：$x=x(t)$、$y(x)=y(t)$、$dx=x'(t)\,dt$，积分限换成 $t:\alpha\to\beta$。
+
+<span class="hl-red">顺序不能颠倒</span>：内层若提前把 $y$ 当作 $t$ 的函数塞进去，$dy$ 就无法处理。
+
+**例（2018 数二 17）**：$D$ 由摆线一拱 $x=t-\sin t,\ y=1-\cos t\ (0\le t\le 2\pi)$ 与 $x$ 轴围成，求
+
+$$I=\iint_D(x+2y)\,dx\,dy$$
+
+区域写成 X 型：$0\le x\le 2\pi,\ 0\le y\le y(x)$，其中 $y(x)=1-\cos t$ 由 $x=t-\sin t$ 隐式确定。
+
+$$I=\int_0^{2\pi}dx\int_0^{y(x)}(x+2y)\,dy=\int_0^{2\pi}\big[x\,y(x)+y(x)^2\big]dx$$
+
+外层代参：$dx=(1-\cos t)\,dt$，$y(x)=1-\cos t$：
+
+$$I=\int_0^{2\pi}\big[(t-\sin t)(1-\cos t)+(1-\cos t)^2\big](1-\cos t)\,dt=\underbrace{\int_0^{2\pi}(t-\sin t)(1-\cos t)^2dt}_{3\pi^2}+\underbrace{\int_0^{2\pi}(1-\cos t)^3dt}_{5\pi}$$
+
+其中 $\int_0^{2\pi}\sin t(1-\cos t)^2dt=0$。故
+
+<div class="hl-green" markdown="1">
+
+$$I=3\pi^2+5\pi$$
+
+</div>
+
+<span class="hl-orange">**拓展：一般换元与雅可比**</span>（超出数二大纲主流，覆盖线性换元类技巧题）。若 $x=x(u,v),\ y=y(u,v)$ 把 $uv$ 平面区域 $D'$ 一一映到 $xy$ 平面区域 $D$，且
+
+$$J=\frac{\partial(x,y)}{\partial(u,v)}=\begin{vmatrix}x_u & x_v\\ y_u & y_v\end{vmatrix}\ne0$$
+
+则
+
+$$\iint_D f(x,y)\,dx\,dy=\iint_{D'} f\big(x(u,v),y(u,v)\big)\,\lvert J\rvert\,du\,dv$$
+
+被积函数整体换成 $f(x(u,v),y(u,v))$，面积元素换成 $\lvert J\rvert\,du\,dv$。极坐标即 $x=r\cos\theta,\ y=r\sin\theta$ 时 $J=r$ 的特例。线性换元例：$x=u+v,\ y=u-v$，此时 $J=-2$，$dx\,dy=2\,du\,dv$。
+
 ### 5.3 对称性
 
 **普通对称性**：
@@ -1074,13 +1114,53 @@ $$I=\frac12\iint_D[f(x,y)+f(y,x)]d\sigma=\frac a2 S_D$$
 
 $$\text{原式}=\int_0^1 dx\int_{\sqrt x}^1 y\sin(1-x)^2 dy=\int_0^1 \sin(1-x)^2\left(\frac12y^2\Big|_{\sqrt x}^1\right) dx=\frac12\int_0^1(1-x)\sin(1-x)^2 dx$$
 
-### 5.5 本章易错点
+**坐标系互换**：与换序同理，本质是同一个积分换一种描述。<span class="hl-green">区域边界是圆弧、或被积函数含 $x^2+y^2$、$\frac yx$</span> 时倾向极坐标；<span class="hl-green">边界是直线围成的多边形、被积函数为多项式</span> 时倾向直角坐标。互换前先画图，避免 $\theta$ 与 $r$ 的定限混乱。
+
+### 5.5 题型信号速查
+
+| 题面信号 | 想到 | 立刻能做什么 |
+|---|---|---|
+| 区域是圆 / 圆环 / 扇形 / 偏心圆，或含 $x^2+y^2$、$\frac yx$ | 极坐标 | 画射线定 $\theta$ 范围，由边界解出 $r$ 上下限，<span class="hl-red">别漏 $r$</span> |
+| 累次积分内层积不出（如 $\sin(1-x)^2$、$e^{x^2}$） | 交换次序 | 由原上下限画区域，重定另一型边界 |
+| 区域关于坐标轴、$x=a$、$y=a$、原点对称 | 普通对称性 | 先验区域对称，再配 $f$ 相应奇偶（§5.3） |
+| 区域关于 $y=x$ 对称 | 轮换对称性 | 用 $\iint f(x,y)=\iint f(y,x)$；$f+f=a$ 时 $I=\frac a2S_D$ |
+| 被积函数含 $\lvert\cdot\rvert$、$\max$、$\min$、分段定义 | 分块计算 | 按符号分界把 $D$ 拆成几块分别积 |
+| 边界形如 $x=x(t),\ y=y(t)$，另一边界是坐标轴 | 参数区域 | 化 X 型 → 内层积 $y$ → 外层代 $t$，$dx=x'(t)dt$（§5.2） |
+| 出现线性变换、椭圆域 $x^2/a^2+y^2/b^2\le1$ | 一般换元 | 求 $J$，面积元素乘 $\lvert J\rvert$（§5.2 拓展） |
+| 积分上限含参、结果含参 | 含参综合 | 先对区域积完，再对参数求导（§5.6） |
+| 比较两个二重积分大小或估计值 | 估值 / 中值 | 比较被积函数，或用估值定理、积分中值定理（§5.1） |
+
+### 5.6 综合与证明套路
+
+**含参积分求导**：积分上限（或结果）含参数 $x$ 时，先把对 $y$ 的积分积完得到一个关于 $x$ 的表达式，再对 $x$ 求导。若求导后出现 $f'(x)$ 与 $f(x)$ 的方程，就是与微分方程联立（第六章）的典型综合题。
+
+**积分不等式**：常用两条路——① 比较被积函数大小（如 $x^2\le x$ 在 $[0,1]$ 上），由比较性直接放缩；② 先用估值定理或积分中值定理把积分化为 $f(\xi,\eta)S_D$，再把问题转成一元函数的最值。
+
+### 5.7 本章易错点
 
 1. 极坐标下面积元素是 <span class="hl-red">$r\,dr\,d\theta$</span>，$r$ 不能漏；
 2. 用对称性前必须先验证区域对称性，且被积函数奇偶性要对应；
 3. 交换次序要先画区域，不能直接改上下限；
 4. 极坐标下 $\theta$ 范围与 $r$ 范围要根据图形确定；
-5. 分段函数（含绝对值、max、min）要先分区域去符号。
+5. 分段函数（含绝对值、max、min）要先分区域去符号；
+6. 区域由参数方程给出时，<span class="hl-red">只对外层 $x$ 换元</span>，内层 $y$ 必须用直角坐标积到底；
+7. 一般换元必须乘 $\lvert J\rvert$ 并取绝对值，注意换元须一一对应；
+8. 轮换对称要求 <span class="hl-orange">区域 $D$ 关于 $y=x$ 对称</span>，仅有被积函数对称不够；
+9. 含参求导前先确认可积可导，别把积分变量与参数混淆。
+
+### 5.8 本章速查
+
+**直角坐标**：$\displaystyle\iint_D f\,d\sigma=\int_a^b dx\int_{\varphi_1(x)}^{\varphi_2(x)}f\,dy=\int_c^d dy\int_{\psi_1(y)}^{\psi_2(y)}f\,dx$
+
+**极坐标**：$\displaystyle\iint_D f\,d\sigma=\iint_{D'}f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta$
+
+**一般换元**：$\displaystyle\iint_D f\,dxdy=\iint_{D'}f(x(u,v),y(u,v))\,\lvert J\rvert\,dudv,\quad J=\frac{\partial(x,y)}{\partial(u,v)}$
+
+**对称性**：$D$ 关于 $y$ 轴对称，$f$ 关于 $x$ 奇则积分为 $0$，偶则为 $2\iint_{D_1}f$；关于 $x$ 轴同理。
+
+**轮换对称**：$D$ 关于 $y=x$ 对称 $\Rightarrow \iint_D f(x,y)=\iint_D f(y,x)$，且 $f(x,y)+f(y,x)=a$ 时 $I=\frac a2S_D$。
+
+**面积**：$\displaystyle\iint_D d\sigma=S_D$。
 
 ---
 
@@ -1179,7 +1259,7 @@ $$(D^2+pD+q)y=f(x)\quad\Rightarrow\quad y^*=\frac{1}{D^2+pD+q}f(x)=F(D)^{-1}f(x)
 
 **方程通解**：见 6.4。
 
-**方法选择速查**：见 §1.5.1（先化简 → 再定型 → 后选工具）、§1.5.2（函数极限信号表）、§1.5.4（数列极限信号表）。
+**方法选择速查**：见 §1.5.1（先化简 → 再定型 → 后选工具）、§1.5.2（函数极限信号表）、§1.5.4（数列极限信号表）、§5.5（二重积分信号表）。
 
 **函数四性速查**：见 §1.1.1（判定流程 Step 0–4）、§1.1.2（四性信号表）、§1.1.3（必背推论）、§1.1.4（例题）。
 
