@@ -244,6 +244,16 @@ $$AA^*=A^*A=|A|E,\quad |A^*|=|A|^{n-1},\quad (A^*)^*=|A|^{n-2}A,\quad (A^*)^{-1}
 
 > **【理解】** 由 $$AA^*=\lvert A\rvert E$$ 两边取行列式：$$\lvert A\rvert \lvert A^*\rvert =\lvert A\rvert ^n$$，故 $$\lvert A^*\rvert =\lvert A\rvert ^{n-1}$$。
 
+**伴随矩阵的秩（三段式，$A$ 为 $n$ 阶）**：
+
+<div class="hl-green" markdown="1">
+
+$$r(A^*)=\begin{cases}n,&r(A)=n\\[2pt]1,&r(A)=n-1\\[2pt]0,&r(A)\le n-2\end{cases}$$
+
+</div>
+
+> **【理解】** $r(A)=n$ 时 $A^*$ 可逆，满秩；$r(A)=n-1$ 时 $AA^*=O$，由 $r(A)+r(A^*)\le n$ 得 $r(A^*)\le1$，又此时至少有一个 $n-1$ 阶非零子式，故 $r(A^*)=1$；$r(A)\le n-2$ 时所有 $n-1$ 阶子式全为 $0$，$A^*=O$。
+
 **可逆矩阵性质**：
 
 $$(A^{-1})^{-1}=A,\quad (kA)^{-1}=\frac1kA^{-1},\quad \textcolor{#e05252}{(AB)^{-1}=B^{-1}A^{-1}},\quad (A^T)^{-1}=(A^{-1})^T,\quad |A^{-1}|=\frac1{|A|}$$
@@ -642,6 +652,8 @@ $$\sum_{i=1}^n\lambda_i^k=\operatorname{tr}(A^k)\quad (k=1,2,3,\dots)$$
 - 不同特征值对应的特征向量线性无关；
 - $k$ 重特征值对应线性无关特征向量不超过 $k$ 个。
 
+**可逆性与特征值**：<span class="hl-green">$A$ 可逆 $\iff$ $A$ 没有零特征值</span>；等价地，<span class="hl-green">$\lvert A\rvert=0\iff A$ 至少有一个特征值 $0$</span>。因为 $\lvert A\rvert=\prod\lambda_i$，只要有一个 $\lambda_i=0$ 行列式就为零。
+
 ### 5.2 各种矩阵的特征值
 
 | 矩阵 | $A$ | $A^T$ | $A^{-1}$ | $A^*$ | $A^k$ | $A+kE$ | $f(A)$ | $P^{-1}AP$ |
@@ -669,6 +681,8 @@ $$|f(A)|=\prod_{i=1}^n f(\lambda_i)$$
 
 - $A$ 每行元素之和为 $a$：$$A\begin{pmatrix}1\\\vdots\\1\end{pmatrix}=a\begin{pmatrix}1\\\vdots\\1\end{pmatrix}$$，即特征值 $a$、特征向量 $(1,\cdots,1)^T$；
 - $AB=O$：$B$ 的非零列向量是 $A$ 特征值 $0$ 的特征向量。
+- <span class="hl-green">$AB$ 与 $BA$ 有相同的非零特征值</span>（$A$ 为 $m\times n$、$B$ 为 $n\times m$，不一定同阶；零特征值的个数可能不同）；
+- <span class="hl-green">$f(A)=O\Rightarrow A$ 的任一特征值都满足 $f(\lambda)=0$</span>；<span class="hl-red">反之不成立</span>（特征值都满足 $f(\lambda)=0$ 推不出 $f(A)=O$，还需可对角化等条件）。
 
 ### 5.3 相似矩阵
 
@@ -709,6 +723,12 @@ $$|A|=|B|,\quad \operatorname{tr}(A)=\operatorname{tr}(B),\quad r(A)=r(B),\quad 
 - 充要条件：$A$ 有 $n$ 个线性无关特征向量；
 - 充要条件：每个 $k_i$ 重特征值 $\lambda_i$ 满足 <span class="hl-green">$n-r(\lambda_i E-A)=k_i$</span>（即 $r(\lambda_i E-A)=n-k_i$）；
 - 充分条件：$A$ 有 $n$ 个不同特征值。
+
+**代数重数与几何重数**：特征值 $\lambda_i$ 在特征方程中的重数叫**代数重数**（即 $k_i$），对应特征子空间的维数叫**几何重数**，即
+
+$$g_i=\dim\ker(\lambda_iE-A)=n-r(\lambda_iE-A)$$
+
+<span class="hl-green">恒有 $1\le g_i\le k_i$</span>（几何重数不超过代数重数）。于是"可对角化"可改述为：<span class="hl-green">每个特征值的几何重数等于代数重数</span>。$g_i<k_i$ 时称 $\lambda_i$ **亏损**，矩阵不可对角化。
 
 **对角化步骤**：
 
@@ -849,7 +869,9 @@ $$P_1=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix},\qquad f=y_1^2+y_2^2+y_3
 
 ### 6.5 正定二次型
 
-**定义**：对任意 $x\ne0$，$x^TAx>0$。
+**定义**：设 $A$ 为<span class="hl-orange">实对称矩阵</span>，若对任意 $x\ne0$，都有 $x^TAx>0$，则称 $A$（及二次型 $f=x^TAx$）**正定**。
+
+> 定义里的实对称前提不能省：非对称矩阵的 $x^TAx$ 只用到了对称部分 $\frac{A+A^T}2$，讨论正定前要先对称化。
 
 **充要条件（任一）**：
 
@@ -860,6 +882,16 @@ $$P_1=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix},\qquad f=y_1^2+y_2^2+y_3
 5. <span class="hl-green">各阶顺序主子式全大于 $0$</span>。
 
 **必要条件**：$a_{ii}>0$；$\lvert A\rvert >0$。
+
+**正定的运算性质**：若 $A$ 正定，则 <span class="hl-green">$A^{-1}$、$A^T$、$kA\ (k>0)$ 都正定</span>；$A,B$ 均正定时 $A+B$ 正定；$A$ 可逆时 $A^TA$ 正定（$x^TA^TAx=\lVert Ax\rVert^2>0,\ x\ne0$）。
+
+**负定**：对任意 $x\ne0$，$x^TAx<0$。等价于 <span class="hl-green">特征值全为负</span>，也等价于 $-A$ 正定。判定用顺序主子式时<span class="hl-orange">符号交替</span>：
+
+$$\Delta_1<0,\ \Delta_2>0,\ \Delta_3<0,\ \cdots,\ (-1)^k\Delta_k>0$$
+
+即奇数阶顺序主子式为负、偶数阶为正。
+
+**半正定**：对任意 $x\ne0$，$x^TAx\ge0$。等价于特征值全 $\ge0$。若进一步存在 $x\ne0$ 使 $x^TAx=0$（此时 $\lvert A\rvert=0$、$A$ 不可逆），称为非严格半正定。<span class="hl-red">各阶顺序主子式全 $\ge0$ 只是半正定的必要条件，不能作为充分判定</span>。
 
 ### 6.6 三种搭桥法
 
@@ -895,7 +927,9 @@ $$P_1=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix},\qquad f=y_1^2+y_2^2+y_3
 4. 正定判定顺序主子式是"各阶"都大于零，不是只看 $\lvert A\rvert $；
 5. 搭桥法中乘法顺序（<span class="hl-red">$P_1P_2^{-1}$</span> 或 <span class="hl-red">$Q_1Q_2^T$</span>）不能反；
 6. 配方法要把变换矩阵 <span class="hl-orange">$x=P_1y$</span> 写出来（§6.6 搭桥法 3 靠它拼 $P$），配到某个 $\Delta_k=0$ 配不下去时要换主元；
-7. 合同题先比惯性指数，正负个数不同就没有 $P$（§6.6）。
+7. 合同题先比惯性指数，正负个数不同就没有 $P$（§6.6）；
+8. 负定的顺序主子式是<span class="hl-red">符号交替</span>（奇数阶 $<0$、偶数阶 $>0$），别照搬正定的全大于 $0$；
+9. 半正定看特征值全 $\ge0$ 且 $\lvert A\rvert=0$，<span class="hl-orange">顺序主子式全 $\ge0$ 只是必要</span>；正定定义要先有实对称前提。
 
 ---
 
@@ -913,12 +947,17 @@ $$P_1=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix},\qquad f=y_1^2+y_2^2+y_3
 8. 看到每行元素之和为 $a$：特征值 $a$、特征向量 $(1,\cdots,1)^T$；
 9. 看到 $A\sim B$：行列式、迹、秩、特征值全相等；
 10. 看到实对称矩阵：特征值实数、特征向量正交、必可正交对角化；
-11. 看到二次型：先写对称矩阵，正交变换看特征值，合同看正负惯性指数，正定看顺序主子式。
+11. 看到二次型：先写对称矩阵，正交变换看特征值，合同看正负惯性指数，正定看顺序主子式；
+12. 看到伴随 $A^*$：先判 $r(A)$，$n$、$n-1$、$\le n-2$ 对应 $r(A^*)=n,1,0$；特征值 $\frac{\lvert A\rvert}{\lambda}$（$A$ 可逆）；
+13. 看到 $f(A)=O$：特征值都满足 $f(\lambda)=0$；
+14. 看到 $AB$、$BA$：非零特征值相同。
 
 **秩的核心公式**：
 
 $$r(A)=r(A^T)=r(AA^T)=r(A^TA),\quad r(AB)\le\min\{r(A),r(B)\}$$
 
 $$r(A)+r(B)-n\le r(AB),\quad AB=O\Rightarrow r(A)+r(B)\le n$$
+
+$$r(A^*)=\begin{cases}n,&r(A)=n\\1,&r(A)=n-1\\0,&r(A)\le n-2\end{cases}$$
 
 **数二线代题型分布提示**：行列式/矩阵小题、向量相关性、方程组求解（大题高频）、特征值与对角化（大题高频）、二次型标准形与正定（常与特征值综合）。
