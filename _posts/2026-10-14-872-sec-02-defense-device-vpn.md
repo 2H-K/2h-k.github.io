@@ -1,9 +1,9 @@
 ---
 title: "网络安全（下）：防火墙、入侵检测、VPN 与系统安全"
-description: 防火墙四种检测过滤技术对比、NAT/MAP/IP-MAC 绑定、路由/透明/混合三种接入方式与五大性能指标、入侵检测 Denning 模型与异常/特征检测、IPS 与 IDS 对比、网闸三大组成与摆渡原理、网络准入控制、IPSec 框架与 AH/ESP 传输和隧道模式、四种 VPN 通道建立方式、SSL/TLS 握手与 HTTPS 单向鉴别、漏洞分析与联邦学习、其他考点（供应链安全、卫星通信安全）——网络安全复习第 2 篇
+description: 防火墙四种检测过滤技术对比、NAT/MAP/IP-MAC 绑定、路由/透明/混合三种接入方式与五大性能指标、入侵检测 Denning 模型与异常/特征检测、IPS 与 IDS 对比、网闸三大组成与摆渡原理、网络准入控制、IPSec 框架与 AH/ESP 传输和隧道模式、四种 VPN 通道建立方式、HMAC 能力边界、SSL/TLS 握手与 HTTPS 单向鉴别、漏洞分析与联邦学习、其他考点（供应链安全、卫星通信安全）——网络安全复习第 2 篇
 date: 2026-10-14 20:00:00 +0800
 categories: ["872", 网络安全]
-tags: [防火墙, 包过滤, 应用代理, 状态检测, NAT, 入侵检测, IDS, IPS, 网闸, UTM, 网络准入控制, IPSec, AH, ESP, IKE, VPN, SSL, TLS, HTTPS, 模糊测试, 联邦学习, 供应链安全]
+tags: [防火墙, 包过滤, 应用代理, 状态检测, NAT, 入侵检测, IDS, IPS, 网闸, UTM, 网络准入控制, IPSec, AH, ESP, IKE, VPN, HMAC, MAC, SSL, TLS, HTTPS, 模糊测试, 联邦学习, 供应链安全]
 math: true
 ---
 
@@ -638,6 +638,48 @@ IP 头的协议字段由原来的值变为 **50**，用于保护传输层载荷�
 
 ![数据完整性保护过程：发送端 Hash 生成摘要并加密数据包一同传输，接收端解密后重新 Hash 与摘要比较](/assets/img/csreview/vpn-integrity.png)
 
+#### 10.6.1 HMAC 与能力边界（考点辨析）
+
+**定义**：<span class="hl-blue">HMAC（Hash-based Message Authentication Code，基于散列函数的消息鉴别码）以公开散列函数与双方共享密钥为输入，输出定长的鉴别标识</span>。MAC 是这一类鉴别机制的统称，HMAC 是基于散列函数构造的具体算法，TLS 采用 RFC 2104 定义的 HMAC。
+
+**验证流程**：发送方以共享密钥 $K$ 对消息 $M_0$ 计算 $\mathrm{MAC}_0 = C_K(M_0)$，将 $M_0$ 与 $\mathrm{MAC}_0$ 一并发送；接收方分离出 $M_1$ 与 $\mathrm{MAC}_1$，用同一密钥与同一函数重算得到 $\mathrm{MAC}_2$，比较 $\mathrm{MAC}_2$ 与 $\mathrm{MAC}_1$，相等则接受，不等则判定被篡改。
+
+**它能保证什么**
+
+- 接收方确信消息在传输过程中未被更改，即完整性成立。
+- 接收方确信消息来自持有同一共享密钥的一方，即来源认证成立。
+- 消息中含序列号时，接收方可据此判断消息顺序，并识别插入、删除与重放。
+- <span class="hl-red">不提供保密性</span>，报文正文的隐藏由加密层另行负责。
+
+**SSL 记录协议第 3 步“计算 MAC”**：
+
+$$
+\mathrm{hash}\big(\text{MAC\_write\_secret} \parallel \text{pad}_2 \parallel \mathrm{hash}(\text{MAC\_write\_secret} \parallel \text{pad}_1 \parallel \text{seq\_num} \parallel \text{SSLCompressed.type} \parallel \text{SSLCompressed.length} \parallel \text{SSLCompressed.fragment})\big)
+$$
+
+- `MAC_write_secret` 为双方共享的保密密钥，`hash` 为 MD5 或 SHA-1。
+- `pad_1` 为 0x36 重复 48 次（MD5）/ 40 次（SHA-1），`pad_2` 为 0x5C 重复同样次数。
+- 会话状态参数中的加密规格（Cipher spec）指定 MAC 所用的散列算法；连接状态参数中的 Server / Client write MAC secret 即服务器与客户机做 MAC 运算的密钥。
+- TLS 改用 RFC 2104 定义的 HMAC，且 MAC 覆盖 SSLv3 的全部字段并增加 `TLSCompressed.version`（见 §10.7 第 2 条）。
+
+**能力边界（四问对照）**
+
+| 命题 | 结论 | 依据 |
+|---|---|---|
+| 能否隐藏明文、实现加密 | **不能** | 定长鉴别标识附在消息之后传输，消息本体仍为明文；机密性由加密层单独提供 |
+| 是否无需任何密钥即可验证来源 | **不能** | 验证方必须持有同一共享密钥才能重算出可被接受的值 |
+| 是否对第三方提供与数字签名等价的不可否认性 | **不能** | MAC 由双方共享的对称密钥产生，通信两端均具备生成能力，第三方无法判定实际生成方 |
+| 能否检验消息完整性并认证消息来自持有共享密钥的一方 | **可以** | 这正是 HMAC 的设计目标，成立条件是密钥保密且比较过程安全 |
+
+逐条展开：
+
+- **保密性**：HMAC 只输出鉴别标识，报文正文保持明文；需要保密时应另行加密，TLS 记录协议的加密步骤与 MAC 计算相互独立。
+- **密钥依赖**：验证以持有共享密钥为前提，无密钥者无法生成通过校验的值；这也意味着验证范围限于持有该密钥的通信对端。
+- **不可否认性**：对称密钥为双方共享，任一持有者均可生成合法 MAC，第三方无从区分；与数字签名等价的不可否认性依赖非对称机制。命题时常把“对通信对端的认证”与“对第三方的不可否认性”合并设问，作答时须分层说明。
+- **完整性与来源认证**：这是 HMAC 的核心安全目标，覆盖消息被篡改、插入、删除与重放等情形；比较操作宜采用恒定时间实现，避免时序侧信道泄露。
+
+> **告警对应**：<span class="hl-orange">bad_record_mac 为致命告警，对应 MAC 校验失败</span>，接收方据此终止连接。
+
 ### 10.7 SSL 与 TLS
 
 - **<span class="hl-blue">SSL</span>**：安全套接层协议，广泛用于 Web 浏览器与服务器之间的身份认证和加密数据传输。
@@ -648,7 +690,7 @@ IP 头的协议字段由原来的值变为 **50**，用于保护传输层载荷�
 **TLS 与 SSLv3 的九处不同（背诵版）**
 
 1. **版本号**：TLS 主版本 3、次版本 1（TLS 1.0）。
-2. **消息验证码**：改用 RFC 2104 定义的 HMAC；MAC 覆盖 SSLv3 的全部字段，并增加 `TLSCompressed.version` 字段。
+2. **消息验证码**：改用 RFC 2104 定义的 HMAC；MAC 覆盖 SSLv3 的全部字段，并增加 `TLSCompressed.version` 字段。HMAC 的构造与能力边界见 §10.6.1，机密性由记录协议的加密步骤单独提供。
 3. **伪随机函数**：TLS 使用 PRF 伪随机函数扩展密码为数据块。
 4. **警告码**：支持 SSLv3 定义的全部警告码（`no_certificate` 除外），并新增若干警告码。
 5. **密码组**：TLS 不包含 Fortezza 方案。
