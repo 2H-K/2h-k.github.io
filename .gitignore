@@ -14,6 +14,10 @@ _site
 # NPM dependencies
 node_modules
 package-lock.json
+!tools/mermaid/package-lock.json
+
+# Generated at build time by _plugins/mermaid_prerender.rb
+assets/img/mermaid/
 
 # IDE configurations
 .idea

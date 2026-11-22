@@ -45,6 +45,42 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/mermaid/package-lock.json
+
+      - name: Cache Puppeteer Chromium
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('tools/mermaid/package-lock.json') }}
+          restore-keys: |
+            puppeteer-${{ runner.os }}-
+
+      - name: Cache generated Mermaid SVGs
+        uses: actions/cache@v4
+        with:
+          path: assets/img/mermaid
+          key: mermaid-${{ runner.os }}-${{ hashFiles('_posts/**/*.md', 'tools/mermaid/package-lock.json', 'tools/mermaid/render.mjs') }}
+          restore-keys: |
+            mermaid-${{ runner.os }}-
+
+      - name: Install Mermaid renderer
+        working-directory: tools/mermaid
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
+        run: npm ci
+
+      - name: Install Puppeteer Chromium
+        working-directory: tools/mermaid
+        run: npx puppeteer browsers install chrome --install-deps
+
+      - name: Install CJK fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+
       - name: Cache Jekyll build cache
         uses: actions/cache@v4
         with:

@@ -1,0 +1,17 @@
+{
+  "name": "blog-mermaid-renderer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Build-time Mermaid SVG renderer for the Jekyll blog",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "mermaid": "11.15.0",
+    "puppeteer": "24.43.1"
+  }
+}
