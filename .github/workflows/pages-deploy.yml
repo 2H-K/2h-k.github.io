@@ -76,7 +76,18 @@ jobs:
 
       - name: Install Puppeteer Chromium
         working-directory: tools/mermaid
-        run: npx puppeteer browsers install chrome --install-deps
+        run: npx puppeteer browsers install chrome
+
+      - name: Check Chromium dependencies
+        working-directory: tools/mermaid
+        run: |
+          CHROME=$(find "$HOME/.cache/puppeteer" -type f -name chrome | head -n 1)
+          echo "Chromium: $CHROME"
+          ldd "$CHROME" | grep "not found" || true
+
+      - name: Verify Chromium launch
+        working-directory: tools/mermaid
+        run: node -e "const p=require('puppeteer');(async()=>{const b=await p.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});console.log(await b.version());await b.close();})().catch(e=>{console.error(e);process.exit(1)})"
 
       - name: Install CJK fonts
         run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
