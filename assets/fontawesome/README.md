@@ -11,8 +11,9 @@ python -m pip install "fonttools[woff]" brotli
 python tools/fonts/subset-fontawesome.py
 ```
 
-Then add the new `(style, icon)` pair to `PAIRS` in
-`tools/fonts/subset-fontawesome.py` before running the script.
+The icon list lives in `tools/fonts/fontawesome-icons.txt`. Add the new
+`(style, icon)` pair there before running the script. CI checks that every
+Font Awesome class in the built HTML is present in that list.
 
 License: Font Awesome Free (icons CC BY 4.0, fonts SIL OFL 1.1, code MIT).
 See `LICENSE.txt`.

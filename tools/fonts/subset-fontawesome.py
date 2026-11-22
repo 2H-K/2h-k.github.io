@@ -11,8 +11,8 @@ Requirements:
 Run from anywhere:
     python tools/fonts/subset-fontawesome.py
 
-If you add a new `fa-*` class to the site, add the (style, class) pair to PAIRS
-and run this script again.
+If you add a new `fa-*` class to the site, add the (style, class) pair to
+`fontawesome-icons.txt` and run this script again.
 """
 
 from __future__ import annotations
@@ -29,45 +29,12 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "assets" / "fontawesome"
 VERSION = "7.3.1"
 BASE = f"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@{VERSION}"
+ICONS_FILE = Path(__file__).with_name("fontawesome-icons.txt")
 METADATA_URL = (
-    "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/"
-    f"{VERSION}/metadata/icons.json"
+    f"https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@{VERSION}/"
+    "metadata/icons.json"
 )
 LICENSE_URL = f"{BASE}/LICENSE.txt"
-
-# (style, class) pairs actually used by the site. Styles are the font files,
-# not the CSS class aliases (fas/far/fab are resolved by the browser).
-PAIRS = [
-    ("brands", "fa-facebook-square"),
-    ("brands", "fa-github"),
-    ("brands", "fa-square-x-twitter"),
-    ("brands", "fa-telegram"),
-    ("brands", "fa-x-twitter"),
-    ("regular", "fa-calendar"),
-    ("regular", "fa-clipboard"),
-    ("regular", "fa-folder"),
-    ("regular", "fa-folder-open"),
-    ("regular", "fa-moon"),
-    ("regular", "fa-sun"),
-    ("solid", "fa-angle-down"),
-    ("solid", "fa-angle-left"),
-    ("solid", "fa-angle-right"),
-    ("solid", "fa-angle-up"),
-    ("solid", "fa-archive"),
-    ("solid", "fa-bars"),
-    ("solid", "fa-code"),
-    ("solid", "fa-envelope"),
-    ("solid", "fa-hashtag"),
-    ("solid", "fa-home"),
-    ("solid", "fa-info-circle"),
-    ("solid", "fa-link"),
-    ("solid", "fa-list-ul"),
-    ("solid", "fa-rss"),
-    ("solid", "fa-search"),
-    ("solid", "fa-stream"),
-    ("solid", "fa-tags"),
-    ("solid", "fa-thumbtack"),
-]
 
 FONT_FILES = {
     "solid": "fa-solid-900.woff2",
@@ -89,11 +56,22 @@ def build_alias_map(metadata: dict) -> dict[str, str]:
     return aliases
 
 
+def load_pairs() -> list[tuple[str, str]]:
+    pairs = []
+    for line in ICONS_FILE.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        style, icon = line.split()
+        pairs.append((style, icon))
+    return pairs
+
+
 def codepoints_by_style(metadata: dict) -> dict[str, list[str]]:
     aliases = build_alias_map(metadata)
     grouped: dict[str, set[str]] = defaultdict(set)
 
-    for style, icon_class in PAIRS:
+    for style, icon_class in load_pairs():
         name = icon_class.removeprefix("fa-")
         canonical = aliases.get(name, name)
         info = metadata.get(canonical)
