@@ -815,6 +815,8 @@ $$F\left(\frac12\right)-F(0)=\frac12F'(\xi),\qquad F(1)-F\left(\frac12\right)=\f
 
 解 (1) 令 $F(x)=\int_0^xf(t)dt$，则 $F(0)=0$，$F(1)=1$。拉格朗日定理给出 $c\in(0,1)$ 使 $F'(c)=f(c)=1$。由 $f(c)=f(1)=1$，在 $[c,1]$ 上用罗尔定理得 $\xi\in(c,1)$，$f'(\xi)=0$。
 
+**另法（最值 + 费马）**：$f$ 在 $[0,1]$ 上连续，由最值定理取到最大值 $M$。若 $M\le1$，则 $1-f(x)\ge0$ 且 $1-f(0)=1>0$，即 $1-f\not\equiv0$；由定积分的严格比较性（§3.2），$\int_0^1[1-f(x)]dx>0$，即 $\int_0^1f<1$，与题设矛盾。故 $M>1$。又 $M>1=f(1)>0=f(0)$，最大值点 $\xi$ 非端点，$\xi\in(0,1)$；$f$ 可导，由费马引理 $f'(\xi)=0$。<span class="hl-green">此法在同一点 $\xi$ 上兼得 $f(\xi)>1$ 与 $f'(\xi)=0$</span>，第 (2) 问另法直接用它。
+
 (2) 目标 $f''<-2$ 即 $(f+x^2)''<0$。令 $\varphi=f+x^2$，则 $\varphi(0)=0$，$\varphi(c)=1+c^2$，$\varphi(1)=2$。在 $[0,c]$、$[c,1]$ 上分别用拉格朗日定理：
 
 $$\varphi'(\eta_1)=\frac{1+c^2}c=c+\frac1c,\qquad \varphi'(\eta_2)=\frac{2-1-c^2}{1-c}=1+c.$$
@@ -824,6 +826,12 @@ $$\varphi'(\eta_1)=\frac{1+c^2}c=c+\frac1c,\qquad \varphi'(\eta_2)=\frac{2-1-c^2
 $$\varphi''(\eta)=\frac{(1+c)-\left(c+\frac1c\right)}{\eta_2-\eta_1}=\frac{1-\frac1c}{\eta_2-\eta_1}<0\quad(0<c<1).$$
 
 由 $\varphi''=f''+2$ 得 $f''(\eta)<-2$。
+
+**另法（泰勒）**：用第 (1) 问另法得到的点 $\xi$（$f(\xi)>1$，$f'(\xi)=0$）。在 $\xi$ 处把 $f$ 展到一阶（二阶拉格朗日余项），代 $x=0$：
+
+$$0=f(0)=f(\xi)+f'(\xi)(0-\xi)+\frac{f''(\eta)}{2}\xi^2=f(\xi)+\frac{f''(\eta)}{2}\xi^2,\qquad \eta\in(0,\xi)$$
+
+故 $f''(\eta)=-\dfrac{2f(\xi)}{\xi^2}$。由 $f(\xi)>1$、$0<\xi^2<1$ 得 $\dfrac{f(\xi)}{\xi^2}>1$，所以 $f''(\eta)<-2$。
 
 **泰勒公式**：
 
@@ -844,6 +852,7 @@ $$f(x)=f(x_0)+f'(x_0)(x-x_0)+\frac{f''(x_0)}{2!}(x-x_0)^2+\cdots+\frac{f^{(n)}(x
 | 分段函数在分界点的高阶可导 | 两侧分别展开，比系数到哪一阶一致 |
 | 局部极值 / 拐点 | 看第一个非零导数的阶数与符号 |
 | 不等式 / 误差估计 | 展开后用 Lagrange 余项定符号 / 上界 |
+| 结论含 $f''$（证二阶导的界） | 在 $f'=0$ 的点展开，代端点直接解出 $f''$（例 4 另法） |
 | 变限积分 / 积分估计 | 展开被积函数，再逐项积分 |
 | 方程根 / 数列极限 | 泰勒定局部符号 + 单调性定全局；数列先换 $x$ |
 
@@ -1018,6 +1027,47 @@ $$I=\frac x2\sqrt{a^2+x^2}+\frac{a^2}2\ln\left(x+\sqrt{a^2+x^2}\right)+C$$
 
 $$\frac1{\sqrt x}dx=2\,d\sqrt x,\quad x\,dx=\frac12 d(x^2),\quad \frac1x dx=d\ln x,\quad e^x dx=d(e^x)$$
 
+**4. 有理函数的积分（部分分式分解）**
+
+有理函数是两多项式之商 $\dfrac{P(x)}{Q(x)}$。若分子次数不低于分母，先做多项式除法，把它写成一个多项式与一个真分式之和；多项式部分逐项积分，真分式部分用部分分式分解处理。
+
+分解的依据是：任何真分式都可拆成若干最简分式之和，分母只可能是线性因子的幂与不可约二次因子的幂。实际计算不必证明这一点，直接按分母的因式写出分解形式：
+
+| 分母中的因子 | 对应的分式 |
+|---|---|
+| $x-a$ | $\dfrac{A}{x-a}$ |
+| $(x-a)^k$ | $\dfrac{A_1}{x-a}+\dfrac{A_2}{(x-a)^2}+\cdots+\dfrac{A_k}{(x-a)^k}$ |
+| $x^2+px+q$（$p^2-4q<0$） | $\dfrac{Bx+C}{x^2+px+q}$ |
+| $(x^2+px+q)^k$ | $\dfrac{B_1x+C_1}{x^2+px+q}+\cdots+\dfrac{B_kx+C_k}{(x^2+px+q)^k}$ |
+
+重线性因子 $(x-a)^k$ 必须从一次到 $k$ 次逐项写全，缺一项分解就不完整；不可约二次因子的分子必须是一次式 $Bx+C$，不能只写常数。
+
+形式写出后，通分去分母得到一个恒等式，用比较系数或代特殊值定出各待定系数。实践中两者配合使用：先代线性因子的零点（此时多数项消失）定出一部分系数，再比较剩余项的系数。
+
+分解完成后，每个最简分式的积分归为三类：$\displaystyle\int\frac{A}{x-a}dx=A\ln\lvert x-a\rvert$；$\displaystyle\int\frac{A}{(x-a)^k}dx=\frac{A}{1-k}(x-a)^{1-k}$（$k\ge2$）；$\dfrac{Bx+C}{x^2+px+q}$ 一类按下述理解处理。
+
+> **【理解】** 积 $\dfrac{Bx+C}{x^2+px+q}$ 时，把分子拆成"分母的导数 + 常数"：$Bx+C=\dfrac{B}{2}(2x+p)+\left(C-\dfrac{Bp}{2}\right)$。前半恰为 $\dfrac{B}{2}\cdot\dfrac{(x^2+px+q)'}{x^2+px+q}$，积出 $\dfrac{B}{2}\ln(x^2+px+q)$；后半对 $x^2+px+q=\left(x+\dfrac p2\right)^2+\left(q-\dfrac{p^2}{4}\right)$ 配方，积出反正切。<span class="hl-orange">反正切项是否出现，取决于余项 $C-\frac{Bp}{2}$ 是否为零</span>——余项为零时结果是纯对数。
+
+**例** 求 $\displaystyle\int\frac{3x+6}{(x-1)^2(x^2+x+1)}dx$。
+
+分母已分解：$(x-1)^2$ 是重线性因子，$x^2+x+1$ 的判别式 $1-4<0$，不可约。按上表写出分解形式
+
+$$\frac{3x+6}{(x-1)^2(x^2+x+1)}=\frac{A}{x-1}+\frac{B}{(x-1)^2}+\frac{Cx+D}{x^2+x+1}$$
+
+通分去分母：
+
+$$3x+6=A(x-1)(x^2+x+1)+B(x^2+x+1)+(Cx+D)(x-1)^2$$
+
+注意 $(x-1)(x^2+x+1)=x^3-1$（立方差），展开后各项系数容易读出。先代 $x=1$，此时含 $A,C,D$ 的项中只有 $B$ 项幸存：$9=3B$，得 $B=3$。再比较系数：$x^3$ 项给 $A+C=0$；$x^2$ 项给 $B-2C+D=0$；常数项给 $-A+B+D=6$。联立解得 $A=-2,\ C=2,\ D=1$。于是
+
+$$\int\frac{3x+6}{(x-1)^2(x^2+x+1)}dx=\int\left[\frac{-2}{x-1}+\frac{3}{(x-1)^2}+\frac{2x+1}{x^2+x+1}\right]dx$$
+
+第三项的分子 $2x+1$ 恰为 $(x^2+x+1)'$，余项为零，故不出反正切项：
+
+$$=-2\ln\lvert x-1\rvert-\frac{3}{x-1}+\ln(x^2+x+1)+C$$
+
+> **【易错】** <span class="hl-red">重线性因子要写全各次幂</span>，漏掉 $\frac{B}{(x-1)^2}$ 一类项，待定方程组会无解；不可约二次因子的分子是 $Cx+D$ 两个待定数，写成常数会丢解。比较系数时，把 $(x-1)(x^2+x+1)$ 认作 $x^3-1$ 比逐项展开快得多。
+
 ### 3.2 定积分
 
 **定义**：
@@ -1038,6 +1088,8 @@ $$\int_a^b f(x)dx=\lim_{\lambda\to0}\sum_{i=1}^n f(\xi_i)\Delta x_i$$
 $$\int_a^b f\,dx=\int_a^c f\,dx+\int_c^b f\,dx$$
 
 $$\int_a^b[f\pm g]dx=\int_a^b f\,dx\pm\int_a^b g\,dx,\quad \int_a^b kf\,dx=k\int_a^b f\,dx$$
+
+**比较性**：$f(x)\le g(x)\Rightarrow\displaystyle\int_a^b f\,dx\le\int_a^b g\,dx$。<span class="hl-orange">严格形式</span>：$f$ 连续、$f(x)\ge0$ 且 $f\not\equiv0$，则 $\displaystyle\int_a^b f\,dx>0$（"平均值达标而端点偏低，则函数必超过平均值"这类证明用它，见 §2.4 例 4 另法）。
 
 **积分中值定理**：$f$ 在 $[a,b]$ 连续，则 $\exists\xi\in[a,b]$：
 
@@ -1205,8 +1257,24 @@ $$S=\int_a^b y\,dx=\int_{t_1}^{t_2}y(t)x'(t)dt$$
 > 故
 >
 > $$S=\frac{1+e^{-\pi}}{2}\left(1+e^{-\pi}\right)=\frac{(1+e^{-\pi})^2}{2}$$
+>
+> **推广**：区间改为 $[0,n\pi]$（$n$ 为正整数），记面积为 $S_n$。逐段写绝对值在 $n$ 大时繁琐，注意 $\sin x$ 在 $[k\pi,(k+1)\pi]$ 上不变号，符号恰为 $(-1)^k$（$k$ 偶为正、$k$ 奇为负），而 $e^{-x}>0$，故第 $k$ 段面积可统一写成
+>
+> $$(-1)^k\int_{k\pi}^{(k+1)\pi}e^{-x}\sin x\,dx$$
+>
+> 这里的 $(-1)^k$ 就是绝对值的作用：该段积分为负时，乘 $(-1)^k=-1$ 翻为正。用 $\displaystyle\int e^{-x}\sin x\,dx=-\frac12e^{-x}(\sin x+\cos x)$ 及 $\cos k\pi=(-1)^k$，每段面积为
+>
+> $$(-1)^k\cdot\left(-\frac12\right)\left[e^{-(k+1)\pi}(-1)^{k+1}-e^{-k\pi}(-1)^k\right]=\frac12\left(e^{-k\pi}+e^{-(k+1)\pi}\right)$$
+>
+> 对 $k=0,1,\dots,n-1$ 求和，拆成两个等比数列（公比 $e^{-\pi}$）：
+>
+> $$S_n=\frac12\sum_{k=0}^{n-1}\left(e^{-k\pi}+e^{-(k+1)\pi}\right)=\frac12\left[\sum_{k=0}^{n-1}e^{-k\pi}+\sum_{k=1}^{n}e^{-k\pi}\right]=\frac12\cdot\frac{(1+e^{-\pi})(1-e^{-n\pi})}{1-e^{-\pi}}$$
+>
+> 令 $n\to\infty$，$e^{-n\pi}\to0$，得
+>
+> $$\lim_{n\to\infty}S_n=\frac12\cdot\frac{1+e^{-\pi}}{1-e^{-\pi}}=\frac12+\frac{1}{e^{\pi}-1}$$
 
-<span class="hl-orange">关键是先加绝对值再分段</span>；直接积 $e^{-x}\sin x$ 得到的是代数和，正负会抵消。无穷区间上的同类计算要借助级数，超出数二范围，这里不展开。
+<span class="hl-orange">关键是先加绝对值再分段</span>；直接积 $e^{-x}\sin x$ 得到的是代数和，正负会抵消。段数少时逐段写出即可，段数随参数增长时改用 $(-1)^k$ 的统一写法（见上例推广）。
 
 #### 3.4.3 旋转体体积
 
@@ -1605,6 +1673,22 @@ $$\int_c^d dy\int_{\psi_1(y)}^{\psi_2(y)} f(x,y)\,dx$$
 $$\iint_D f(x,y)d\sigma=\iint_D f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta$$
 
 > 适用：区域为圆、圆环、扇形，或被积函数含 $x^2+y^2$、$\frac yx$、$\frac xy$。
+
+> **【例 · 对称性先行，再极坐标】** 设 $D=\{(x,y)\mid \lvert x\rvert\le y,\ (x^2+y^2)^3\le y^4\}$，计算 $\displaystyle\iint_D\frac{x+y}{\sqrt{x^2+y^2}}\,dxdy$。
+>
+> 区域的两个条件在 $x\to-x$ 下都不变，故 $D$ 关于 $y$ 轴对称；$\dfrac{x}{\sqrt{x^2+y^2}}$ 关于 $x$ 是奇函数，它在 $D$ 上的积分为 $0$（§5.3），于是
+>
+> $$\iint_D\frac{x+y}{\sqrt{x^2+y^2}}\,dxdy=\iint_D\frac{y}{\sqrt{x^2+y^2}}\,dxdy$$
+>
+> 边界 $(x^2+y^2)^3\le y^4$ 在直角坐标下难以画出，代入 $x=r\cos\theta,\ y=r\sin\theta$ 得 $r^6\le r^4\sin^4\theta$，即 $r\le\sin^2\theta$；由 $\lvert x\rvert\le y$ 且 $y\ge0$ 得 $\theta\in\left[\dfrac\pi4,\dfrac{3\pi}4\right]$。被积函数 $\dfrac{y}{\sqrt{x^2+y^2}}=\sin\theta$，故
+>
+> $$\iint_D\frac{y}{\sqrt{x^2+y^2}}\,dxdy=\int_{\pi/4}^{3\pi/4}d\theta\int_0^{\sin^2\theta}\sin\theta\cdot r\,dr=\frac12\int_{\pi/4}^{3\pi/4}\sin^5\theta\,d\theta$$
+>
+> 令 $t=\cos\theta$，$\sin^5\theta\,d\theta=-(1-t^2)^2dt$：
+>
+> $$\frac12\int_{\pi/4}^{3\pi/4}\sin^5\theta\,d\theta=-\frac12\int_{\sqrt2/2}^{-\sqrt2/2}(1-t^2)^2dt=\int_0^{\sqrt2/2}(1-2t^2+t^4)dt=\frac{\sqrt2}{2}-\frac{\sqrt2}{6}+\frac{\sqrt2}{40}=\frac{43\sqrt2}{120}$$
+>
+> <span class="hl-orange">此题的顺序是关键</span>：先用对称性删去奇函数项，再化极坐标；若先极坐标化，就要分别处理 $\cos\theta$ 与 $\sin\theta$ 两部分，计算量翻倍。形如 $(x^2+y^2)^m\le y^n$ 的边界，极坐标化后成为 $r\le f(\theta)$，区域反而简单——直角坐标下"画不出"不等于极坐标下复杂。
 
 **积分区域由参数方程给出**：
 
