@@ -253,7 +253,7 @@ $$c_{ij}=\sum_{k=1}^s a_{ik}b_{kj}$$
 
 - $\operatorname{tr}(kA)=k\operatorname{tr}(A)$，$\operatorname{tr}(A+B)=\operatorname{tr}(A)+\operatorname{tr}(B)$；
 - $\operatorname{tr}(AB)=\operatorname{tr}(BA)$（<span class="hl-orange">$A,B$ 同阶方阵</span>）；
-- <span class="hl-red">一般 $\operatorname{tr}(AB)\ne\operatorname{tr}(A)\operatorname{tr}(B)$</span>（例 $A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$，$B=\begin{pmatrix}1&2\\3&4\end{pmatrix}$：$\operatorname{tr}(AB)=17$，$\operatorname{tr}(A)\operatorname{tr}(B)=25$）；
+- <span class="hl-red">一般 $\operatorname{tr}(AB)\ne\operatorname{tr}(A)\operatorname{tr}(B)$</span>（例 $$A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$$，$$B=\begin{pmatrix}1&2\\3&4\end{pmatrix}$$：$\operatorname{tr}(AB)=17$，$\operatorname{tr}(A)\operatorname{tr}(B)=25$）；
 - $\operatorname{tr}(A^T)=\operatorname{tr}(A)$。
 
 ### 2.2 逆矩阵
@@ -408,7 +408,7 @@ $$\begin{pmatrix}A&B\\C&D\end{pmatrix}^T=\begin{pmatrix}A^T&C^T\\B^T&D^T\end{pma
 3. 求逆只能用初等行变换（不能行列混用）；
 4. 抽象矩阵求逆优先用定义 $AB=E$ 或因式分解；
 5. 秩的不等式中 <span class="hl-red">$AB=O\Rightarrow r(A)+r(B)\le n$</span> 是高频考点，$n$ 是 $B$ 的行数（也是 $A$ 的列数）；
-6. 三组"推不出"必须记牢：<span class="hl-red">$A^2=0\not\Rightarrow A=0$</span>（$A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$）；<span class="hl-red">$A^2=B^2\not\Rightarrow A=B$</span>（$A=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$、$B=-A$，两者平方都是 $E$）；<span class="hl-red">$\lvert A\rvert=\lvert B\rvert\not\Rightarrow A\sim B$</span>。
+6. 三组"推不出"必须记牢：<span class="hl-red">$A^2=0\not\Rightarrow A=0$</span>（$$A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$$）；<span class="hl-red">$A^2=B^2\not\Rightarrow A=B$</span>（$$A=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$$、$B=-A$，两者平方都是 $E$）；<span class="hl-red">$\lvert A\rvert=\lvert B\rvert\not\Rightarrow A\sim B$</span>。
 
 ---
 
@@ -472,7 +472,7 @@ $$\alpha\cong\beta\iff r(\alpha)=r(\beta)=r(\alpha,\beta)$$
 3. 当 $A=(\alpha_1,\dots,\alpha_n)$、$B=(\beta_1,\dots,\beta_n)$ 都是 $n$ 阶可逆矩阵时：<span class="hl-green">$A,B$ 的列向量组等价 $\iff$ 存在可逆矩阵 $P$ 使 $B=PA\iff A,B$ 矩阵等价</span>（左乘关系，见 §2.3）。
 
 > **【理解】** "向量组等价"是**双向**的（互相可表示），"矩阵等价"只是"秩相等"，单向可达：向量组等价 $\Rightarrow$ 矩阵等价，反之不行。
-> <span class="hl-orange">别把"左乘"当"相似"</span>：$B=PA$ 是**矩阵等价**（只保秩），$A\sim B$ 是**相似**（§5.3，保特征值），二者不是一回事。反例 $A=E$，$B=\begin{pmatrix}1&1\\0&1\end{pmatrix}$：取 $P=B$ 即 $B=PA$，但 $E$ 与 $B$ 不相似（$B$ 不可对角化）。
+> <span class="hl-orange">别把"左乘"当"相似"</span>：$B=PA$ 是**矩阵等价**（只保秩），$A\sim B$ 是**相似**（§5.3，保特征值），二者不是一回事。反例 $A=E$，$$B=\begin{pmatrix}1&1\\0&1\end{pmatrix}$$：取 $P=B$ 即 $B=PA$，但 $E$ 与 $B$ 不相似（$B$ 不可对角化）。
 > 三种关系一句话：<span class="hl-orange">等价保秩，相似保特征值（行列式、迹），合同保正负惯性指数</span>（合同见 §6.4）。
 
 ### 3.5 向量空间（数二了解）
@@ -556,7 +556,7 @@ $$AX=B\ \text{有解}\iff r(A)=r(A\mid B)$$
 
 也就是 B 的列向量组能由 A 的列向量组线性表出。
 
-<span class="hl-red">光有 $r(A)=r(B)$ 不够</span>：取 $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$、$B=\begin{pmatrix}0&0\\1&0\end{pmatrix}$，两者秩都是 1，但 B 的第一列 $(0,1)^T$ 不在 A 的列空间 $\mathrm{span}\{(1,0)^T\}$ 里，无解。
+<span class="hl-red">光有 $r(A)=r(B)$ 不够</span>：取 $$A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$$、$$B=\begin{pmatrix}0&0\\1&0\end{pmatrix}$$，两者秩都是 1，但 B 的第一列 $(0,1)^T$ 不在 A 的列空间 $\mathrm{span}\{(1,0)^T\}$ 里，无解。
 
 **解法一（通用）**：对增广矩阵 $(A\mid B)$ 做初等行变换，系数部分化阶梯形后逐列解，或者通过化简后的两个矩阵的秩依然相等，来求一些参数的值，比如某行必须全0，必须非0等。
 
@@ -633,12 +633,12 @@ $n$ 个方程 $n$ 个未知数，<span class="hl-orange">$\lvert A\rvert \ne0$</
 
 **同解方程组**：<span class="hl-green">$Ax=0$ 与 $A^TAx=0$ 同解</span>（因为 $x^TA^TAx=\lVert Ax\rVert^2=0\iff Ax=0$）。
 
-<span class="hl-red">$Ax=0$ 与 $AA^Tx=0$ 一般不同解</span>：$AA^Tx=0\iff A^Tx=0$，说的是 $A^T$ 的核，只有当 $\ker A=\ker A^T$（如 $A$ 对称）时才与 $Ax=0$ 同解。反例 $A=\begin{pmatrix}1&1\\0&0\end{pmatrix}$：$Ax=0\Rightarrow x_1=-x_2$，而 $AA^T=\begin{pmatrix}2&0\\0&0\end{pmatrix}\Rightarrow x_1=0$，两者解集不同。
+<span class="hl-red">$Ax=0$ 与 $AA^Tx=0$ 一般不同解</span>：$AA^Tx=0\iff A^Tx=0$，说的是 $A^T$ 的核，只有当 $\ker A=\ker A^T$（如 $A$ 对称）时才与 $Ax=0$ 同解。反例 $$A=\begin{pmatrix}1&1\\0&0\end{pmatrix}$$：$Ax=0\Rightarrow x_1=-x_2$，而 $$AA^T=\begin{pmatrix}2&0\\0&0\end{pmatrix}\Rightarrow x_1=0$$，两者解集不同。
 
 **公共解**：联立 $$\begin{pmatrix}A\\B\end{pmatrix}x=0$$。
 
-- <span class="hl-green">有非零公共解 $\iff r\begin{pmatrix}A\\B\end{pmatrix}<n$</span>；
-- 只有零公共解 $\iff r\begin{pmatrix}A\\B\end{pmatrix}=n$。
+- <span class="hl-green">有非零公共解 $$\iff r\begin{pmatrix}A\\B\end{pmatrix}<n$$</span>；
+- 只有零公共解 $$\iff r\begin{pmatrix}A\\B\end{pmatrix}=n$$。
 
 **解集的包含关系**：$Ax=0$ 的解**都是** $Bx=0$ 的解（即 $\ker A\subseteq\ker B$），<span class="hl-orange">充要条件是</span>
 
@@ -646,7 +646,7 @@ $$r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$$
 
 （此时必有 $r(A)\ge r(B)$）。
 
-> **【理解】** $\ker A=(\text{A 的行空间})^\perp$，故 $\ker A\subseteq\ker B$ 等价于"B 的行向量组被 A 的行向量组张成"，即 $r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$。与"同解"的 $r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}$ 对照记忆：**同解要两边都含，包含只要一头含**。
+> **【理解】** $\ker A=(\text{A 的行空间})^\perp$，故 $\ker A\subseteq\ker B$ 等价于"B 的行向量组被 A 的行向量组张成"，即 $$r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$$。与"同解"的 $$r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}$$ 对照记忆：**同解要两边都含，包含只要一头含**。
 
 ### 4.6 题型：含参线性方程组的讨论
 
@@ -670,7 +670,7 @@ $$r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$$
 
 $$\begin{cases}Ax=b\\Cy=-t\end{cases}$$
 
-于是 $Ax=b+tC$ 有解 $\iff$ 联立方程组有解 $\iff r\begin{pmatrix}A\\C\end{pmatrix}=r\begin{pmatrix}A&\mid&b\\C&\mid&-t\end{pmatrix}$。
+于是 $Ax=b+tC$ 有解 $\iff$ 联立方程组有解 $$\iff r\begin{pmatrix}A\\C\end{pmatrix}=r\begin{pmatrix}A&\mid&b\\C&\mid&-t\end{pmatrix}$$。
 
 > **【理解】** 参数在常数列时不要去算 $|A|$，而是把参数"搬"成另一个方程，与原方程组联立后比秩——"比秩"就变成了"方程个数与解的关系"，这是含参方程组最省力的入口。
 
@@ -680,7 +680,7 @@ $$\begin{cases}Ax=b\\Cy=-t\end{cases}$$
 2. 基础解系个数是 <span class="hl-red">$n-r(A)$</span>，不是 $m-r(A)$；
 3. 非齐次通解 = 齐次通解 + 一个特解；
 4. 同解、公共解、包含关系三类题要分清（见 §4.5）；
-5. 若 $Ax=0$ 的解都是 $Bx=0$ 的解，则 $r(A)\ge r(B)$；<span class="hl-orange">充要条件是 $r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$</span>；
+5. 若 $Ax=0$ 的解都是 $Bx=0$ 的解，则 $r(A)\ge r(B)$；<span class="hl-orange">充要条件是 $$r\begin{pmatrix}A\\B\end{pmatrix}=r(A)$$</span>；
 6. 含参方程组<span class="hl-red">先比秩、再按 $\Delta(t)$ 分情况</span>，别一上来就求通解（见 §4.6）；
 7. <span class="hl-red">$Ax=0$ 只与 $A^TAx=0$ 同解</span>，与 $AA^Tx=0$ <span class="hl-red">一般不同解</span>（后者 $\iff A^Tx=0$）；
 8. 矩阵方程 $AX=B$：<span class="hl-red">$A$ 奇异时不能写 $P=A^{-1}B$</span>，解出通解后还要回代验 $\lvert P\rvert\ne0$（见 §4.3）。
@@ -753,7 +753,7 @@ $$|f(A)|=\prod_{i=1}^n f(\lambda_i)$$
 3. <span class="hl-orange">双方均可对角化时</span>：特征值相同（含重数），即 $|\lambda E-A|=|\lambda E-B|$；实对称矩阵必可对角化，故只需特征值相同；
 4. <span class="hl-orange">一般情形</span>（数一了解）：有相同的 Jordan 标准形（或初等因子相同）。
 
-> **【理解】** $|A|=|B|$、$\operatorname{tr}(A)=\operatorname{tr}(B)$、$r(A)=r(B)$、特征多项式相同、特征值相同，都只是<span class="hl-red">必要非充分</span>。反例：$E$ 与 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 特征值全为 $1$，前者可对角化、后者不可，故不相似。
+> **【理解】** $|A|=|B|$、$\operatorname{tr}(A)=\operatorname{tr}(B)$、$r(A)=r(B)$、特征多项式相同、特征值相同，都只是<span class="hl-red">必要非充分</span>。反例：$E$ 与 $$\begin{pmatrix}1&1\\0&1\end{pmatrix}$$ 特征值全为 $1$，前者可对角化、后者不可，故不相似。
 
 **性质**：
 
@@ -893,7 +893,7 @@ $$f(x_1,\cdots,x_n)=\sum_{i,j}a_{ij}x_ix_j=\textcolor{#3f8fd6}{x^TAx}$$
 | 特征值 | 正交变换后系数就是 $\lambda_i$，数正负 | 本来就要特征值 / 正交矩阵时顺手 |
 | 顺序主子式 | $\Delta_k\ne0$ 时 $d_k=\dfrac{\Delta_k}{\Delta_{k-1}}$，数 $d_k$ 正负 | 低阶、主子式好算；某个 $\Delta_k=0$ 就停用 |
 
-**$2\times2$ 速判**：$A=\begin{pmatrix}a&b\\b&c\end{pmatrix}$，$\operatorname{tr}=a+c$、$\lvert A\rvert=ac-b^2$：
+**$2\times2$ 速判**：$$A=\begin{pmatrix}a&b\\b&c\end{pmatrix}$$，$\operatorname{tr}=a+c$、$\lvert A\rvert=ac-b^2$：
 
 - $\lvert A\rvert<0$ ⇒ $p=q=1$（不定）；
 - $\lvert A\rvert>0,\ \operatorname{tr}>0$ ⇒ $p=2$（正定）；
@@ -982,7 +982,7 @@ $p$ 是正惯性指数，$r-p$ 是负惯性指数。
 
 > **【理解】** 第 5 步的 $d_k=\Delta_k/\Delta_{k-1}$，就是配方剩下那部分（$A$ 的 Schur 补）的对角元。所以**一旦某个 $\Delta_k=0$，这一步就配不下去**（系数为 0），得先用一次合同变换换主元，或调整变量顺序。
 
-**例**：$f=x_1^2+2x_1x_2+2x_1x_3+2x_2^2+4x_2x_3+3x_3^2$，即 $A=\begin{pmatrix}1&1&1\\1&2&2\\1&2&3\end{pmatrix}$。
+**例**：$f=x_1^2+2x_1x_2+2x_1x_3+2x_2^2+4x_2x_3+3x_3^2$，即 $$A=\begin{pmatrix}1&1&1\\1&2&2\\1&2&3\end{pmatrix}$$。
 
 配 $x_1$：
 
@@ -996,7 +996,7 @@ $$f=(x_1+x_2+x_3)^2+(x_2+x_3)^2+x_3^2$$
 
 $$P_1=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix},\qquad f=y_1^2+y_2^2+y_3^2$$
 
-回头看顺序主子式：$\Delta_1=1,\ \Delta_2=\begin{vmatrix}1&1\\1&2\end{vmatrix}=1,\ \Delta_3=1$，于是 $d_1=d_2=d_3=1$，与配方结果对得上；规范形为 $z_1^2+z_2^2+z_3^2$，三正，$f$ 正定。
+回头看顺序主子式：$$\Delta_1=1,\ \Delta_2=\begin{vmatrix}1&1\\1&2\end{vmatrix}=1,\ \Delta_3=1$$，于是 $d_1=d_2=d_3=1$，与配方结果对得上；规范形为 $z_1^2+z_2^2+z_3^2$，三正，$f$ 正定。
 
 **两种方法怎么挑**：
 
