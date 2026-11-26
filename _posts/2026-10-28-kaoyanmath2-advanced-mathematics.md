@@ -963,6 +963,12 @@ $$\int\frac{dx}{a^2+x^2}=\frac1a\arctan\frac xa+C,\quad \int\frac{dx}{\sqrt{a^2-
 
 $$\int\frac{dx}{a^2-x^2}=\frac1{2a}\ln\left|\frac{a+x}{a-x}\right|+C,\quad \int\frac{dx}{\sqrt{x^2\pm a^2}}=\ln\left|x+\sqrt{x^2\pm a^2}\right|+C$$
 
+**补充两个结果**（由循环型分部积分推出，推导见下文例 1、例 2；$\sqrt{a^2+x^2}>|x|$，故对数内恒正、不加绝对值）：
+
+$$\int\sqrt{a^2+x^2}\,dx=\frac x2\sqrt{a^2+x^2}+\frac{a^2}2\ln\left(x+\sqrt{a^2+x^2}\right)+C$$
+
+$$\int\sec^3x\,dx=\frac12\left(\sec x\tan x+\ln\lvert\sec x+\tan x\rvert\right)+C$$
+
 **积分方法**：
 
 1. **第一类换元法（凑微分）**：$\int f[\varphi(x)]\varphi'(x)dx=\int f(u)du$。
@@ -973,6 +979,34 @@ $$\int\frac{dx}{a^2-x^2}=\frac1{2a}\ln\left|\frac{a+x}{a-x}\right|+C,\quad \int\
 3. **分部积分法**：
 
 $$\int u\,dv=uv-\int v\,du$$
+
+**循环型分部积分**：分部一次后右端重新出现原积分 $I$，把 $I$ 当未知量移项解出。
+
+**例 1** 求 $\displaystyle\int\sec^3x\,dx$。
+
+令 $I=\int\sec^3x\,dx$，取 $u=\sec x$、$dv=\sec^2x\,dx$：
+
+$$I=\sec x\tan x-\int\sec x\tan^2x\,dx=\sec x\tan x-\int\sec x(\sec^2x-1)\,dx$$
+
+$$=\sec x\tan x-I+\int\sec x\,dx$$
+
+移项 $2I=\sec x\tan x+\ln\lvert\sec x+\tan x\rvert$，故
+
+$$I=\frac12\left(\sec x\tan x+\ln\lvert\sec x+\tan x\rvert\right)+C$$
+
+**例 2** 求 $\displaystyle\int\sqrt{a^2+x^2}\,dx$。
+
+令 $I=\int\sqrt{a^2+x^2}\,dx$，取 $u=\sqrt{a^2+x^2}$、$dv=dx$：
+
+$$I=x\sqrt{a^2+x^2}-\int\frac{x^2}{\sqrt{a^2+x^2}}\,dx=x\sqrt{a^2+x^2}-\int\frac{(a^2+x^2)-a^2}{\sqrt{a^2+x^2}}\,dx$$
+
+$$=x\sqrt{a^2+x^2}-I+a^2\int\frac{dx}{\sqrt{x^2+a^2}}$$
+
+移项并代入公式表中的 $\int\frac{dx}{\sqrt{x^2+a^2}}$：
+
+$$I=\frac x2\sqrt{a^2+x^2}+\frac{a^2}2\ln\left(x+\sqrt{a^2+x^2}\right)+C$$
+
+> **【易错】** 循环型的两处关键：<span class="hl-red">拆 $\tan^2x=\sec^2x-1$、$x^2=(a^2+x^2)-a^2$ 时符号别错</span>；移项后系数是 $2I$，解出别忘乘 $\frac12$ 与补 $+C$。
 
 **分部积分表格法**：对需多次分部的积分，一列反复求导（$u$ 及其导数），一列反复积分（$dv$ 及其积分），按"正、负、正、负"交替相乘相加，直到导数列为 $0$。
 
